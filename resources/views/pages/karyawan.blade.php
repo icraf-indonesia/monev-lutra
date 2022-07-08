@@ -1,0 +1,181 @@
+@extends('layout')
+
+@section('css')
+<style type="text/css">
+  #row-tampilan div label{
+    display: block;
+  }
+</style>
+    
+@stop
+
+@section('content')
+<div class="content-header">
+    <div class="container-fluid">
+      <div class="row mb-2">
+        <div class="col-sm-6">
+          <h1 class="m-0">Indikator</h1>
+        </div><!-- /.col -->
+        {{-- <div class="col-sm-6">
+          <ol class="breadcrumb float-sm-right">
+            <li class="breadcrumb-item"><a href="#">Home</a></li>
+            <li class="breadcrumb-item active">Modul 2</li>
+          </ol>
+        </div><!-- /.col --> --}}
+      </div><!-- /.row -->
+    </div><!-- /.container-fluid -->
+  </div>
+  <!-- /.content-header -->
+
+  <!-- Main content -->
+  <section class="content">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="card">
+            {{-- <div class="card-header">
+              <h3 class="card-title">Tabel Indikator</h3>
+            </div> --}}
+            <!-- /.card-header -->
+            <div class="card-body">
+              <div class="row" id="row-tampilan">
+                <div class="column" style="width:25%">
+                  <div class="col-md-12">
+                    <h4>Pilih Aspek</h4>
+                  </div>
+                  <div class="col-md-12">
+                    <label>
+                      <input type="checkbox" class="tampilan" data-kolom=1> Alokasi dan tata guna lahan
+
+                    </label>
+                  </div>
+                  <div class="col-md-12">
+                    <label>
+                      <input type="checkbox" class="tampilan" data-kolom=2> Akses modal penghidupan​
+                    </label>
+                  </div>
+                  <div class="col-md-12">
+                    <label>
+                      <input type="checkbox" class="tampilan" data-kolom=3> Produktivitas dan diversifikasi
+                    </label>
+                  </div>
+                  <div class="col-md-12">
+                    <label>
+                      <input type="checkbox" class="tampilan" data-kolom=4> Rantai nilai
+                    </label>
+                  </div>
+                  <div class="col-md-12">
+                    <label>
+                      <input type="checkbox" class="tampilan" data-kolom=1> Jasa ekosistem
+                    </label>
+                  </div>
+                </div>
+                <div class="column" style="width:25%">
+                  <div class="col-md-12">
+                    <h4>Jenis Instrumen</h4>
+                  </div>
+                  <div class="col-md-12">
+                    <label>
+                      <input type="checkbox" class="tampilan" data-kolom=1> Terpercaya
+                    </label>
+                  </div>
+                  <div class="col-md-12">
+                    <label>
+                      <input type="checkbox" class="tampilan" data-kolom=2> LandScale
+                    </label>
+                  </div>
+                  <div class="col-md-12">
+                    <label>
+                      <input type="checkbox" class="tampilan" data-kolom=3> SourceUp
+                    </label>
+                  </div>
+                  <div class="col-md-12">
+                    <label>
+                      <input type="checkbox" class="tampilan" data-kolom=4> PHBM LEI
+                    </label>
+                  </div>
+                  <div class="col-md-12">
+                    <label>
+                      <input type="checkbox" class="tampilan" data-kolom=5> KDSD
+                    </label>
+                  </div> 
+                  <div class="col-md-12">
+                    <label>
+                      <input type="checkbox" class="tampilan" data-kolom=6> Kinerja Daerah
+                    </label>
+                  </div> 
+                </div>
+              </div>             
+              <table id="example1" class="table table-bordered table-striped">
+                <thead>
+                <tr>
+                  {{-- <th>Aspek</th>
+                  <th>Intervensi</th> --}}
+                  <th>Indikator Peta Jalan</th>
+                  <th>Pemangku Kepentingan</th>
+                  <th>Indikator Terpercaya</th>
+                  <th>Indikator LandScale</th>
+                  <th>Indikator SourceUp</th>
+                  <th>Indikator PHBM LEI</th>
+                  <th>Indikator KDSD</th>
+                  <th>Kinerja Daerah</th>
+                </tr>
+                @foreach ($tags as $tag)
+                <tr>
+                  {{-- <td>{{ $tag->strategi }}</td>
+                  <td>{{ $tag->intervensi }}</td> --}}
+                  <td width="12.5%">{{ $tag->petajalan }}</td>
+                  <td width="12.5%">{{ $tag->pemangku }}</td>
+                  <td width="12.5%">{{ $tag->terpercaya }}</td>
+                  <td width="12.5%">{{ $tag->landscale }}</td>
+                  <td width="12.5%">{{ $tag->sourceup }}</td>
+                  <td width="12.5%">{{ $tag->phbmlei }}</td>
+                  <td width="12.5%">{{ $tag->kdsd }}</td>
+                  <td width="12.5%"></td>
+                </tr>
+                @endforeach
+                </thead>
+                <tbody> </tbody>
+
+              </table>
+            </div>
+            <!-- /.card-body -->
+          </div>
+          <!-- /.card -->
+        </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+@stop
+
+@section('js')
+    <script type="text/javascript"> 
+    const table = $('#table').DataTable({
+    "pageLength": 100,
+    "lengthMenu": [[10, 25, 50, 100, -1], [10, 25, 50, 100, 'semua']],
+    "bLengthChange": true,
+    "bFilter": true,
+    "bInfo": true,
+    "processing":true,
+    "bServerSide": true,
+    // "order": [[ 1, "desc" ]],
+    // "autoWidth": false,
+    "ajax":{
+      url: "{{url('')}}/",
+      type: "POST"
+    },
+    columnDefs: [
+      {targets: '_all', visible: true},
+      {
+        "targets": 0,
+        "class":"text-nowrap",
+        "sortable":false,
+        "render": function(data, type, row, meta){
+          return row.strategi;
+        }
+      }],
+      });
+    </script>
+@stop
