@@ -5,6 +5,30 @@
   #row-tampilan div label{
     display: block;
   }
+
+.CellWithComment{
+  position:relative;
+}
+
+.CellComment{
+  display:none;
+  position:absolute; 
+  z-index:100;
+  border:1px;
+  background-color:white;
+  border-style:solid;
+  border-width:1px;
+  border-color:rgb(0, 0, 0);
+  padding:3px;
+  color:rgb(0, 0, 0); 
+  top:20px; 
+  left:220px;
+  width: 400px;
+}
+
+.CellWithComment:hover span.CellComment{
+  display:block;
+}
 </style>
     
 @stop
@@ -124,8 +148,17 @@
                 <tr>
                   {{-- <td>{{ $tag->strategi }}</td>
                   <td>{{ $tag->intervensi }}</td> --}}
-                  <td width="12.5%">{{ $tag->petajalan }}</td>
-                  <td width="12.5%">{{ $tag->pemangku }}</td>
+                  <td class="CellWithComment" width="12.5%">{{ $tag->petajalan }}
+                    <span class="CellComment">
+                      <b>Kriteria/Goal:</b> Konversi ekosistem alami menjadi penggunaan lahan lain, didisagregasi berdasarkan tipe tutupan lahan <br>
+                      <b>Deskripsi:</b> Konversi ekosistem alami menjadi penggunaan lahan lain, didisagregasi berdasarkan tipe tutupan lahan <br>
+                      <b>Level:</b> Kabupaten, Provinsi <br>
+                      <b>Metode Pengukuran:</b> Konversi ekosistem alami menjadi penggunaan lahan lain, didisagregasi berdasarkan tipe tutupan lahan
+                    </span>
+                    <br>
+                  <a href="www.google.com"><u>Selengkapnya...</u></a>
+                  </td>
+                  <td width="12.5%">{{ $tag->pemangku }} </td>
                   <td width="12.5%">{{ $tag->terpercaya }}</td>
                   <td width="12.5%">{{ $tag->landscale }}</td>
                   <td width="12.5%">{{ $tag->sourceup }}</td>
