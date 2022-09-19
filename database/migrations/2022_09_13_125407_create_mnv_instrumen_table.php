@@ -14,16 +14,16 @@ return new class extends Migration
     public function up()
     {
         Schema::create('mnv_instrumen', function (Blueprint $table) {
-            $table->id();
+            $table->increments('id');
             $table->string('indikator_intervensi')->nullable();
             $table->string('pemangku_kepentingan1')->nullable();
             $table->string('pemangku_kepentingan2')->nullable();
-            $table->id('iku');
-            $table->id('ikk');
-            $table->id('terpercaya');
-            $table->id('landscale');
-            $table->id('sourceup');
-            $table->id('kdsd');
+            $table->foreign('id_iku')->references('id')->on('mnv_iku');
+            $table->foreign('id_ikk')->references('id')->on('mnv_ikk');
+            $table->foreign('id_terpercaya')->references('id')->on('mnv_terpercaya');
+            $table->foreign('id_landscale')->references('id')->on('mnv_landscale');
+            $table->foreign('id_sourceup')->references('id')->on('mnv_sourceup');
+            $table->foreign('id_kdsd')->references('id')->on('mnv_kdsd');
             $table->string('target')->nullable();
             $table->string('satuan')->nullable();
             $table->string('tahun1')->nullable();
@@ -32,7 +32,7 @@ return new class extends Migration
             $table->string('tahun4')->nullable();
             $table->string('tahun5')->nullable();
             $table->string('tahun6')->nullable();
-            $table->id('intevensi');
+            $table->foreign('id_intervensi')->references('id')->on('mnv_intervensi');
             $table->timestamps();
         });
     }

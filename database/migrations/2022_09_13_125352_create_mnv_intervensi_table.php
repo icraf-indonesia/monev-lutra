@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('mnv_intervensi', function (Blueprint $table) {
             $table->id();
             $table->string('intervensi')->nullable();
+            $table->foreign('id_strategi')->references('id')->on('mnv_strategi');
             $table->timestamps();
         });
     }
