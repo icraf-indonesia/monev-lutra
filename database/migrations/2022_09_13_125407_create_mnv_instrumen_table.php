@@ -18,6 +18,12 @@ return new class extends Migration
             $table->string('indikator_intervensi')->nullable();
             $table->string('pemangku_kepentingan1')->nullable();
             $table->string('pemangku_kepentingan2')->nullable();
+            $table->unsignedBigInteger('id_iku');
+            $table->unsignedBigInteger('id_ikk');
+            $table->unsignedBigInteger('id_terpercaya');
+            $table->unsignedBigInteger('id_landscale');
+            $table->unsignedBigInteger('id_sourceup');
+            $table->unsignedBigInteger('id_kdsd');
             $table->foreign('id_iku')->references('id')->on('mnv_iku');
             $table->foreign('id_ikk')->references('id')->on('mnv_ikk');
             $table->foreign('id_terpercaya')->references('id')->on('mnv_terpercaya');
@@ -32,6 +38,7 @@ return new class extends Migration
             $table->string('tahun4')->nullable();
             $table->string('tahun5')->nullable();
             $table->string('tahun6')->nullable();
+            $table->unsignedBigInteger('id_intervensi');
             $table->foreign('id_intervensi')->references('id')->on('mnv_intervensi');
             $table->timestamps();
         });
