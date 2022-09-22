@@ -16,9 +16,8 @@ class KaryawanController extends Controller
         // $data ['jenis'] = $jenis;
         // $data ['PARENTTAG'] = 'karyawan';
         // $data ['CHILDTAG'] = $jenis;
-        $tags = DB::table('tags')->get()->toArray();
-        return view('pages.karyawan',['tags'=>$tags]);
-        // return view('pages.karyawan');
+        $tables = DB::select('SHOW TABLES');
+        return view('pages.karyawan',['tables'=>$tables]);
     }
 
     public function about(Request $request)

@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\KaryawanController;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\DB;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,9 +15,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Route::get('/',function(){
-//     return redirect('/karyawan/aktif');
-// });
+// routes.php
+Route::get('/tables', function () {
+    $tables = DB::select('SHOW TABLES'); // returns an array of stdObjects
+return view('tables', compact('tables'));
+});
 
 Route::get('/', [KaryawanController::class, 'about']);
 Route::get('/indikator', [KaryawanController::class, 'index']);
@@ -40,3 +43,6 @@ Route::get('/user', [UserController::class, 'index']);
 Route::get('/pengaturan', [PengaturanController::class, 'index']);
 
 Route::get('/karyawan/data', [KaryawanController::class, 'data']);
+
+
+

@@ -135,20 +135,20 @@
                 <tr>
                   {{-- <th>Aspek</th>
                   <th>Intervensi</th> --}}
-                  <th>Indikator Peta Jalan</th>
+                  {{-- <th>Indikator Peta Jalan</th>
                   <th>Pemangku Kepentingan</th>
-                  <th>Indikator Terpercaya</th>
+                  <th>IKU RPJMD Luwu Utara 2021-2026</th> --}}
+                  <th>IKK RPJMD Luwu Utara 2021-2026</th>
+                  {{-- <th>Indikator Terpercaya</th>
                   <th>Indikator LandScale</th>
                   <th>Indikator SourceUp</th>
-                  <th>Indikator PHBM LEI</th>
-                  <th>Indikator KDSD</th>
-                  <th>Kinerja Daerah</th>
+                  <th>Indikator KDSD</th> --}}
                 </tr>
-                @foreach ($tags as $tag)
+                @foreach($tables as $table)
                 <tr>
                   {{-- <td>{{ $tag->strategi }}</td>
                   <td>{{ $tag->intervensi }}</td> --}}
-                  <td class="CellWithComment" width="12.5%">{{ $tag->petajalan }}
+                  {{-- <td class="CellWithComment" width="12.5%">{{ $tag->petajalan }}
                     <span class="CellComment">
                       <b>Kriteria/Goal:</b> Konversi ekosistem alami menjadi penggunaan lahan lain, didisagregasi berdasarkan tipe tutupan lahan <br>
                       <b>Deskripsi:</b> Konversi ekosistem alami menjadi penggunaan lahan lain, didisagregasi berdasarkan tipe tutupan lahan <br>
@@ -157,18 +157,21 @@
                     </span>
                     <br>
                   <a href="www.google.com"><u>Selengkapnya...</u></a>
-                  </td>
-                  <td width="12.5%">{{ $tag->pemangku }} </td>
-                  <td width="12.5%">{{ $tag->terpercaya }}</td>
-                  <td width="12.5%">{{ $tag->landscale }}</td>
-                  <td width="12.5%">{{ $tag->sourceup }}</td>
-                  <td width="12.5%">{{ $tag->phbmlei }}</td>
-                  <td width="12.5%">{{ $tag->kdsd }}</td>
-                  <td width="12.5%"></td>
+                  </td> --}}
+                  {{-- <td width="12.5%">{{ $tables.mnv_ikk->nama_indikator }} </td>
+                  <td width="12.5%">{{ $mnv_iku->nama_indikator }}</td>
+                  <td width="12.5%">{{ $mnv_ikk->nama_indikator }}</td>
+                  <td width="12.5%">{{ $mnv_iku->nama_indikator }}</td>
+                  <td width="12.5%">{{ $mnv_iku->nama_indikator }}</td>
+                  <td width="12.5%">{{ $mnv_iku->nama_indikator }}</td>
+                  <td width="12.5%"></td> --}}
+                  <td width="12.5%">{{ $table->mnv_ikk }}</td>
                 </tr>
                 @endforeach
                 </thead>
-                <tbody> </tbody>
+                <tbody> 
+                  
+                </tbody>
 
               </table>
             </div>
