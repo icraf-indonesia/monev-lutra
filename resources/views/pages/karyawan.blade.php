@@ -113,36 +113,36 @@
                       <input type="checkbox" class="tampilan" data-kolom=3> SourceUp
                     </label>
                   </div>
-                  <div class="col-md-12">
+                  {{-- <div class="col-md-12">
                     <label>
                       <input type="checkbox" class="tampilan" data-kolom=4> PHBM LEI
                     </label>
-                  </div>
+                  </div> --}}
                   <div class="col-md-12">
                     <label>
                       <input type="checkbox" class="tampilan" data-kolom=5> KDSD
                     </label>
                   </div> 
-                  <div class="col-md-12">
+                  {{-- <div class="col-md-12">
                     <label>
                       <input type="checkbox" class="tampilan" data-kolom=6> Kinerja Daerah
                     </label>
-                  </div> 
+                  </div>  --}}
                 </div>
               </div>             
               <table id="example1" class="table table-bordered table-striped">
                 <thead>
                 <tr>
-                  {{-- <th>Aspek</th>
-                  <th>Intervensi</th> --}}
-                  {{-- <th>Indikator Peta Jalan</th>
+                  <th>Aspek</th>
+                  <th>Intervensi</th>
+                  <th>Indikator Peta Jalan</th>
                   <th>Pemangku Kepentingan</th>
-                  <th>IKU RPJMD Luwu Utara 2021-2026</th> --}}
+                  <th>IKU RPJMD Luwu Utara 2021-2026</th>
                   <th>IKK RPJMD Luwu Utara 2021-2026</th>
-                  {{-- <th>Indikator Terpercaya</th>
+                  <th>Indikator Terpercaya</th>
                   <th>Indikator LandScale</th>
                   <th>Indikator SourceUp</th>
-                  <th>Indikator KDSD</th> --}}
+                  <th>Indikator KDSD</th>
                 </tr>
                 @foreach($tables as $table)
                 <tr>
@@ -158,14 +158,16 @@
                     <br>
                   <a href="www.google.com"><u>Selengkapnya...</u></a>
                   </td> --}}
-                  {{-- <td width="12.5%">{{ $tables.mnv_ikk->nama_indikator }} </td>
-                  <td width="12.5%">{{ $mnv_iku->nama_indikator }}</td>
-                  <td width="12.5%">{{ $mnv_ikk->nama_indikator }}</td>
-                  <td width="12.5%">{{ $mnv_iku->nama_indikator }}</td>
-                  <td width="12.5%">{{ $mnv_iku->nama_indikator }}</td>
-                  <td width="12.5%">{{ $mnv_iku->nama_indikator }}</td>
-                  <td width="12.5%"></td> --}}
-                  <td width="12.5%">{{ $table->mnv_ikk }}</td>
+                  <td width="10%">{{ $table->strategi}}</td>
+                  <td width="10%">{{ $table->intervensi}}</td>
+                  <td width="10%">{{ $table->indikator_intervensi}}</td>
+                  <td width="10%">{{ $table->pemangku_kepentingan1}}</td>
+                  <td width="10%">{{ $table->iku}}</td>
+                  <td width="10%">{{ $table->ikk}}</td>
+                  <td width="10%">{{ $table->terpercaya}}</td>
+                  <td width="10%">{{ $table->landscale}}</td>
+                  <td width="10%">{{ $table->sourceup}}</td>
+                  <td width="10%">{{ $table->kdsd}}</td>
                 </tr>
                 @endforeach
                 </thead>

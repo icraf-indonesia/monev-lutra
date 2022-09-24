@@ -18,7 +18,7 @@ use Illuminate\Support\Facades\DB;
 // routes.php
 Route::get('/tables', function () {
     $tables = DB::select('SHOW TABLES'); // returns an array of stdObjects
-return view('tables', compact('tables'));
+return view('pages.test', compact('tables'));
 });
 
 Route::get('/', [KaryawanController::class, 'about']);
