@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\KaryawanController;
+use App\Http\Controllers\MonevController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\DB;
 
@@ -21,20 +21,20 @@ Route::get('/tables', function () {
 return view('pages.test', compact('tables'));
 });
 
-Route::get('/', [KaryawanController::class, 'about']);
-Route::get('/indikator', [KaryawanController::class, 'index']);
-Route::get('/gambaran_umum_tahunan', [KaryawanController::class, 'jurisdiction']);
-Route::get('/gambaran_umum_multi', [KaryawanController::class, 'umumMulti']);
-Route::get('/alokasi_tataguna_lahan_tahunan', [KaryawanController::class, 'alokasiTahunan']);
-Route::get('/alokasi_tataguna_lahan_multi', [KaryawanController::class, 'alokasiMulti']);
-Route::get('/akses_modal_tahunan', [KaryawanController::class, 'aksesTahunan']);
-Route::get('/akses_modal_multi', [KaryawanController::class, 'aksesMulti']);
-Route::get('/produktivitas_tahunan', [KaryawanController::class, 'produktivitasTahunan']);
-Route::get('/produktivitas_multi', [KaryawanController::class, 'produktivitasMulti']);
-Route::get('/rantai_nilai_tahunan', [KaryawanController::class, 'rantaiTahunan']);
-Route::get('/rantai_nilai_multi', [KaryawanController::class, 'rantaiMulti']);
-Route::get('/jasa_ekosistem_tahunan', [KaryawanController::class, 'jasaTahunan']);
-Route::get('/jasa_ekosistem_multi', [KaryawanController::class, 'jasaMulti']);
+Route::get('/', [MonevController::class, 'about']);
+Route::get('/indikator', [MonevController::class, 'index']);
+Route::get('/gambaran_umum_tahunan', [MonevController::class, 'jurisdiction']);
+Route::get('/gambaran_umum_multi', [MonevController::class, 'umumMulti']);
+Route::get('/alokasi_tataguna_lahan_tahunan', [MonevController::class, 'alokasiTahunan']);
+Route::get('/alokasi_tataguna_lahan_multi', [MonevController::class, 'alokasiMulti']);
+Route::get('/akses_modal_tahunan', [MonevController::class, 'aksesTahunan']);
+Route::get('/akses_modal_multi', [MonevController::class, 'aksesMulti']);
+Route::get('/produktivitas_tahunan', [MonevController::class, 'produktivitasTahunan']);
+Route::get('/produktivitas_multi', [MonevController::class, 'produktivitasMulti']);
+Route::get('/rantai_nilai_tahunan', [MonevController::class, 'rantaiTahunan']);
+Route::get('/rantai_nilai_multi', [MonevController::class, 'rantaiMulti']);
+Route::get('/jasa_ekosistem_tahunan', [MonevController::class, 'jasaTahunan']);
+Route::get('/jasa_ekosistem_multi', [MonevController::class, 'jasaMulti']);
 
 
 Route::get('/karyawan/{jenis}', [KaryawanController::class, 'index']);

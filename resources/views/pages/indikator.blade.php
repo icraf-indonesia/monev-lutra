@@ -113,21 +113,11 @@
                       <input type="checkbox" class="tampilan" data-kolom=3> SourceUp
                     </label>
                   </div>
-                  {{-- <div class="col-md-12">
-                    <label>
-                      <input type="checkbox" class="tampilan" data-kolom=4> PHBM LEI
-                    </label>
-                  </div> --}}
                   <div class="col-md-12">
                     <label>
                       <input type="checkbox" class="tampilan" data-kolom=5> KDSD
                     </label>
                   </div> 
-                  {{-- <div class="col-md-12">
-                    <label>
-                      <input type="checkbox" class="tampilan" data-kolom=6> Kinerja Daerah
-                    </label>
-                  </div>  --}}
                 </div>
               </div>             
               <table id="example1" class="table table-bordered table-striped">
@@ -146,23 +136,20 @@
                 </tr>
                 @foreach($tables as $table)
                 <tr>
-                  {{-- <td>{{ $tag->strategi }}</td>
-                  <td>{{ $tag->intervensi }}</td> --}}
-                  {{-- <td class="CellWithComment" width="12.5%">{{ $tag->petajalan }}
-                    <span class="CellComment">
-                      <b>Kriteria/Goal:</b> Konversi ekosistem alami menjadi penggunaan lahan lain, didisagregasi berdasarkan tipe tutupan lahan <br>
-                      <b>Deskripsi:</b> Konversi ekosistem alami menjadi penggunaan lahan lain, didisagregasi berdasarkan tipe tutupan lahan <br>
-                      <b>Level:</b> Kabupaten, Provinsi <br>
-                      <b>Metode Pengukuran:</b> Konversi ekosistem alami menjadi penggunaan lahan lain, didisagregasi berdasarkan tipe tutupan lahan
-                    </span>
-                    <br>
-                  <a href="www.google.com"><u>Selengkapnya...</u></a>
-                  </td> --}}
                   <td width="10%">{{ $table->strategi}}</td>
                   <td width="10%">{{ $table->intervensi}}</td>
                   <td width="10%">{{ $table->indikator_intervensi}}</td>
                   <td width="10%">{{ $table->pemangku_kepentingan1}}</td>
-                  <td width="10%">{{ $table->iku}}</td>
+                  <td class="CellWithComment" width="10%">{{ $table->iku}}
+                    {{-- <span class="CellComment">
+                      <b>Kriteria/Goal:</b> Konversi ekosistem alami menjadi penggunaan lahan lain, didisagregasi berdasarkan tipe tutupan lahan <br>
+                      <b>Deskripsi:</b> Konversi ekosistem alami menjadi penggunaan lahan lain, didisagregasi berdasarkan tipe tutupan lahan <br>
+                      <b>Level:</b> Kabupaten, Provinsi <br>
+                      <b>Metode Pengukuran:</b> Konversi ekosistem alami menjadi penggunaan lahan lain, didisagregasi berdasarkan tipe tutupan lahan
+                    </span> --}}
+                    {{-- <br>
+                  <a href="www.google.com"><u>Selengkapnya...</u></a> --}}
+                  </td>
                   <td width="10%">{{ $table->ikk}}</td>
                   <td width="10%">{{ $table->terpercaya}}</td>
                   <td width="10%">{{ $table->landscale}}</td>
