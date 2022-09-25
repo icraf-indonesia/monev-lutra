@@ -2,7 +2,7 @@
 
 use App\Http\Controllers\MonevController;
 use Illuminate\Support\Facades\Route;
-use Illuminate\Support\Facades\DB;
+// use Illuminate\Support\Facades\DB;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,12 +14,6 @@ use Illuminate\Support\Facades\DB;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-// routes.php
-Route::get('/tables', function () {
-    $tables = DB::select('SHOW TABLES'); // returns an array of stdObjects
-return view('pages.test', compact('tables'));
-});
 
 Route::get('/', [MonevController::class, 'about']);
 Route::get('/indikator', [MonevController::class, 'index']);
@@ -37,12 +31,11 @@ Route::get('/jasa_ekosistem_tahunan', [MonevController::class, 'jasaTahunan']);
 Route::get('/jasa_ekosistem_multi', [MonevController::class, 'jasaMulti']);
 
 
-Route::get('/karyawan/{jenis}', [KaryawanController::class, 'index']);
-Route::get('/struktur-organisasi', [OrganisasiController::class, 'index']);
-Route::get('/user', [UserController::class, 'index']);
-Route::get('/pengaturan', [PengaturanController::class, 'index']);
-
-Route::get('/karyawan/data', [KaryawanController::class, 'data']);
+// Route::get('/karyawan/{jenis}', [KaryawanController::class, 'index']);
+// Route::get('/struktur-organisasi', [OrganisasiController::class, 'index']);
+// Route::get('/user', [UserController::class, 'index']);
+// Route::get('/pengaturan', [PengaturanController::class, 'index']);
+// Route::get('/karyawan/data', [KaryawanController::class, 'data']);
 
 
 

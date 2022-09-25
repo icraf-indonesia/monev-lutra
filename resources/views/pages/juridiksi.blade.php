@@ -158,7 +158,13 @@ element.style{
 													</tr>
 												</thead>
 												<tbody>
-													<tr>
+                                                    @foreach($tables_jurisdiction as $table)
+                                                    <tr>
+                                                    <td width="10%">{{ $table->strategi }}</td>
+                                                    <td width="10%">{{ $table->intervensi }}</td>
+                                                    </tr>
+                                                     @endforeach
+													{{-- <tr>
 														<td>1. Alokasi dan tataguna lahan</td>
 														<td>
 															<span class="badge shade-yellow min-90" style="width: 100%;">5</span>
@@ -205,7 +211,7 @@ element.style{
 														<td>
 															<span class="badge shade-yellow min-90" style="width: 20%;">5</span>
 														</td>
-													</tr>
+													</tr> --}}
 												</tbody>
 								    		</table>
                                         </div>

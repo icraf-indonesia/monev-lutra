@@ -163,7 +163,7 @@ element.style{
 												</thead>
 												<tbody>
 													<tr>
-														<td width="10%">2019</td>
+														<td width="10%">2021</td>
 														<td width="18%">
 															<span class="badge shade-yellow min-90" style="width: 100%;">5</span>
 														</td>
@@ -181,129 +181,93 @@ element.style{
 														</td>
 													</tr>
 													<tr>
-														<td>2020</td>
-														<td>
-															<span class="badge shade-green min-90" style="width: 75%;">5</span>
-														</td>
-                                                        <td>
-															<span class="badge shade-green min-90" style="width: 75%;">5</span>
-														</td>
-                                                        <td>
-															<span class="badge shade-green min-90" style="width: 75%;">5</span>
-														</td>
-                                                        <td>
-															<span class="badge shade-green min-90" style="width: 75%;">5</span>
-														</td>
-                                                        <td>
-															<span class="badge shade-green min-90" style="width: 75%;">5</span>
-														</td>
-													</tr>
-													<tr>
-														<td>2021</td>
-														<td>
-															<span class="badge shade-green min-90" style="width: 60%;">5</span>
-														</td>
-                                                        <td>
-															<span class="badge shade-green min-90" style="width: 60%;">5</span>
-														</td>
-                                                        <td>
-															<span class="badge shade-green min-90" style="width: 60%;">5</span>
-														</td>
-                                                        <td>
-															<span class="badge shade-green min-90" style="width: 60%;">5</span>
-														</td>
-                                                        <td>
-															<span class="badge shade-green min-90" style="width: 60%;">5</span>
-														</td>
-													</tr>
-													<tr>
 														<td>2022</td>
 														<td>
-															<span class="badge shade-green min-90" style="width: 80%;">5</span>
+															<span class="badge shade-green min-90" style="width: 75%;">5</span>
 														</td>
                                                         <td>
-															<span class="badge shade-green min-90" style="width: 80%;">5</span>
+															<span class="badge shade-green min-90" style="width: 75%;">5</span>
 														</td>
                                                         <td>
-															<span class="badge shade-green min-90" style="width: 80%;">5</span>
+															<span class="badge shade-green min-90" style="width: 75%;">5</span>
 														</td>
                                                         <td>
-															<span class="badge shade-green min-90" style="width: 80%;">5</span>
+															<span class="badge shade-green min-90" style="width: 75%;">5</span>
 														</td>
                                                         <td>
-															<span class="badge shade-green min-90" style="width: 80%;">5</span>
+															<span class="badge shade-green min-90" style="width: 75%;">5</span>
 														</td>
 													</tr>
 													<tr>
-														<td>2023​</td>
+														<td>2023</td>
 														<td>
-															<span class="badge shade-yellow min-90" style="width: 40%;">5</span>
+															<span class="badge shade-green min-90" style="width: 60%;">5</span>
 														</td>
                                                         <td>
-															<span class="badge shade-yellow min-90" style="width: 40%;">5</span>
+															<span class="badge shade-green min-90" style="width: 60%;">5</span>
 														</td>
                                                         <td>
-															<span class="badge shade-yellow min-90" style="width: 40%;">5</span>
+															<span class="badge shade-green min-90" style="width: 60%;">5</span>
 														</td>
                                                         <td>
-															<span class="badge shade-yellow min-90" style="width: 40%;">5</span>
+															<span class="badge shade-green min-90" style="width: 60%;">5</span>
 														</td>
                                                         <td>
-															<span class="badge shade-yellow min-90" style="width: 40%;">5</span>
-														</td>
-													</tr>
-													<tr>
-														<td>2024</td>
-														<td>
-															<span class="badge shade-yellow min-90" style="width: 65%;">5</span>
-														</td>
-                                                        <td>
-															<span class="badge shade-yellow min-90" style="width: 65%;">5</span>
-														</td>
-                                                        <td>
-															<span class="badge shade-yellow min-90" style="width: 65%;">5</span>
-														</td>
-                                                        <td>
-															<span class="badge shade-yellow min-90" style="width: 65%;">5</span>
-														</td>
-                                                        <td>
-															<span class="badge shade-yellow min-90" style="width: 65%;">5</span>
+															<span class="badge shade-green min-90" style="width: 60%;">5</span>
 														</td>
 													</tr>
 													<tr>
 														<td>2024</td>
 														<td>
-															<span class="badge shade-yellow min-90" style="width: 70%;">5</span>
+															<span class="badge shade-green min-90" style="width: 80%;">5</span>
 														</td>
                                                         <td>
-															<span class="badge shade-yellow min-90" style="width: 70%;">5</span>
+															<span class="badge shade-green min-90" style="width: 80%;">5</span>
 														</td>
                                                         <td>
-															<span class="badge shade-yellow min-90" style="width: 70%;">5</span>
+															<span class="badge shade-green min-90" style="width: 80%;">5</span>
 														</td>
                                                         <td>
-															<span class="badge shade-yellow min-90" style="width: 70%;">5</span>
+															<span class="badge shade-green min-90" style="width: 80%;">5</span>
 														</td>
                                                         <td>
-															<span class="badge shade-yellow min-90" style="width: 70%;">5</span>
+															<span class="badge shade-green min-90" style="width: 80%;">5</span>
 														</td>
 													</tr>
-                                                    <tr>
+													<tr>
 														<td>2025</td>
 														<td>
-															<span class="badge shade-yellow min-90" style="width: 20%;">5</span>
+															<span class="badge shade-yellow min-90" style="width: 40%;">5</span>
 														</td>
                                                         <td>
-															<span class="badge shade-yellow min-90" style="width: 20%;">5</span>
+															<span class="badge shade-yellow min-90" style="width: 40%;">5</span>
 														</td>
                                                         <td>
-															<span class="badge shade-yellow min-90" style="width: 20%;">5</span>
+															<span class="badge shade-yellow min-90" style="width: 40%;">5</span>
 														</td>
                                                         <td>
-															<span class="badge shade-yellow min-90" style="width: 20%;">5</span>
+															<span class="badge shade-yellow min-90" style="width: 40%;">5</span>
 														</td>
                                                         <td>
-															<span class="badge shade-yellow min-90" style="width: 20%;">5</span>
+															<span class="badge shade-yellow min-90" style="width: 40%;">5</span>
+														</td>
+													</tr>
+													<tr>
+														<td>2026</td>
+														<td>
+															<span class="badge shade-yellow min-90" style="width: 65%;">5</span>
+														</td>
+                                                        <td>
+															<span class="badge shade-yellow min-90" style="width: 65%;">5</span>
+														</td>
+                                                        <td>
+															<span class="badge shade-yellow min-90" style="width: 65%;">5</span>
+														</td>
+                                                        <td>
+															<span class="badge shade-yellow min-90" style="width: 65%;">5</span>
+														</td>
+                                                        <td>
+															<span class="badge shade-yellow min-90" style="width: 65%;">5</span>
 														</td>
 													</tr>
 												</tbody>

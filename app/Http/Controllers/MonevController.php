@@ -38,7 +38,11 @@ class MonevController extends Controller
 
     public function jurisdiction(Request $request)
     {
-        return view('pages.juridiksi');
+        $tables_jurisdiction=DB::select('SELECT mnv_strategi.strategi, mnv_intervensi.intervensi 
+        FROM mnv_intervensi, mnv_strategi 
+        WHERE mnv_strategi.id = mnv_intervensi.id_strategi');
+        // return $tables_jurisdiction;
+        return view('pages.juridiksi',['tables_jurisdiction'=>$tables_jurisdiction]);
     }
 
     public function umumMulti(Request $request)
@@ -48,7 +52,10 @@ class MonevController extends Controller
 
     public function alokasiTahunan(Request $request)
     {
-        return view('pages.alokasiTahunan');
+        $tables_alokasitahun=DB::select('SELECT mnv_instrumen.indikator_intervensi, mnv_instrumen.pemangku_kepentingan1, mnv_instrumen.target, mnv_instrumen.satuan, mnv_instrumen.tahun1 
+        FROM mnv_instrumen');
+        // return $tables_alokasitahun;
+        return view('pages.alokasiTahunan',['tables_alokasitahun'=>$tables_alokasitahun]);
     }
 
     public function alokasiMulti(Request $request)

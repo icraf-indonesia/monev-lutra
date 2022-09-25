@@ -154,10 +154,12 @@ element.style{
                                                 <label for="cars">Tahun:</label>
                                                 <br>
                                                 <select name="cars" id="cars" style="width:100px;">
-                                                    <option value="volvo">2019</option>
-                                                    <option value="saab">2020</option>
-                                                    <option value="opel">2021</option>
-                                                    <option value="audi">2022</option>
+                                                    <option value=2021>2021</option>
+                                                    <option value=2022>2022</option>
+                                                    <option value=2023>2023</option>
+                                                    <option value=2024>2024</option>
+                                                    <option value=2025>2025</option>
+                                                    <option value=2026>2026</option>
                                                 </select>
                                             </div>
                                             <div class="column" style="width:50%;">
@@ -175,13 +177,7 @@ element.style{
                                                       <input type="checkbox" class="tampilan" data-kolom=3> SourceUp
                                                     </label>
                                                     <label style="padding-right: 10px;">
-                                                      <input type="checkbox" class="tampilan" data-kolom=4> PHBM LEI
-                                                    </label>
-                                                    <label style="padding-right: 10px;">
                                                       <input type="checkbox" class="tampilan" data-kolom=5> KDSD
-                                                    </label>
-                                                    <label style="padding-right: 10px;">
-                                                      <input type="checkbox" class="tampilan" data-kolom=6> Kinerja Daerah
                                                     </label>
                                                 </div>
                                             </div>
@@ -194,12 +190,29 @@ element.style{
 														<th>Pemangku Kepentingan</th>
                                                         <th>Target Capaian</th>
                                                         <th>Kondisi Saat Ini</th>
+                                                        <th>Satuan</th>
                                                         <th>Instrumen</th>
                                                         <th>Dokumen Pendukung</th>   
 													</tr>
 												</thead>
 												<tbody>
-													<tr>
+                                                    @foreach($tables_alokasitahun as $table)
+                                                    <tr>
+                                                    <td width="20%">{{ $table->indikator_intervensi }}</td>
+                                                    <td width="20%">{{ $table->pemangku_kepentingan1 }}</td>
+                                                    <td width="10%">{{ $table->target }}</td>
+                                                    <td width="10%">{{ $table->tahun1 }}</td>
+                                                    <td width="10%">{{ $table->satuan }}</td>
+                                                    <td width="30%">
+                                                        <span class="badge shade-yellow min-90">LandScale</span>
+                                                        <span class="badge shade-blue min-90">Terpercaya</span>
+                                                    </td>
+                                                    <td width="10%">
+                                                        <span class="text-red"><i class="bi bi-download"></i> file.pdf</span>
+                                                    </td>
+                                                    </tr>
+                                                    @endforeach
+													{{-- <tr>
 														<td width="15%">Indikator 1</td>
                                                         <td width="15%">Dinas Kehutanan</td>
                                                         <td width="10%">250 Ha</td>
@@ -263,7 +276,7 @@ element.style{
                                                         <td width="20%">
 															<span class="text-red"><i class="bi bi-download"></i> file.pdf</span>
 														</td>
-													</tr>
+													</tr> --}}
 												</tbody>
 								    		</table>
                                         </div>
