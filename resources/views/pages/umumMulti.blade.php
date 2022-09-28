@@ -20,13 +20,16 @@
 element.style{
     margin-left: 0px;
 }
+body{
+    overflow-y: hidden;
+}
 </style>
 @stop
 
 @section('content')
 <!-- Sidebar menu starts -->
 <!-- Sidebar wrapper start -->
-<nav class="sidebar-wrapper" style="height: 700px">
+<nav class="sidebar-wrapper" style="height: inherit;">
 
     <!-- Sidebar menu starts -->
     <div class="sidebar-menu">

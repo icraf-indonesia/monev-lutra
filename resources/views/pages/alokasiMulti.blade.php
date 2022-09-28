@@ -20,13 +20,17 @@
 element.style{
     margin-left: 0px;
 }
+
+body{
+    overflow-y: hidden;
+}
 </style>
 @stop
 
 @section('content')
 <!-- Sidebar menu starts -->
 <!-- Sidebar wrapper start -->
-<nav class="sidebar-wrapper" style="height: 700px">
+<nav class="sidebar-wrapper" style="height: inherit;">
 
     <!-- Sidebar menu starts -->
     <div class="sidebar-menu">
@@ -149,6 +153,15 @@ element.style{
 										<div class="card-title">Alokasi dan Tata Guna Lahan / Data Multi-tahun</div>
 									</div>
 									<div class="card-body">
+                                        <div style="padding-bottom: 20px; width:50%;">
+                                            <select name="intervensi" class="form-select">
+                                                <option value="" selected>Pilih Satu</option>
+                                                @foreach ($intervensi as $item)
+                                                   <option value="{{ $item->intervensi }}" {{ request('item') === $item->intervensi ? 'selected' : null }}>
+                                                      {{ $item->intervensi }}</option>
+                                                @endforeach
+                                             </select>
+                                        </div>
                                         <div class="row">
                                             <div class="column" style="width:50%; background-color:rgb(234, 219, 219);">
                                                 <h3>Judul Grafik 1</h3>

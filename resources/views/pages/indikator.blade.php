@@ -29,6 +29,15 @@
 .CellWithComment:hover span.CellComment{
   display:block;
 }
+
+thead th {
+  position: -webkit-sticky; /* for Safari */
+  position: sticky;
+  top: 0;
+  background-color: #1A5E51;
+  color: white;
+  text-align: center;
+}
 </style>
     
 @stop
@@ -69,28 +78,28 @@
                   </div>
                   <div class="col-md-12">
                     <label>
-                      <input type="checkbox" class="tampilan" data-kolom=1> Alokasi dan tata guna lahan
+                      <input type="checkbox" class="tampilan" data-kolom=1a checked="true"> Alokasi dan tata guna lahan
 
                     </label>
                   </div>
                   <div class="col-md-12">
                     <label>
-                      <input type="checkbox" class="tampilan" data-kolom=2> Akses modal penghidupan​
+                      <input type="checkbox" class="tampilan" data-kolom=2a checked="true"> Akses modal penghidupan​
                     </label>
                   </div>
                   <div class="col-md-12">
                     <label>
-                      <input type="checkbox" class="tampilan" data-kolom=3> Produktivitas dan diversifikasi
+                      <input type="checkbox" class="tampilan" data-kolom=3a> Produktivitas dan diversifikasi
                     </label>
                   </div>
                   <div class="col-md-12">
                     <label>
-                      <input type="checkbox" class="tampilan" data-kolom=4> Rantai nilai
+                      <input type="checkbox" class="tampilan" data-kolom=4a> Rantai nilai
                     </label>
                   </div>
                   <div class="col-md-12">
                     <label>
-                      <input type="checkbox" class="tampilan" data-kolom=1> Jasa ekosistem
+                      <input type="checkbox" class="tampilan" data-kolom=5a> Jasa ekosistem
                     </label>
                   </div>
                 </div>
@@ -100,25 +109,36 @@
                   </div>
                   <div class="col-md-12">
                     <label>
-                      <input type="checkbox" class="tampilan" data-kolom=1> Terpercaya
+                      <input type="checkbox" class="tampilan" data-kolom=1 checked="true"> Terpercaya
                     </label>
                   </div>
                   <div class="col-md-12">
                     <label>
-                      <input type="checkbox" class="tampilan" data-kolom=2> LandScale
+                      <input type="checkbox" class="tampilan" data-kolom=2 checked="true"> LandScale
                     </label>
                   </div>
                   <div class="col-md-12">
                     <label>
-                      <input type="checkbox" class="tampilan" data-kolom=3> SourceUp
+                      <input type="checkbox" class="tampilan" data-kolom=3 checked="true"> SourceUp
                     </label>
                   </div>
                   <div class="col-md-12">
                     <label>
-                      <input type="checkbox" class="tampilan" data-kolom=5> KDSD
+                      <input type="checkbox" class="tampilan" data-kolom=4 checked="true"> KDSD
                     </label>
                   </div> 
                 </div>
+                <div class="column" style="width:25%">
+                  <h4>Pencarian</h4>
+                  <div class="col-auto">
+                      <input name="keyword" value="{{ request('keyword') }}" type="search" class="form-control"
+                        placeholder="Cari..." style="margin-bottom: 20px;">
+                  </div>  
+                  <h4>Download</h4>
+                  <div class="col-auto">
+                    <a href="https://drive.google.com/file/d/1UgMF_cfuN_N7hX8zAx-PtsTU51RV2-iS/view?usp=sharing"><u>Tabel Deskripsi Indikator</u></a>
+                  </div>
+                </div>            
               </div>             
               <table id="example1" class="table table-bordered table-striped">
                 <thead>
@@ -140,7 +160,7 @@
                   <td width="10%">{{ $table->intervensi}}</td>
                   <td width="10%">{{ $table->indikator_intervensi}}</td>
                   <td width="10%">{{ $table->pemangku_kepentingan1}}</td>
-                  <td class="CellWithComment" width="10%">{{ $table->iku}}
+                  <td width="10%">{{ $table->iku}}
                     {{-- <span class="CellComment">
                       <b>Kriteria/Goal:</b> Konversi ekosistem alami menjadi penggunaan lahan lain, didisagregasi berdasarkan tipe tutupan lahan <br>
                       <b>Deskripsi:</b> Konversi ekosistem alami menjadi penggunaan lahan lain, didisagregasi berdasarkan tipe tutupan lahan <br>
@@ -163,6 +183,18 @@
                 </tbody>
 
               </table>
+              <body>
+                {{-- <table border="2" bordercolor="green">
+                  @foreach($tables as $table)
+                    <tr>
+                        <td>{{ $table->intervensi}}</td>
+                    </tr>
+                    <tr>
+                        <td> {{ $table->ikk}} </td>
+                        <td> {{ $table->terpercaya}} </td>
+                    </tr>
+                  @endforeach
+                </table> --}}
             </div>
             <!-- /.card-body -->
           </div>
@@ -177,30 +209,60 @@
 
 @section('js')
     <script type="text/javascript"> 
+    let tables=[];
     const table = $('#table').DataTable({
-    "pageLength": 100,
+    "pageLength": 10,
     "lengthMenu": [[10, 25, 50, 100, -1], [10, 25, 50, 100, 'semua']],
     "bLengthChange": true,
     "bFilter": true,
     "bInfo": true,
     "processing":true,
     "bServerSide": true,
-    // "order": [[ 1, "desc" ]],
+    "order": [[ 1, "desc" ]],
     // "autoWidth": false,
     "ajax":{
-      url: "{{url('')}}/",
+      url: "{{url('')}}/indikator",
       type: "POST"
-    },
+    }
+  },
+  "initComplete": function(settings, json) {
+    const all_checkbox_view = $("#row-tampilan div input[type='checkbox']")
+    $.each(all_checkbox_view,function(key,checkbox){
+      let kolom = $(checkbox).data('kolom')
+      let is_checked = checkbox.checked
+      table.column(kolom).visible(is_checked)
+    });
+  },
     columnDefs: [
-      {targets: '_all', visible: true},
       {
-        "targets": 0,
+        "targets": 1,
         "class":"text-nowrap",
-        "sortable":false,
         "render": function(data, type, row, meta){
-          return row.strategi;
+          return row.terpercaya;
         }
-      }],
-      });
+      },
+      {
+        "targets": 2,
+        "class":"text-nowrap",
+        "render": function(data, type, row, meta){
+          return row.landscale;
+        }
+      },
+      {
+        "targets": 3,
+        "class":"text-nowrap",
+        "render": function(data, type, row, meta){
+          return row.sourceup;
+        }
+      },
+      {
+        "targets": 4,
+        "class":"text-nowrap",
+        "render": function(data, type, row, meta){
+          return row.kdsd;
+        }
+      },
+    ]
+    );
     </script>
 @stop

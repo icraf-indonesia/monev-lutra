@@ -36,29 +36,32 @@
 
   <!-- Preloader -->
   <div class="preloader flex-column justify-content-center align-items-center">
-    <img class="animation__shake" src="dist/img/logo.png" alt="AdminLTELogo" height="60" width="60">
+    <img class="animation__shake" src="dist/img/lutra2.png" alt="AdminLTELogo" height="80" width="65">
   </div>
 
   <!-- Navbar -->
-  <nav class="main-header navbar navbar-expand navbar-white navbar-light" style="margin-left: 0px;">
+  <nav class="main-header navbar navbar-expand navbar-white navbar-light" style="margin-left: 0px; background-color:#1A5E51;">
     <!-- Left navbar links -->
     <ul class="navbar-nav">
       {{-- <li class="nav-item">
         <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
       </li> --}}
       <li class="nav-item d-none d-sm-inline-block">
-        <a href="{{url('')}}/" class="nav-link">Tentang</a>
+        <a href="{{url('')}}/" class="nav-link" style="color: white;">Beranda</a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
-        <a href="{{url('')}}/indikator" class="nav-link">Indikator</a>
+        <a href="{{url('')}}/indikator" class="nav-link" style="color: white;">Indikator</a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
-        <a href="{{url('')}}/gambaran_umum_tahunan" class="nav-link">Profil Juridiksi</a>
+        <a href="{{url('')}}/gambaran_umum_tahunan" class="nav-link" style="color: white;">Profil Juridiksi</a>
+      </li>
+      <li class="nav-item d-none d-sm-inline-block">
+        <a href="{{url('')}}/" class="nav-link" style="color: white;">Kelembagaan</a>
       </li>
     </ul>
 
     <!-- Right navbar links -->
-    <ul class="navbar-nav ml-auto">
+    {{-- <ul class="navbar-nav ml-auto">
       <!-- Navbar Search -->
         <div class="navbar-search-block">
           <form class="form-inline">
@@ -81,7 +84,7 @@
           <i class="fas fa-th-large"></i>
         </a>
       </li>
-    </ul>
+    </ul> --}}
   </nav>
   <!-- /.navbar -->
 
@@ -93,11 +96,11 @@
   </div>
   <!-- /.content-wrapper -->
   <footer class="main-footer" style="margin-left: 0px;">
-    <strong>Copyright &copy; 2014-2021 <a href="https://adminlte.io">AdminLTE.io</a>.</strong>
+    <strong>Copyright &copy; 2022 <a href="https://darikebunkelanskapsehat.id/">SFITAL</a>.</strong>
     All rights reserved.
-    <div class="float-right d-none d-sm-inline-block">
+    {{-- <div class="float-right d-none d-sm-inline-block">
       <b>Version</b> 3.2.0
-    </div>
+    </div> --}}
   </footer>
 
   <!-- Control Sidebar -->
@@ -152,7 +155,7 @@
 <!-- AdminLTE App -->
 <script src="dist/js/adminlte.js"></script>
 <!-- AdminLTE for demo purposes -->
-<script src="dist/js/demo.js"></script>
+{{-- <script src="dist/js/demo.js"></script> --}}
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 <script src="dist/js/pages/dashboard.js"></script>
 @yield('js')

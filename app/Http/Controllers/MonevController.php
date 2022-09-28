@@ -27,8 +27,10 @@ class MonevController extends Controller
         mnv_kdsd.nama_indikator AS kdsd 
         FROM mnv_instrumen, mnv_iku, mnv_intervensi, mnv_strategi, mnv_ikk, mnv_terpercaya, mnv_landscale, mnv_sourceup, mnv_kdsd  
         WHERE mnv_strategi.id = mnv_intervensi.id_strategi AND mnv_instrumen.id_iku = mnv_iku.id AND mnv_instrumen.id_ikk = mnv_ikk.id AND mnv_instrumen.id_terpercaya = mnv_terpercaya.id AND mnv_instrumen.id_landscale = mnv_landscale.id AND mnv_instrumen.id_sourceup = mnv_sourceup.id AND mnv_instrumen.id_kdsd = mnv_kdsd.id AND mnv_intervensi.id = mnv_instrumen.id_intervensi');
-        // return $tables;
-        return view('pages.indikator',['tables'=>$tables]);
+        
+        $strategi=DB::select('SELECT DISTINCT  mnv_strategi.strategi FROM mnv_strategi');
+        // return $strategi;
+        return view('pages.indikator',['tables'=>$tables, 'strategi'=>$strategi]);
     }
 
     public function about(Request $request)
@@ -41,8 +43,10 @@ class MonevController extends Controller
         $tables_jurisdiction=DB::select('SELECT mnv_strategi.strategi, mnv_intervensi.intervensi 
         FROM mnv_intervensi, mnv_strategi 
         WHERE mnv_strategi.id = mnv_intervensi.id_strategi');
+
+        $aspek=DB::select('SELECT DISTINCT  mnv_strategi.strategi FROM mnv_strategi');
         // return $tables_jurisdiction;
-        return view('pages.juridiksi',['tables_jurisdiction'=>$tables_jurisdiction]);
+        return view('pages.juridiksi',['tables_jurisdiction'=>$tables_jurisdiction, 'aspek'=>$aspek]);
     }
 
     public function umumMulti(Request $request)
@@ -52,7 +56,8 @@ class MonevController extends Controller
 
     public function alokasiTahunan(Request $request)
     {
-        $tables_alokasitahun=DB::select('SELECT mnv_instrumen.indikator_intervensi, mnv_instrumen.pemangku_kepentingan1, mnv_instrumen.target, mnv_instrumen.satuan, mnv_instrumen.tahun1 
+        $tables_alokasitahun=DB::select('SELECT mnv_instrumen.indikator_intervensi, mnv_instrumen.pemangku_kepentingan1, 
+        mnv_instrumen.target, mnv_instrumen.satuan, mnv_instrumen.tahun1, mnv_instrumen.tahun2, mnv_instrumen.tahun3, mnv_instrumen.tahun4, mnv_instrumen.tahun5, mnv_instrumen.tahun6
         FROM mnv_instrumen');
         // return $tables_alokasitahun;
         return view('pages.alokasiTahunan',['tables_alokasitahun'=>$tables_alokasitahun]);
@@ -60,7 +65,8 @@ class MonevController extends Controller
 
     public function alokasiMulti(Request $request)
     {
-        return view('pages.alokasiMulti');
+        $intervensi=DB::select('SELECT DISTINCT  mnv_intervensi.intervensi FROM mnv_intervensi');
+        return view('pages.alokasiMulti',['intervensi'=>$intervensi]);
     }
 
     public function aksesTahunan(Request $request)

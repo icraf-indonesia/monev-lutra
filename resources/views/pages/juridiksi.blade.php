@@ -20,13 +20,17 @@
 element.style{
     margin-left: 0px;
 }
+
+body{
+    overflow-y: hidden;
+}
 </style>
 @stop
 
 @section('content')
 <!-- Sidebar menu starts -->
 <!-- Sidebar wrapper start -->
-<nav class="sidebar-wrapper" style="height: 700px">
+<nav class="sidebar-wrapper" style="height: inherit;">
 
     <!-- Sidebar menu starts -->
     <div class="sidebar-menu">
@@ -149,8 +153,18 @@ element.style{
 										<div class="card-title">Gambaran Umum / Data Tahunan</div>
 									</div>
 									<div class="card-body">
+                                        <label for="year">Tahun:</label>
+                                                <select name="year" id="year" style="margin-left:10px; margin-bottom:25px; width:75px;" value=>
+                                                    <option value=2021>2021</option>
+                                                    <option value=2022 selected>2022</option>
+                                                    <option value=2023>2023</option>
+                                                    <option value=2024>2024</option>
+                                                    <option value=2025>2025</option>
+                                                    <option value=2026>2026</option>
+                                                </select>
                                         <div class="table-responsive">
-											<table class="table v-middle">
+                                            <h5>Tabel Capaian Berdasarkan Aspek</h5>
+											<table class="table v-middle" style="margin-bottom: 30px;">
 												<thead>
 													<tr>
 														<th>Aspek</th>
@@ -158,10 +172,12 @@ element.style{
 													</tr>
 												</thead>
 												<tbody>
-                                                    @foreach($tables_jurisdiction as $table)
+                                                    @foreach($aspek as $item)
                                                     <tr>
-                                                    <td width="10%">{{ $table->strategi }}</td>
-                                                    <td width="10%">{{ $table->intervensi }}</td>
+                                                    <td width="50%">{{ $item->strategi }}</td>
+                                                    <td>
+                                                        <span class="badge shade-yellow min-90" style="width: 60%;">5</span>
+                                                    </td>
                                                     </tr>
                                                      @endforeach
 													{{-- <tr>
@@ -212,6 +228,25 @@ element.style{
 															<span class="badge shade-yellow min-90" style="width: 20%;">5</span>
 														</td>
 													</tr> --}}
+												</tbody>
+								    		</table>
+                                            <h5>Tabel Capaian Berdasarkan Intervensi</h5>
+                                            <table class="table v-middle">
+												<thead>
+													<tr>
+                                                        <th>Intervensi</th>
+														<th>Capaian Keberhasilan</th>
+													</tr>
+												</thead>
+												<tbody>
+                                                    @foreach($tables_jurisdiction as $table)
+                                                    <tr>
+                                                    <td width="50%">{{ $table->intervensi }}</td>
+                                                    <td>
+                                                        <span class="badge shade-green min-90" style="width: 60%;">5</span>
+                                                    </td>
+                                                    </tr>
+                                                     @endforeach
 												</tbody>
 								    		</table>
                                         </div>
