@@ -570,11 +570,11 @@ img {
 .sidebar-wrapper {
   width: 210px;
   padding: 0;
-  height: calc(100vh - 20px);
+  height: calc(100vh - 10px);
   border-radius: 10px 90px 90px 10px;
   background: #ffffff;
   position: absolute;
-  top: 100px;
+  top: 70px;
   left: 20px;
   z-index: 999;
   -webkit-transition: left .3s ease, width .3s ease;

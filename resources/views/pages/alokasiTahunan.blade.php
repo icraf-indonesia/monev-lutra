@@ -20,13 +20,16 @@
 element.style{
     margin-left: 0px;
 }
+body{
+    overflow-y: hidden;
+}
 </style>
 @stop
 
 @section('content')
 <!-- Sidebar menu starts -->
 <!-- Sidebar wrapper start -->
-<nav class="sidebar-wrapper" style="height: 700px">
+<nav class="sidebar-wrapper" style="height: inherit;">
 
     <!-- Sidebar menu starts -->
     <div class="sidebar-menu">
@@ -150,17 +153,18 @@ element.style{
 									</div>
 									<div class="card-body">
                                         <div class="row">
-                                            <div class="column" style="width:10%;">
-                                                <label for="cars">Tahun:</label>
-                                                <br>
-                                                <select name="cars" id="cars" style="width:100px;">
-                                                    <option value=2021>2021</option>
-                                                    <option value=2022>2022</option>
-                                                    <option value=2023>2023</option>
-                                                    <option value=2024>2024</option>
-                                                    <option value=2025>2025</option>
-                                                    <option value=2026>2026</option>
-                                                </select>
+                                            <div class="column" style="width:50%;">
+                                                <div class="col-md-6">
+                                                    <h5>Tahun:</h5>
+                                                    <select name="year" id="year" style="width:75px;">
+                                                        <option value=2021>2021</option>
+                                                        <option value=2022 selected>2022</option>
+                                                        <option value=2023>2023</option>
+                                                        <option value=2024>2024</option>
+                                                        <option value=2025>2025</option>
+                                                        <option value=2026>2026</option>
+                                                    </select>
+                                                </div>
                                             </div>
                                             <div class="column" style="width:50%;">
                                                 <div class="col-md-6">
@@ -168,10 +172,10 @@ element.style{
                                                 </div>
                                                 <div class="col-md-12">
                                                     <label style="padding-right: 10px;">
-                                                      <input type="checkbox" class="tampilan" data-kolom=1> Terpercaya
+                                                      <input type="checkbox" class="tampilan" data-kolom=1 checked="true"> Terpercaya
                                                     </label>
                                                     <label style="padding-right: 10px;">
-                                                      <input type="checkbox" class="tampilan" data-kolom=2> LandScale
+                                                      <input type="checkbox" class="tampilan" data-kolom=2 checked="true"> LandScale
                                                     </label>
                                                     <label style="padding-right: 10px;">
                                                       <input type="checkbox" class="tampilan" data-kolom=3> SourceUp
