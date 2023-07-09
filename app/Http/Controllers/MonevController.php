@@ -9,6 +9,11 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 class MonevController extends Controller
 {
+    public function index(Request $request)
+    {
+        return view('session.login');
+    }
+
     public function indikator(Request $request)
     {
         $tables=DB::table('mnv_instrumen')
@@ -42,10 +47,16 @@ class MonevController extends Controller
         return view('pages.01_tentang');
     }
 
+    public function slider(Request $request)
+    {
+        return view('pages.slider');
+    }
+
     public function navbar(Request $request)
     {
         return view('navbar');
     }
+
 
     public function petajalan(Request $request)
     {
@@ -183,11 +194,6 @@ class MonevController extends Controller
         return view('pages.05_kelembagaan');
     }
 
-    public function index(Request $request)
-    {
-        return view('session');
-    }
-
     public function kontributor(Request $request)
     {
         $strategi = DB::table('monev_strategies')->get();
@@ -204,37 +210,6 @@ class MonevController extends Controller
     public function maps(Request $request)
     {
         return view('maps');
-    }
-
-    public function data(Request $request)
-    {
-    	$orderBy = 'karyawan.strategi';
-        switch($request->input('order.0.column')){
-            case "1":
-                $orderBy = 'karyawan.intervensi';
-                break;
-            case "2":
-                $orderBy = 'karyawan.petajalan';
-                break;
-            case "3":
-                $orderBy = 'karyawan.pemangku';
-                break;
-            case "4":
-                $orderBy = 'karyawan.terpercaya';
-                break;
-            case "5":
-                $orderBy = 'organisasi.landscale';
-                break;
-            case "6":
-                $orderBy = 'karyawan.sourceup';
-                break;
-            case "7":
-                $orderBy = 'karyawan.phbmlei';
-                break;
-            case "8":
-                $orderBy = 'karyawan.kdsd';
-                break;
-        }
     }
 
 }

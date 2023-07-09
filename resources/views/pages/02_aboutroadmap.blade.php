@@ -68,6 +68,9 @@
     
     .aligncenter {
     text-align: center;
+    align-content: center;
+    align-items: center;
+    align-self: center;
     }
     </style>
 @stop
@@ -92,14 +95,14 @@
     <h4 id="section2">Luwu Utara sebagai Lumbung Kakao</h4>
     <p>Sulawesi Selatan merupakan salah satu provinsi produsen kakao terbesar di Indonesia. Sebagai kabupaten terluas di Sulawesi Selatan, produksi kakao di Luwu Utara sangat signifikan. Perekonomian di Luwu Utara ditopang oleh sektor berbasis lahan, termasuk kakao, dengan kontribusi sebesar 47.02% terhadap PDRB tahun 2020.</p>
     <p>Kejayaan kakao Luwu Utara mencapai puncak pada tahun 2011 saat dicanangkan sebagai daerah sentra kakao Indonesia. Pada tahun 2009, Kabupaten Luwu Utara memiliki lahan kakao seluas 56.000 ha, namun saat ini luas kakao hanya mencapai 38.435 ha. Meskipun demikian, kebun kakao masih menjadi sumber penghidupan utama sebagian besar petani.</p>
-    <p class="aligncenter">
+    <p align="center">
         <img src="dist/img/tabelbps.png" alt="">
     </p>
     <p style="text-align:center;"><i>Persebaran luas dan produksi kakao berdasarkan kecamatan di Kabupaten Luwu Utara (BPS, 2021)</i></p>
 
     <h4 id="section3">Analisis Location Quotient (LQ)</h4>
     <p>Analisis location quetient (LQ) digunakan untuk mengindentifikasi komoditas unggulan di Kabupaten Luwu Utara relatif terhadap Provinsi Sulawesi Selatan. Analisis ini dilakukan berdasarkan besaran produksi dalam ton dari tahun 2016-2021. Terdapat dua komoditas yang merupakan sektor basis di Luwu Utara yaitu kelapa sawit dan kakao. Meskipun LQ kelapa sawit menunjukkan nilai paling besar, namun DLQ atau laju pertumbuhan produksi kakao menunjukkan nilai yang lebih besar dibandingkan kelapa sawit.</p>
-    <p class="aligncenter">
+    <p align="center">
         <img src="dist/img/graph1.png" alt="centered image" style="width:75%;">
     </p>
     <p style="text-align:center;"><i>Nilai LQ Komoditas Unggulan Luwu Utara</i></p>
@@ -113,15 +116,15 @@
 <section>    
     <article>
     <h4>Prinsip Penyusunan Peta Jalan Kakao Lestari</h4>
-    <p class="aligncenter">
+    <p align="center">
         <img src="dist/img/prinsip.png" alt="centered image" style="width:50%;">
     </p>
     <h4>Prinsip Penyusunan Peta Jalan Kakao Lestari</h4>
-    <p class="aligncenter">
+    <p align="center">
         <img src="dist/img/alurkerja.png" alt="centered image" style="width:50%;">
     </p>
     <h4>Tahapan penyusunan Peta Jalan Kakao Lestari</h4>
-    <p class="aligncenter">
+    <p align="center">
         <img src="dist/img/tahapan.png" alt="centered image" style="width:50%;">
     </p>
     <h4>Keterhubungan Peta Jalan Kakao Lestari dengan standar pengelolaan kakao di tingkat nasional dan global</h4>

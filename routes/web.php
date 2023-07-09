@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\MonevController;
+use App\Http\Controllers\SliderController;
 use App\Http\Controllers\SessionController;
 use Illuminate\Support\Facades\Route;
 // use Illuminate\Support\Facades\DB;
@@ -49,17 +50,6 @@ Route::get('/session', [SessionController::class, 'index']);
 Route::post('/session/login', [SessionController::class, 'login']);
 Route::get('/session/logout', [SessionController::class, 'logout']);
 
-// Route::get('/', 'MemberController@index');
-// Route::get('/', 'MemberController@getMembers');
-// Route::post('/save', 'MemberController@save');
-// Route::patch('/update/{id}', ['as' => 'member.update', 'uses' => 'MemberController@update']);
-// Route::delete('/delete/{id}', ['as' => 'member.delete', 'uses' => 'MemberController@delete']);
+Route::get('/slider', [SliderController::class, 'index']);
 
-// Route::get('/karyawan/{jenis}', [KaryawanController::class, 'index']);
-// Route::get('/struktur-organisasi', [OrganisasiController::class, 'index']);
-// Route::get('/user', [UserController::class, 'index']);
-// Route::get('/pengaturan', [PengaturanController::class, 'index']);
-// Route::get('/karyawan/data', [KaryawanController::class, 'data']);
-
-
-
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

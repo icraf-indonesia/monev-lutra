@@ -47,12 +47,12 @@
 
 @section('content')
     <div class="row">
-        <div class="col-lg-3 col-md-3 col-sm-12 dct-dashbd-lft hidden-xs hidden-sm">
+        <div class="col-lg-2 col-md-2 col-sm-12 dct-dashbd-lft hidden-xs hidden-sm">
             <div class="dct-dashbd-01 hidden-xs hidden-sm">
               @include('sidebar')
             </div>
         </div>
-        <div class="col-lg-9 col-md-12 col-sm-12 dct-appoinment m-t-10">
+        <div class="col-lg-10 col-md-10 col-sm-12 dct-appoinment m-t-10">
 
             <!-- Table section  -->
             <div class="row">

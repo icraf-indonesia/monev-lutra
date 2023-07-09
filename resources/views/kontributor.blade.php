@@ -55,8 +55,7 @@
                                 <div class="form-group row">
                                     <label class="col-lg-3 col-form-label">Tahun</label>
                                     <div class="col-lg-9">
-                                        <input name="website_name" class="form-control" placeholder="..."
-                                            type="text">
+                                        <input name="website_name" class="form-control" placeholder="..." type="text">
                                     </div>
                                 </div>
                                 <div class="form-group row">
@@ -74,8 +73,7 @@
                                 <div class="form-group row">
                                     <label class="col-lg-3 col-form-label">Catatan</label>
                                     <div class="col-lg-9">
-                                        <input name="website description" class="form-control" placeholder="..."
-                                            type="text">
+                                        <input name="website description" class="form-control" placeholder="..." type="text">
                                     </div>
                                 </div>
                                 <div class="m-t-20 text-center">
@@ -126,15 +124,13 @@
                                 <div class="form-group row">
                                     <label class="col-lg-3 col-form-label">Tahun</label>
                                     <div class="col-lg-9">
-                                        <input name="website_name" class="form-control" placeholder="..."
-                                            type="text">
+                                        <input name="website_name" class="form-control" placeholder="..." type="text">
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <label class="col-lg-3 col-form-label">Capaian Indikator</label>
                                     <div class="col-lg-9">
-                                        <input name="website_name" class="form-control" placeholder="..."
-                                            type="text">
+                                        <input name="website_name" class="form-control" placeholder="..." type="text">
                                     </div>
                                 </div>
                                 <div class="form-group row">
@@ -147,8 +143,7 @@
                                 <div class="form-group row">
                                     <label class="col-lg-3 col-form-label">Nama Pelaksana</label>
                                     <div class="col-lg-9">
-                                        <input name="website_name" class="form-control" placeholder="..."
-                                            type="text">
+                                        <input name="website_name" class="form-control" placeholder="..." type="text">
                                     </div>
                                 </div>
                                 <div class="form-group row">
@@ -173,8 +168,7 @@
                                 <div class="form-group row">
                                     <label class="col-lg-3 col-form-label">Catatan</label>
                                     <div class="col-lg-9">
-                                        <input name="website description" class="form-control" placeholder="..."
-                                            type="text">
+                                        <input name="website description" class="form-control" placeholder="..." type="text">
                                     </div>
                                 </div>
                                 <div class="m-t-20 text-center">

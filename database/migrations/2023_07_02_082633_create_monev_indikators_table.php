@@ -28,7 +28,7 @@ return new class extends Migration
             $table->string('target')->nullable();
             $table->string('satuan')->nullable();
             $table->string('id_capaian')->nullable();
-            // $table->integer('status')->default(0);
+            $table->integer('status')->default(0);
             $table->timestamps();
         });
     }

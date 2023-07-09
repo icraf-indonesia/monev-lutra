@@ -23,6 +23,12 @@ class UserTableSeeders extends Seeder
             'password'=>Hash::make('123456')
         ]);
         DB::table('users')->insert([
+            'name' => 'Admin',
+            'email'=>'admin@gmail.com',
+            'role'=>'admin',
+            'password'=>Hash::make('123456')
+        ]);
+        DB::table('users')->insert([
             'name' => 'Kontributor 1',
             'email'=>'kontributor1@gmail.com',
             'role'=>'kontributor',

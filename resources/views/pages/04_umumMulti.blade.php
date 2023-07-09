@@ -33,54 +33,12 @@
 
 @section('content')
     <div class="row">
-        <div class="col-lg-3 col-md-3 col-sm-12 dct-dashbd-lft hidden-xs hidden-sm">
+        <div class="col-lg-2 col-md-2 col-sm-12 dct-dashbd-lft hidden-xs hidden-sm">
             <div class="dct-dashbd-01 hidden-xs hidden-sm">
-                {{-- <div class="sidebar-menu">
-                    <ul>
-                        <li class="active"><a href="#">Gambaran Umum</a>
-                            <ul>
-                                <li><a href="{{ url('') }}/gambaran_umum_tahunan" class="current-page">Data
-                                        Tahunan</a></li>
-                                <li><a href="{{ url('') }}/gambaran_umum_multi">Data Multi-tahun</a></li>
-                            </ul>
-                        </li>
-                        <li class="active"><a href="#">Alokasi dan Tata Guna Lahan</a>
-                            <ul>
-                                <li><a href="{{ url('') }}/alokasi_tataguna_lahan_tahunan">Data Tahunan</a></li>
-                                <li><a href="{{ url('') }}/alokasi_tataguna_lahan_multi">Data Multi-tahun</a></li>
-                            </ul>
-                        </li>
-                        <li class="active"><a href="#">Akses Modal Penghidupan</a>
-                            <ul>
-                                <li><a href="{{ url('') }}/akses_modal_tahunan">Data Tahunan</a></li>
-                                <li><a href="{{ url('') }}/akses_modal_multi">Data Multi-tahun</a></li>
-                            </ul>
-                        </li>
-                        <li class="active"><a href="#">Produktivitas dan Diversifikasi</a>
-                            <ul>
-                                <li><a href="{{ url('') }}/produktivitas_tahunan">Data Tahunan</a></li>
-                                <li><a href="{{ url('') }}/produktivitas_multi">Data Multi-tahun</a></li>
-                            </ul>
-                        </li>
-                        <li class="active"><a href="#">Rantai Nilai</a>
-                            <ul>
-                                <li><a href="{{ url('') }}/rantai_nilai_tahunan">Data Tahunan</a></li>
-                                <li><a href="{{ url('') }}/rantai_nilai_multi">Data Multi-tahun</a></li>
-                            </ul>
-                        </li>
-                        <li class="active"><a href="#">Jasa Ekosistem</a>
-                            <ul>
-                                <li><a href="{{ url('') }}/jasa_ekosistem_tahunan">Data Tahunan</a></li>
-                                <li><a href="{{ url('') }}/jasa_ekosistem_multi">Data Multi-tahun</a></li>
-                            </ul>
-                        </li>
-
-                    </ul>
-                </div> --}}
                 @include('sidebar')
             </div>
         </div>
-        <div class="col-lg-9 col-md-12 col-sm-12 dct-appoinment m-t-10">
+        <div class="col-lg-10 col-md-10 col-sm-12 dct-appoinment m-t-10">
             <!-- Table section  -->
             <div class="row">
                 <div class="col-md-12 patient-app-01">

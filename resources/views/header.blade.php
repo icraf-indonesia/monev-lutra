@@ -22,6 +22,9 @@
   <link rel="stylesheet" type="text/css" href="dist/assets/css/datatable.min.css"/>
   <script src="dist/assets/js/utils.js"></script>
   <link rel='stylesheet' href='https://unpkg.com/leaflet@1.8.0/dist/leaflet.css' crossorigin='' />
+  <!-- slider -->
+  <script src="https://cdn.jsdelivr.net/npm/swiffy-slider@1.6.0/dist/js/swiffy-slider.min.js" crossorigin="anonymous" defer></script>
+  <link href="https://cdn.jsdelivr.net/npm/swiffy-slider@1.6.0/dist/css/swiffy-slider.min.css" rel="stylesheet" crossorigin="anonymous">
 </head>
 
 <body class="innerpage-body">
@@ -52,26 +55,34 @@
 				<ul id="menu" class="hidden-xs hidden-sm" style="padding-right:0px; padding-left:0px;">
                     <li><a class="web-logo" href="{{url('')}}/"><img src="dist/assets/img/header-small.png" class="img-responsive" alt=""></a></li>
                     <li><a class="home" href="{{url('')}}/">Beranda</a></li>
+                    {{-- <li><a class="home" href="{{url('')}}/pendekatan">Peta Jalan</a></li> --}}
                     <li><a class="prett">Peta Jalan</a>
                         <ul class="menus">
-                            <li><a href="{{url('')}}/aboutroadmap">Selayang Pandang</a></li>
+                            {{-- <li><a href="{{url('')}}/aboutroadmap">Selayang Pandang</a></li> --}}
                             <li><a href="{{url('')}}/pendekatan">Pendekatan Pembangunan</a></li>
                             <li><a href="{{url('')}}/isu">Isu Strategis, Visi, dan Ruang Lingkup</a></li>
-                            <li><a href="{{url('')}}/petajalan">Peta Jalan Kakao Lestari</a></li>
+                            {{-- <li><a href="{{url('')}}/petajalan">Peta Jalan Kakao Lestari</a></li> --}}
                         </ul>
                     </li>
                     <li><a class="home" href="{{url('')}}/indikator">Indikator</a></li>
                     <li><a class="home" href="{{url('')}}/gambaran_umum_tahunan">Profil Jurisdiksi</a></li>
-                    <li><a class="home" href="{{url('')}}/kelembagaan">Kelembagaan</a></li>
+                    {{-- <li><a class="home" href="{{url('')}}/kelembagaan">Kelembagaan</a></li> --}}
                     @if (Auth::check())
-                    <li><a href="{{url('')}}/kontributor">Kontributor</a></li>
-                    <li><a href="{{url('')}}/admin">Admin</a></li>
+						@if (Auth::user()->role === "kontributor")
+                    		<li><a href="{{url('')}}/kontributor">Kontributor</a></li>
+						@elseif (Auth::user()->role === "admin")
+                    		<li><a href="{{url('')}}/admin">Admin</a></li>
+						@endif 
                     @endif
 				</ul>
 			</div>
 			<div class="col-md-4 col-sm-5 header-navbar-rht hidden-xs hidden-sm">
 				  <ul class="text-right m-t-13">
                     @if (Auth::check())
+                    <li>
+                        <a class="header-login" style="border: 0px; text-align:right; pointer-events: none;">{{ Auth::user()->name }}</a>
+					</li>
+
                     <li>
                         <a href="{{url('')}}/session/logout" class="header-login">Keluar</a>
 					</li>
@@ -103,7 +114,7 @@
                     </li>
                     <li><a href="{{url('')}}/indikator">Indikator</a></li>
                     <li><a href="{{url('')}}/gambaran_umum_tahunan">Profil Jurisdiksi</a></li>
-                    <li><a href="{{url('')}}/kelembagaan">Kelembagaan</a></li>
+                    {{-- <li><a href="{{url('')}}/kelembagaan">Kelembagaan</a></li> --}}
                     <li><a href="{{url('')}}/kontributor">Kontributor</a></li>
                     <li><a href="{{url('')}}/admin">Admin</a></li>
                 </ul>
@@ -129,18 +140,16 @@
     <!-- footer start -->
   <footer class="footer-section">
     <div class="container-fluid">
-        <div class="row">
+        {{-- <div class="row">
             <div class="col-md-2">
                 <img src="dist/assets/img/footer-small.png" class="img-responsive" alt="">
             </div>
             <div class="col-md-7 footer-two">
                 <ul class="footer-two-01">
-                        {{-- <li><a href="#">Facebook</a></li>
+                        <li><a href="#">Facebook</a></li>
                         <li><a href="#">Twitter</a></li>
                         <li><a href="#">Instagram</a></li>
-                        <li><a href="#">Linkedin</a></li>
-                        <li><a href="#">WhatsApp</a></li> --}}
-
+                        <li><a href="#">Youtube</a></li>
                 </ul>
                 <div class="mob-contact footer-last hidden-md hidden-lg">
                     <p class="text-right"><i class="fa fa-envelope-o" aria-hidden="true"></i>example@example.com</p>
@@ -149,16 +158,17 @@
                 <div class="copy-right">
                     <ul class="policy">
                         <li><a href="javascript:;"> ©2023 | Kabupaten Luwu Utara</a></li>
-                        {{-- <li><a href="javascript:;">World Agroforestry (ICRAF)</a></li>
-                        <li><a href="javascript:;">Rainforest Alliance</a></li> --}}
+                        <li><a href="javascript:;">World Agroforestry (ICRAF)</a></li>
+                        <li><a href="javascript:;">Rainforest Alliance</a></li>
                     </ul>
                 </div>
             </div>
             <div class="col-md-3 footer-last hidden-sm hidden-xs">
-                <p class="text-right"><i aria-hidden="true"></i></p>
-                <p class="text-right"><i aria-hidden="true"></i><br><i aria-hidden="true"></i></p>
+                <p class="text-right">Jl. Simpurusiang Masamba No. 27</p>
+                <p class="text-right">Kabupaten Luwu Utara, Sulawesi Selatan, Indonesia</p>
+                <p class="text-right"><i class="fa fa-phone" aria-hidden="true"></i>Telp:(0473) 21003 | <i class="fa fa-phone" aria-hidden="true"></i>Fax:(0473) 21536/22190</p>             
             </div>
-        </div>
+        </div> --}}
     </div>
 </footer>
 <!-- footer start -->
