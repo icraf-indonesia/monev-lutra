@@ -3,7 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Monev Luwu Utara</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <title>Monitoring & Evaluation of Luwu Utara</title>
 
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -29,63 +30,90 @@
   <link rel="stylesheet" href="{{url('')}}/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
   <link rel="stylesheet" href="{{url('')}}/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
   <link rel="stylesheet" href="{{url('')}}/plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
+  <!-- Pagination -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css">
+  <!-- Modal -->
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+  <style>
+.navbar {
+  overflow: hidden;
+  background-color: #1A5E51; 
+  display: -webkit-box;
+}
+
+.navbar a {
+  float: left;
+  font-size: 16px;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+.subnav {
+  float: left;
+  overflow: web;
+}
+.subnav .subnavbtn {
+  font-size: 16px;  
+  border: none;
+  outline: none;
+  color: white;
+  padding: 14px 16px;
+  background-color: inherit;
+  font-family: inherit;
+  margin: 0;
+}
+.navbar a:hover, .subnav:hover .subnavbtn {
+  background-color: #1A5E51;
+}
+.subnav-content {
+  display: none;
+  position: fixed;
+  left: 0;
+  background-color: #eee;
+  width: 50%;
+  z-index: 1;
+}
+.subnav-content a {
+  float: left;
+  color: black;
+  text-decoration: none;
+}
+.subnav-content a:hover {
+  background-color: #1A5E51;
+  color: white;
+}
+.subnav:hover .subnav-content {
+  display: block;
+}
+</style>
   @yield('css')
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
 <div class="wrapper">
 
   <!-- Preloader -->
-  <div class="preloader flex-column justify-content-center align-items-center">
+  {{-- <div class="preloader flex-column justify-content-center align-items-center">
     <img class="animation__shake" src="dist/img/lutra2.png" alt="AdminLTELogo" height="80" width="65">
-  </div>
+  </div> --}}
 
   <!-- Navbar -->
-  <nav class="main-header navbar navbar-expand navbar-white navbar-light" style="margin-left: 0px; background-color:#1A5E51;">
-    <!-- Left navbar links -->
-    <ul class="navbar-nav">
-      {{-- <li class="nav-item">
-        <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
-      </li> --}}
-      <li class="nav-item d-none d-sm-inline-block">
-        <a href="{{url('')}}/" class="nav-link" style="color: white;">Beranda</a>
-      </li>
-      <li class="nav-item d-none d-sm-inline-block">
-        <a href="{{url('')}}/indikator" class="nav-link" style="color: white;">Indikator</a>
-      </li>
-      <li class="nav-item d-none d-sm-inline-block">
-        <a href="{{url('')}}/gambaran_umum_tahunan" class="nav-link" style="color: white;">Profil Juridiksi</a>
-      </li>
-      <li class="nav-item d-none d-sm-inline-block">
-        <a href="{{url('')}}/" class="nav-link" style="color: white;">Kelembagaan</a>
-      </li>
-    </ul>
-
-    <!-- Right navbar links -->
-    {{-- <ul class="navbar-nav ml-auto">
-      <!-- Navbar Search -->
-        <div class="navbar-search-block">
-          <form class="form-inline">
-            <div class="input-group input-group-sm">
-              <input class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search">
-              <div class="input-group-append">
-                <button class="btn btn-navbar" type="submit">
-                  <i class="fas fa-search"></i>
-                </button>
-                <button class="btn btn-navbar" type="button" data-widget="navbar-search">
-                  <i class="fas fa-times"></i>
-                </button>
-              </div>
-            </div>
-          </form>
-        </div>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" data-widget="control-sidebar" data-controlsidebar-slide="true" href="#" role="button">
-          <i class="fas fa-th-large"></i>
-        </a>
-      </li>
-    </ul> --}}
-  </nav>
+  <div class="navbar">
+    <a href="{{url('')}}/">Beranda</a>
+      <div class="subnav">
+          <button class="subnavbtn">Peta Jalan <i class="fa fa-caret-down"></i></button>
+          <div class="subnav-content">
+              <a href="{{url('')}}/aboutroadmap">Selayang Pandang</a>
+              <a href="{{url('')}}/pendekatan">Pendekatan Pembangunan</a>
+              <a href="{{url('')}}/isu">Isu Strategis, Visi, dan Ruang Lingkup</a>
+              <a href="{{url('')}}/petajalan">Peta Jalan Kakao Lestari</a>
+          </div>
+      </div> 
+    <a href="{{url('')}}/indikator">Indikator</a>
+    <a href="{{url('')}}/gambaran_umum_tahunan">Profil Jurisdiksi</a>
+    <a href="{{url('')}}/kelembagaan">Kelembagaan</a>
+  </div>
   <!-- /.navbar -->
 
   <!-- Content Wrapper. Contains page content -->

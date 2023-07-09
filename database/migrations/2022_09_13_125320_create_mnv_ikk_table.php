@@ -15,10 +15,10 @@ return new class extends Migration
     {
         Schema::create('mnv_ikk', function (Blueprint $table) {
             $table->id();
-            $table->string('nama_indikator')->nullable();
-            $table->string('aspek')->nullable();
-            $table->string('fokus')->nullable();
-            $table->string('bidang')->nullable();
+            $table->string('nama_indikator_ikk')->nullable();
+            $table->string('aspek_ikk')->nullable();
+            $table->string('fokus_ikk')->nullable();
+            $table->string('bidang_ikk')->nullable();
             $table->timestamps();
         });
     }

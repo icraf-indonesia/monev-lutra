@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\MonevController;
+use App\Http\Controllers\SessionController;
 use Illuminate\Support\Facades\Route;
 // use Illuminate\Support\Facades\DB;
 
@@ -15,9 +16,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [MonevController::class, 'about']);
-Route::get('/indikator', [MonevController::class, 'index']);
-Route::get('/gambaran_umum_tahunan', [MonevController::class, 'jurisdiction']);
+Route::get('/', [MonevController::class, 'tentang']);
+Route::get('/indikator', [MonevController::class, 'indikator']);
+Route::post('/indikator', [MonevController::class, 'insertCheckbox']);
+// Route::get('/indikator', [MonevController::class, 'getDetail']);
+Route::get('/gambaran_umum_tahunan', [MonevController::class, 'jurisdiksi']);
 Route::get('/gambaran_umum_multi', [MonevController::class, 'umumMulti']);
 Route::get('/alokasi_tataguna_lahan_tahunan', [MonevController::class, 'alokasiTahunan']);
 Route::get('/alokasi_tataguna_lahan_multi', [MonevController::class, 'alokasiMulti']);
@@ -29,7 +32,28 @@ Route::get('/rantai_nilai_tahunan', [MonevController::class, 'rantaiTahunan']);
 Route::get('/rantai_nilai_multi', [MonevController::class, 'rantaiMulti']);
 Route::get('/jasa_ekosistem_tahunan', [MonevController::class, 'jasaTahunan']);
 Route::get('/jasa_ekosistem_multi', [MonevController::class, 'jasaMulti']);
+Route::get('/kelembagaan', [MonevController::class, 'kelembagaan']);
+Route::get('/petajalan', [MonevController::class, 'petajalan']);
+Route::get('/pendekatan', [MonevController::class, 'pendekatan']);
+Route::get('/isu', [MonevController::class, 'isu']);
+Route::get('/aboutroadmap', [MonevController::class, 'tentangRoadmap']);
+Route::get('/navbar', [MonevController::class, 'navbar']);
+// Route::get('/login', [MonevController::class, 'login']);
+Route::get('/kontributor', [MonevController::class, 'kontributor']);
+Route::get('/admin', [MonevController::class, 'admin']);
+Route::get('/maps', [MonevController::class, 'maps']);
+// Route::get('/petajalan', [MonevController::class, 'getStrategi']);
+// Route::get('/petajalan', [MonevController::class, 'getDetail']);
 
+Route::get('/session', [SessionController::class, 'index']);
+Route::post('/session/login', [SessionController::class, 'login']);
+Route::get('/session/logout', [SessionController::class, 'logout']);
+
+// Route::get('/', 'MemberController@index');
+// Route::get('/', 'MemberController@getMembers');
+// Route::post('/save', 'MemberController@save');
+// Route::patch('/update/{id}', ['as' => 'member.update', 'uses' => 'MemberController@update']);
+// Route::delete('/delete/{id}', ['as' => 'member.delete', 'uses' => 'MemberController@delete']);
 
 // Route::get('/karyawan/{jenis}', [KaryawanController::class, 'index']);
 // Route::get('/struktur-organisasi', [OrganisasiController::class, 'index']);
