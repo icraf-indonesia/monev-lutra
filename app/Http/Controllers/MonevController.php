@@ -42,11 +42,6 @@ class MonevController extends Controller
         dd($request->all());
     }
 
-    public function tentang(Request $request)
-    {
-        return view('pages.01_tentang');
-    }
-
     public function slider(Request $request)
     {
         return view('pages.slider');
@@ -55,27 +50,6 @@ class MonevController extends Controller
     public function navbar(Request $request)
     {
         return view('navbar');
-    }
-
-
-    public function petajalan(Request $request)
-    {
-        return view('pages.02_petajalan');
-    }
-
-    public function isu(Request $request)
-    {
-        return view('pages.02_isu');
-    }
-
-    public function tentangRoadmap(Request $request)
-    {
-        return view('pages.02_aboutroadmap');
-    }
-
-    public function pendekatan(Request $request)
-    {
-        return view('pages.02_pendekatan');
     }
 
     public function jurisdiksi(Request $request)
@@ -192,14 +166,6 @@ class MonevController extends Controller
     public function kelembagaan(Request $request)
     {
         return view('pages.05_kelembagaan');
-    }
-
-    public function kontributor(Request $request)
-    {
-        $strategi = DB::table('monev_strategies')->get();
-        // $strategi = DB::table('monev_strategies')->get();
-        // $strategi = DB::table('monev_strategies')->get();
-        return view('kontributor', ['strategi'=>$strategi]);
     }
 
     public function admin(Request $request)

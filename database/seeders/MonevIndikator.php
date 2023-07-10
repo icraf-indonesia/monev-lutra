@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use Carbon\Carbon;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
@@ -34,8 +35,9 @@ class MonevIndikator extends Seeder
                 'target' => '450000',
                 'satuan' => 'ha',
                 'id_capaian' => 1,
-                'created_at' => NULL,
-                'updated_at' => NULL,
+                'status' => 0,
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
             ),
             1 =>
             array (
@@ -53,8 +55,9 @@ class MonevIndikator extends Seeder
                 'target' => '545000',
                 'satuan' => 'ha',
                 'id_capaian' => 2,
-                'created_at' => NULL,
-                'updated_at' => NULL,
+                'status' => 0,
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
             ),
             2 =>
             array (
@@ -72,8 +75,9 @@ class MonevIndikator extends Seeder
                 'target' => '234890',
                 'satuan' => 'ha',
                 'id_capaian' => '',
-                'created_at' => NULL,
-                'updated_at' => NULL,
+                'status' => 0,
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
             ),
             3 =>
             array (
@@ -91,8 +95,9 @@ class MonevIndikator extends Seeder
                 'target' => '120000',
                 'satuan' => 'ha',
                 'id_capaian' => 3,
-                'created_at' => NULL,
-                'updated_at' => NULL,
+                'status' => 0,
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
             ),
             4 =>
             array (
@@ -110,8 +115,9 @@ class MonevIndikator extends Seeder
                 'target' => '',
                 'satuan' => '',
                 'id_capaian' => 4,
-                'created_at' => NULL,
-                'updated_at' => NULL,
+                'status' => 0,
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
             ),
             5 =>
             array (
@@ -129,8 +135,9 @@ class MonevIndikator extends Seeder
                 'target' => '',
                 'satuan' => '',
                 'id_capaian' => 6,
-                'created_at' => NULL,
-                'updated_at' => NULL,
+                'status' => 0,
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
             ),
             6 =>
             array (
@@ -148,8 +155,9 @@ class MonevIndikator extends Seeder
                 'target' => '',
                 'satuan' => '',
                 'id_capaian' => 7,
-                'created_at' => NULL,
-                'updated_at' => NULL,
+                'status' => 0,
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
             ),
             7 =>
             array (
@@ -167,8 +175,9 @@ class MonevIndikator extends Seeder
                 'target' => '60000',
                 'satuan' => 'ha',
                 'id_capaian' => 8,
-                'created_at' => NULL,
-                'updated_at' => NULL,
+                'status' => 0,
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
             ),
             8 =>
             array (
@@ -186,8 +195,9 @@ class MonevIndikator extends Seeder
                 'target' => '250000',
                 'satuan' => 'juta rupiah',
                 'id_capaian' => 9,
-                'created_at' => NULL,
-                'updated_at' => NULL,
+                'status' => 0,
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
             ),
             9 =>
             array (
@@ -205,8 +215,9 @@ class MonevIndikator extends Seeder
                 'target' => '',
                 'satuan' => '',
                 'id_capaian' => 10,
-                'created_at' => NULL,
-                'updated_at' => NULL,
+                'status' => 0,
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
             ),
             10 =>
             array (
@@ -224,8 +235,9 @@ class MonevIndikator extends Seeder
                 'target' => '',
                 'satuan' => '',
                 'id_capaian' => 11,
-                'created_at' => NULL,
-                'updated_at' => NULL,
+                'status' => 0,
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
             ),
             11 =>
             array (
@@ -243,8 +255,9 @@ class MonevIndikator extends Seeder
                 'target' => '12560',
                 'satuan' => 'ha',
                 'id_capaian' => 12,
-                'created_at' => NULL,
-                'updated_at' => NULL,
+                'status' => 0,
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
             ),
             12 =>
             array (
@@ -262,8 +275,9 @@ class MonevIndikator extends Seeder
                 'target' => '10500',
                 'satuan' => 'ha',
                 'id_capaian' => 13,
-                'created_at' => NULL,
-                'updated_at' => NULL,
+                'status' => 0,
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
             ),
             13 =>
             array (
@@ -281,8 +295,9 @@ class MonevIndikator extends Seeder
                 'target' => '12000',
                 'satuan' => 'ha/tahun',
                 'id_capaian' => 14,
-                'created_at' => NULL,
-                'updated_at' => NULL,
+                'status' => 0,
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
             ),
             14 =>
             array (
@@ -300,8 +315,9 @@ class MonevIndikator extends Seeder
                 'satuan' => '',
                 'id_capaian' => 15,
                 'id_intervensi' => 4,
-                'created_at' => NULL,
-                'updated_at' => NULL,
+                'status' => 0,
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
             ),
             15 =>
             array (
@@ -319,8 +335,9 @@ class MonevIndikator extends Seeder
                 'target' => '1045',
                 'satuan' => 'unit',
                 'id_capaian' => 16,
-                'created_at' => NULL,
-                'updated_at' => NULL,
+                'status' => 0,
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
             ),
             16 =>
             array (
@@ -338,8 +355,9 @@ class MonevIndikator extends Seeder
                 'target' => '120000',
                 'satuan' => 'ha',
                 'id_capaian' => 17,
-                'created_at' => NULL,
-                'updated_at' => NULL,
+                'status' => 0,
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
             ),
             17 =>
             array (
@@ -357,8 +375,9 @@ class MonevIndikator extends Seeder
                 'target' => '',
                 'satuan' => '',
                 'id_capaian' => 18,
-                'created_at' => NULL,
-                'updated_at' => NULL,
+                'status' => 0,
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
             ),
             18 =>
             array (
@@ -376,8 +395,9 @@ class MonevIndikator extends Seeder
                 'target' => '7',
                 'satuan' => 'kelompok',
                 'id_capaian' => 19,
-                'created_at' => NULL,
-                'updated_at' => NULL,
+                'status' => 0,
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
             ),
             19 =>
             array (
@@ -395,8 +415,9 @@ class MonevIndikator extends Seeder
                 'target' => '7',
                 'satuan' => 'paket',
                 'id_capaian' => 25,
-                'created_at' => NULL,
-                'updated_at' => NULL,
+                'status' => 0,
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
             ),
             20 =>
             array (
@@ -414,8 +435,9 @@ class MonevIndikator extends Seeder
                 'target' => '',
                 'satuan' => '',
                 'id_capaian' => '',
-                'created_at' => NULL,
-                'updated_at' => NULL,
+                'status' => 0,
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
             ),
             21 =>
             array (
@@ -433,8 +455,9 @@ class MonevIndikator extends Seeder
                 'target' => '',
                 'satuan' => '',
                 'id_capaian' => '',
-                'created_at' => NULL,
-                'updated_at' => NULL,
+                'status' => 0,
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
             ),
             22 =>
             array (
@@ -452,8 +475,9 @@ class MonevIndikator extends Seeder
                 'target' => '250',
                 'satuan' => 'orang',
                 'id_capaian' => 33,
-                'created_at' => NULL,
-                'updated_at' => NULL,
+                'status' => 0,
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
             ),
             23 =>
             array (
@@ -471,8 +495,9 @@ class MonevIndikator extends Seeder
                 'target' => '',
                 'satuan' => '',
                 'id_capaian' => 34,
-                'created_at' => NULL,
-                'updated_at' => NULL,
+                'status' => 0,
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
             ),
             24 =>
             array (
@@ -490,8 +515,9 @@ class MonevIndikator extends Seeder
                 'target' => '8',
                 'satuan' => 'kegiatan',
                 'id_capaian' => 35,
-                'created_at' => NULL,
-                'updated_at' => NULL,
+                'status' => 0,
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
             ),
             25 =>
             array (
@@ -509,8 +535,9 @@ class MonevIndikator extends Seeder
                 'target' => '',
                 'satuan' => '',
                 'id_capaian' => 43,
-                'created_at' => NULL,
-                'updated_at' => NULL,
+                'status' => 0,
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
             ),
             26 =>
             array (
@@ -528,8 +555,9 @@ class MonevIndikator extends Seeder
                 'target' => '',
                 'satuan' => '',
                 'id_capaian' => 44,
-                'created_at' => NULL,
-                'updated_at' => NULL,
+                'status' => 0,
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
             ),
             27 =>
             array (
@@ -547,8 +575,9 @@ class MonevIndikator extends Seeder
                 'target' => '95',
                 'satuan' => '',
                 'id_capaian' => 47,
-                'created_at' => NULL,
-                'updated_at' => NULL,
+                'status' => 0,
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
             ),
             28 =>
             array (
@@ -566,8 +595,9 @@ class MonevIndikator extends Seeder
                 'target' => '100',
                 'satuan' => 'unit',
                 'id_capaian' => 48,
-                'created_at' => NULL,
-                'updated_at' => NULL,
+                'status' => 0,
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
             ),
             29 =>
             array (
@@ -585,8 +615,9 @@ class MonevIndikator extends Seeder
                 'target' => '',
                 'satuan' => '',
                 'id_capaian' => 49,
-                'created_at' => NULL,
-                'updated_at' => NULL,
+                'status' => 0,
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
             ),
             30 =>
             array (
@@ -604,8 +635,9 @@ class MonevIndikator extends Seeder
                 'target' => '',
                 'satuan' => 'rupiah',
                 'id_capaian' => 50,
-                'created_at' => NULL,
-                'updated_at' => NULL,
+                'status' => 0,
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
             ),
             31 =>
             array (
@@ -623,8 +655,9 @@ class MonevIndikator extends Seeder
                 'target' => '',
                 'satuan' => 'kegiatan',
                 'id_capaian' => 51,
-                'created_at' => NULL,
-                'updated_at' => NULL,
+                'status' => 0,
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
             ),
             32 =>
             array (
@@ -642,8 +675,9 @@ class MonevIndikator extends Seeder
                 'target' => '',
                 'satuan' => '',
                 'id_capaian' => 52,
-                'created_at' => NULL,
-                'updated_at' => NULL,
+                'status' => 0,
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
             ),
             33 =>
             array (
@@ -661,8 +695,9 @@ class MonevIndikator extends Seeder
                 'target' => '5',
                 'satuan' => 'unit',
                 'id_capaian' => 57,
-                'created_at' => NULL,
-                'updated_at' => NULL,
+                'status' => 0,
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
             ),
             34 =>
             array (
@@ -680,8 +715,9 @@ class MonevIndikator extends Seeder
                 'target' => '200',
                 'satuan' => 'unit',
                 'id_capaian' => 58,
-                'created_at' => NULL,
-                'updated_at' => NULL,
+                'status' => 0,
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
             ),
             35 =>
             array (
@@ -699,8 +735,9 @@ class MonevIndikator extends Seeder
                 'target' => '',
                 'satuan' => 'ha',
                 'id_capaian' => 61,
-                'created_at' => NULL,
-                'updated_at' => NULL,
+                'status' => 0,
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
             ),
             36 =>
             array (
@@ -718,8 +755,9 @@ class MonevIndikator extends Seeder
                 'target' => '',
                 'satuan' => '',
                 'id_capaian' => '',
-                'created_at' => NULL,
-                'updated_at' => NULL,
+                'status' => 0,
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
             ),
             37 =>
             array (
@@ -737,8 +775,9 @@ class MonevIndikator extends Seeder
                 'target' => '',
                 'satuan' => 'kegiatan',
                 'id_capaian' => 63,
-                'created_at' => NULL,
-                'updated_at' => NULL,
+                'status' => 0,
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
             ),
             38 =>
             array (
@@ -756,8 +795,9 @@ class MonevIndikator extends Seeder
                 'target' => '20',
                 'satuan' => 'unit',
                 'id_capaian' => 64,
-                'created_at' => NULL,
-                'updated_at' => NULL,
+                'status' => 0,
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
             ),
             39 =>
             array (
@@ -775,8 +815,9 @@ class MonevIndikator extends Seeder
                 'target' => '',
                 'satuan' => '',
                 'id_capaian' => 68,
-                'created_at' => NULL,
-                'updated_at' => NULL,
+                'status' => 0,
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
             ),
             40 =>
             array (
@@ -794,8 +835,9 @@ class MonevIndikator extends Seeder
                 'target' => '',
                 'satuan' => '',
                 'id_capaian' => 69,
-                'created_at' => NULL,
-                'updated_at' => NULL,
+                'status' => 0,
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
             ),
             41 =>
             array (
@@ -813,8 +855,9 @@ class MonevIndikator extends Seeder
                 'target' => '20',
                 'satuan' => 'kelompok',
                 'id_capaian' => 70,
-                'created_at' => NULL,
-                'updated_at' => NULL,
+                'status' => 0,
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
             ),
             42 =>
             array (
@@ -832,8 +875,9 @@ class MonevIndikator extends Seeder
                 'target' => '',
                 'satuan' => '',
                 'id_capaian' => 71,
-                'created_at' => NULL,
-                'updated_at' => NULL,
+                'status' => 0,
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
             ),
             43 =>
             array (
@@ -851,8 +895,9 @@ class MonevIndikator extends Seeder
                 'satuan' => 'orang',
                 'id_capaian' => 72,
                 'id_intervensi' => 11,
-                'created_at' => NULL,
-                'updated_at' => NULL,
+                'status' => 0,
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
             ),
             44 =>
             array (
@@ -870,8 +915,9 @@ class MonevIndikator extends Seeder
                 'target' => '100',
                 'satuan' => 'unit',
                 'id_capaian' => 73,
-                'created_at' => NULL,
-                'updated_at' => NULL,
+                'status' => 0,
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
             ),
             45 =>
             array (
@@ -889,8 +935,9 @@ class MonevIndikator extends Seeder
                 'target' => '',
                 'satuan' => 'kelompok',
                 'id_capaian' => 74,
-                'created_at' => NULL,
-                'updated_at' => NULL,
+                'status' => 0,
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
             ),
             46 =>
             array (
@@ -908,8 +955,9 @@ class MonevIndikator extends Seeder
                 'target' => '',
                 'satuan' => 'rupiah',
                 'id_capaian' => 75,
-                'created_at' => NULL,
-                'updated_at' => NULL,
+                'status' => 0,
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
             ),
             47 =>
             array (
@@ -927,8 +975,9 @@ class MonevIndikator extends Seeder
                 'satuan' => 'kegiatan',
                 'id_capaian' => 76,
                 'id_intervensi' => 12,
-                'created_at' => NULL,
-                'updated_at' => NULL,
+                'status' => 0,
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
             ),
             48 =>
             array (
@@ -946,8 +995,9 @@ class MonevIndikator extends Seeder
                 'target' => '',
                 'satuan' => 'orang',
                 'id_capaian' => 81,
-                'created_at' => NULL,
-                'updated_at' => NULL,
+                'status' => 0,
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
             ),
             49 =>
             array (
@@ -965,8 +1015,9 @@ class MonevIndikator extends Seeder
                 'target' => '257',
                 'satuan' => 'Rumah Tangga',
                 'id_capaian' => 82,
-                'created_at' => NULL,
-                'updated_at' => NULL,
+                'status' => 0,
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
             ),
             50 =>
             array (
@@ -984,8 +1035,9 @@ class MonevIndikator extends Seeder
                 'target' => '1',
                 'satuan' => 'dokumen',
                 'id_capaian' => 83,
-                'created_at' => NULL,
-                'updated_at' => NULL,
+                'status' => 0,
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
             ),
             51 =>
             array (
@@ -1003,8 +1055,9 @@ class MonevIndikator extends Seeder
                 'target' => '1',
                 'satuan' => 'dokumen',
                 'id_capaian' => 84,
-                'created_at' => NULL,
-                'updated_at' => NULL,
+                'status' => 0,
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
             ),
             52 =>
             array (
@@ -1022,8 +1075,9 @@ class MonevIndikator extends Seeder
                 'target' => '',
                 'satuan' => '',
                 'id_capaian' => 85,
-                'created_at' => NULL,
-                'updated_at' => NULL,
+                'status' => 0,
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
             ),
             53 =>
             array (
@@ -1041,8 +1095,9 @@ class MonevIndikator extends Seeder
                 'target' => 'kegiatan',
                 'satuan' => '',
                 'id_capaian' => 86,
-                'created_at' => NULL,
-                'updated_at' => NULL,
+                'status' => 0,
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
             ),
             54 =>
             array (
@@ -1060,8 +1115,9 @@ class MonevIndikator extends Seeder
                 'target' => '',
                 'satuan' => '',
                 'id_capaian' => 87,
-                'created_at' => NULL,
-                'updated_at' => NULL,
+                'status' => 0,
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
             ),
             55 =>
             array (
@@ -1079,8 +1135,9 @@ class MonevIndikator extends Seeder
                 'target' => '',
                 'satuan' => '%/tahun',
                 'id_capaian' => 88,
-                'created_at' => NULL,
-                'updated_at' => NULL,
+                'status' => 0,
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
             ),
             56 =>
             array (
@@ -1098,8 +1155,9 @@ class MonevIndikator extends Seeder
                 'target' => '100',
                 'satuan' => 'orang',
                 'id_capaian' => 89,
-                'created_at' => NULL,
-                'updated_at' => NULL,
+                'status' => 0,
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
             ),
             57 =>
             array (
@@ -1117,8 +1175,9 @@ class MonevIndikator extends Seeder
                 'target' => '25',
                 'satuan' => 'unit',
                 'id_capaian' => 92,
-                'created_at' => NULL,
-                'updated_at' => NULL,
+                'status' => 0,
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
             ),
             58 =>
             array (
@@ -1136,8 +1195,9 @@ class MonevIndikator extends Seeder
                 'target' => '',
                 'satuan' => '',
                 'id_capaian' => '',
-                'created_at' => NULL,
-                'updated_at' => NULL,
+                'status' => 0,
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
             ),
             59 =>
             array (
@@ -1155,8 +1215,9 @@ class MonevIndikator extends Seeder
                 'target' => '45',
                 'satuan' => 'unit',
                 'id_capaian' => 95,
-                'created_at' => NULL,
-                'updated_at' => NULL,
+                'status' => 0,
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
             ),
             60 =>
             array (
@@ -1174,8 +1235,9 @@ class MonevIndikator extends Seeder
                 'target' => '10',
                 'satuan' => 'jenis',
                 'id_capaian' => 96,
-                'created_at' => NULL,
-                'updated_at' => NULL,
+                'status' => 0,
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
             ),
 
             61 =>
@@ -1194,8 +1256,9 @@ class MonevIndikator extends Seeder
                 'satuan' => 'orang',
                 'id_capaian' => 97,
                 'id_intervensi' => 16,
-                'created_at' => NULL,
-                'updated_at' => NULL,
+                'status' => 0,
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
             ),
             62 =>
             array (
@@ -1213,8 +1276,9 @@ class MonevIndikator extends Seeder
                 'target' => 'orang',
                 'satuan' => '256',
                 'id_capaian' => 98,
-                'created_at' => NULL,
-                'updated_at' => NULL,
+                'status' => 0,
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
             ),
             63 =>
             array (
@@ -1232,8 +1296,9 @@ class MonevIndikator extends Seeder
                 'target' => '',
                 'satuan' => '',
                 'id_capaian' => 101,
-                'created_at' => NULL,
-                'updated_at' => NULL,
+                'status' => 0,
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
             ),
             64 =>
             array (
@@ -1251,8 +1316,9 @@ class MonevIndikator extends Seeder
                 'target' => '12000',
                 'satuan' => 'ton/ha/tahun',
                 'id_capaian' => 102,
-                'created_at' => NULL,
-                'updated_at' => NULL,
+                'status' => 0,
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
             ),
             65 =>
             array (
@@ -1270,8 +1336,9 @@ class MonevIndikator extends Seeder
                 'target' => '',
                 'satuan' => 'unit',
                 'id_capaian' => 103,
-                'created_at' => NULL,
-                'updated_at' => NULL,
+                'status' => 0,
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
             ),
             66 =>
             array (
@@ -1289,8 +1356,9 @@ class MonevIndikator extends Seeder
                 'target' => '',
                 'satuan' => 'orang',
                 'id_capaian' => 104,
-                'created_at' => NULL,
-                'updated_at' => NULL,
+                'status' => 0,
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
             ),
             67 =>
             array (
@@ -1308,8 +1376,9 @@ class MonevIndikator extends Seeder
                 'target' => '',
                 'satuan' => 'orang',
                 'id_capaian' => 105,
-                'created_at' => NULL,
-                'updated_at' => NULL,
+                'status' => 0,
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
             ),
             68 =>
             array (
@@ -1327,8 +1396,9 @@ class MonevIndikator extends Seeder
                 'target' => '',
                 'satuan' => 'orang',
                 'id_capaian' => 106,
-                'created_at' => NULL,
-                'updated_at' => NULL,
+                'status' => 0,
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
             ),
             69 =>
             array (
@@ -1346,8 +1416,9 @@ class MonevIndikator extends Seeder
                 'target' => '',
                 'satuan' => 'orang',
                 'id_capaian' => 107,
-                'created_at' => NULL,
-                'updated_at' => NULL,
+                'status' => 0,
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
             ),
             70 =>
             array (
@@ -1365,8 +1436,9 @@ class MonevIndikator extends Seeder
                 'target' => '',
                 'satuan' => 'unit',
                 'id_capaian' => 111,
-                'created_at' => NULL,
-                'updated_at' => NULL,
+                'status' => 0,
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
             ),
             71 =>
             array (
@@ -1384,8 +1456,9 @@ class MonevIndikator extends Seeder
                 'target' => '',
                 'satuan' => '',
                 'id_capaian' => 112,
-                'created_at' => NULL,
-                'updated_at' => NULL,
+                'status' => 0,
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
             ),
             72 =>
             array (
@@ -1403,8 +1476,9 @@ class MonevIndikator extends Seeder
                 'target' => '',
                 'satuan' => 'orang',
                 'id_capaian' => 113,
-                'created_at' => NULL,
-                'updated_at' => NULL,
+                'status' => 0,
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
             ),
             73 =>
             array (
@@ -1422,8 +1496,9 @@ class MonevIndikator extends Seeder
                 'target' => '',
                 'satuan' => 'kegiatan',
                 'id_capaian' => 114,
-                'created_at' => NULL,
-                'updated_at' => NULL,
+                'status' => 0,
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
             ),
             74 =>
             array (
@@ -1441,8 +1516,9 @@ class MonevIndikator extends Seeder
                 'target' => '',
                 'satuan' => 'orang',
                 'id_capaian' => 115,
-                'created_at' => NULL,
-                'updated_at' => NULL,
+                'status' => 0,
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
             ),
             75 =>
             array (
@@ -1460,8 +1536,9 @@ class MonevIndikator extends Seeder
                 'target' => '100000',
                 'satuan' => 'rupiah',
                 'id_capaian' => 119,
-                'created_at' => NULL,
-                'updated_at' => NULL,
+                'status' => 0,
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
             ),
             76 =>
             array (
@@ -1479,8 +1556,9 @@ class MonevIndikator extends Seeder
                 'target' => '6000',
                 'satuan' => 'ton',
                 'id_capaian' => 120,
-                'created_at' => NULL,
-                'updated_at' => NULL,
+                'status' => 0,
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
             ),
             77 =>
             array (
@@ -1498,8 +1576,9 @@ class MonevIndikator extends Seeder
                 'target' => '',
                 'satuan' => 'unit',
                 'id_capaian' => 121,
-                'created_at' => NULL,
-                'updated_at' => NULL,
+                'status' => 0,
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
             ),
             78 =>
             array (
@@ -1517,8 +1596,9 @@ class MonevIndikator extends Seeder
                 'target' => '',
                 'satuan' => 'unit',
                 'id_capaian' => 122,
-                'created_at' => NULL,
-                'updated_at' => NULL,
+                'status' => 0,
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
             ),
             79 =>
             array (
@@ -1536,8 +1616,9 @@ class MonevIndikator extends Seeder
                 'target' => '',
                 'satuan' => '',
                 'id_capaian' => 124,
-                'created_at' => NULL,
-                'updated_at' => NULL,
+                'status' => 0,
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
             ),
             80 =>
             array (
@@ -1555,8 +1636,9 @@ class MonevIndikator extends Seeder
                 'target' => '156',
                 'satuan' => 'unit',
                 'id_capaian' => 125,
-                'created_at' => NULL,
-                'updated_at' => NULL,
+                'status' => 0,
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
             ),
             81 =>
             array (
@@ -1574,8 +1656,9 @@ class MonevIndikator extends Seeder
                 'target' => '',
                 'satuan' => 'ton',
                 'id_capaian' => 126,
-                'created_at' => NULL,
-                'updated_at' => NULL,
+                'status' => 0,
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
             ),
             82 =>
             array (
@@ -1593,8 +1676,9 @@ class MonevIndikator extends Seeder
                 'target' => '',
                 'satuan' => 'rupiah',
                 'id_capaian' => 129,
-                'created_at' => NULL,
-                'updated_at' => NULL,
+                'status' => 0,
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
             ),
             83 =>
             array (
@@ -1612,8 +1696,9 @@ class MonevIndikator extends Seeder
                 'target' => '',
                 'satuan' => '',
                 'id_capaian' => 130,
-                'created_at' => NULL,
-                'updated_at' => NULL,
+                'status' => 0,
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
             ),
             84 =>
             array (
@@ -1631,8 +1716,9 @@ class MonevIndikator extends Seeder
                 'target' => '',
                 'satuan' => '',
                 'id_capaian' => 131,
-                'created_at' => NULL,
-                'updated_at' => NULL,
+                'status' => 0,
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
             ),
             85 =>
             array (
@@ -1650,8 +1736,9 @@ class MonevIndikator extends Seeder
                 'target' => '',
                 'satuan' => 'orang',
                 'id_capaian' => 132,
-                'created_at' => NULL,
-                'updated_at' => NULL,
+                'status' => 0,
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
             ),
             86 =>
             array (
@@ -1669,8 +1756,9 @@ class MonevIndikator extends Seeder
                 'target' => '',
                 'satuan' => '',
                 'id_capaian' => 133,
-                'created_at' => NULL,
-                'updated_at' => NULL,
+                'status' => 0,
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
             ),
             87 =>
             array (
@@ -1688,8 +1776,9 @@ class MonevIndikator extends Seeder
                 'target' => '',
                 'satuan' => '',
                 'id_capaian' => 134,
-                'created_at' => NULL,
-                'updated_at' => NULL,
+                'status' => 0,
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
             ),
             88 =>
             array (
@@ -1707,8 +1796,9 @@ class MonevIndikator extends Seeder
                 'target' => '',
                 'satuan' => 'orang',
                 'id_capaian' => 135,
-                'created_at' => NULL,
-                'updated_at' => NULL,
+                'status' => 0,
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
             ),
             89 =>
             array (
@@ -1726,8 +1816,9 @@ class MonevIndikator extends Seeder
                 'target' => '',
                 'satuan' => 'orang',
                 'id_capaian' => 137,
-                'created_at' => NULL,
-                'updated_at' => NULL,
+                'status' => 0,
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
             ),
             90 =>
             array (
@@ -1745,8 +1836,9 @@ class MonevIndikator extends Seeder
                 'target' => '',
                 'satuan' => '',
                 'id_capaian' => 140,
-                'created_at' => NULL,
-                'updated_at' => NULL,
+                'status' => 0,
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
             ),
             91 =>
             array (
@@ -1764,8 +1856,9 @@ class MonevIndikator extends Seeder
                 'target' => '1',
                 'satuan' => 'ton/ha/tahun',
                 'id_capaian' => 141,
-                'created_at' => NULL,
-                'updated_at' => NULL,
+                'status' => 0,
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
             ),
             92 =>
             array (
@@ -1783,8 +1876,9 @@ class MonevIndikator extends Seeder
                 'target' => '100',
                 'satuan' => 'm3/s',
                 'id_capaian' => 142,
-                'created_at' => NULL,
-                'updated_at' => NULL,
+                'status' => 0,
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
             ),
             93 =>
             array (
@@ -1802,8 +1896,9 @@ class MonevIndikator extends Seeder
                 'target' => '',
                 'satuan' => 'ton CO2eq/tahun',
                 'id_capaian' => 143,
-                'created_at' => NULL,
-                'updated_at' => NULL,
+                'status' => 0,
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
             ),
             94 =>
             array (
@@ -1821,8 +1916,9 @@ class MonevIndikator extends Seeder
                 'target' => '',
                 'satuan' => '',
                 'id_capaian' => 144,
-                'created_at' => NULL,
-                'updated_at' => NULL,
+                'status' => 0,
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
             ),
             95 =>
             array (
@@ -1840,8 +1936,9 @@ class MonevIndikator extends Seeder
                 'target' => '',
                 'satuan' => 'rupiah',
                 'id_capaian' => 145,
-                'created_at' => NULL,
-                'updated_at' => NULL,
+                'status' => 0,
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
             ),
             96 =>
             array (
@@ -1859,8 +1956,9 @@ class MonevIndikator extends Seeder
                 'target' => '',
                 'satuan' => 'program',
                 'id_capaian' => '',
-                'created_at' => NULL,
-                'updated_at' => NULL,
+                'status' => 0,
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
             ),
             97 =>
             array (
@@ -1878,8 +1976,9 @@ class MonevIndikator extends Seeder
                 'target' => '',
                 'satuan' => 'orang',
                 'id_capaian' => 149,
-                'created_at' => NULL,
-                'updated_at' => NULL,
+                'status' => 0,
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
             ),
             98 =>
             array (
@@ -1897,8 +1996,9 @@ class MonevIndikator extends Seeder
                 'target' => '',
                 'satuan' => '',
                 'id_capaian' => 150,
-                'created_at' => NULL,
-                'updated_at' => NULL,
+                'status' => 0,
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
             ),
             99 =>
             array (
@@ -1916,8 +2016,9 @@ class MonevIndikator extends Seeder
                 'target' => '',
                 'satuan' => 'unit',
                 'id_capaian' => 151,
-                'created_at' => NULL,
-                'updated_at' => NULL,
+                'status' => 0,
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
             ),
             100 =>
             array (
@@ -1935,8 +2036,9 @@ class MonevIndikator extends Seeder
                 'target' => '',
                 'satuan' => 'unit',
                 'id_capaian' => 152,
-                'created_at' => NULL,
-                'updated_at' => NULL,
+                'status' => 0,
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
             ),
             101 =>
             array (
@@ -1954,8 +2056,9 @@ class MonevIndikator extends Seeder
                 'target' => '',
                 'satuan' => '',
                 'id_capaian' => 153,
-                'created_at' => NULL,
-                'updated_at' => NULL,
+                'status' => 0,
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
             ),
             102 =>
             array (
@@ -1973,8 +2076,9 @@ class MonevIndikator extends Seeder
                 'target' => '',
                 'satuan' => '',
                 'id_capaian' => 154,
-                'created_at' => NULL,
-                'updated_at' => NULL,
+                'status' => 0,
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
             ),
             103 =>
             array (
@@ -1992,8 +2096,9 @@ class MonevIndikator extends Seeder
                 'target' => '',
                 'satuan' => '',
                 'id_capaian' => 156,
-                'created_at' => NULL,
-                'updated_at' => NULL,
+                'status' => 0,
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
             )
         ));
     }

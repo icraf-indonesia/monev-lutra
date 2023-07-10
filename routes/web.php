@@ -3,6 +3,8 @@
 use App\Http\Controllers\MonevController;
 use App\Http\Controllers\SliderController;
 use App\Http\Controllers\SessionController;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\KontributorController;
 use Illuminate\Support\Facades\Route;
 // use Illuminate\Support\Facades\DB;
 
@@ -17,7 +19,17 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [MonevController::class, 'tentang']);
+// Home & Main Page
+Route::get('/', [HomeController::class, 'index']);
+Route::get('/petajalan', [HomeController::class, 'petaJalan']);
+Route::get('/pendekatan', [HomeController::class, 'pendekatan']);
+Route::get('/isu', [HomeController::class, 'isu']);
+Route::get('/aboutroadmap', [HomeController::class, 'tentangRoadMap']);
+
+// Kontributor
+Route::get('/kontributor', [KontributorController::class, 'index']);
+
+
 Route::get('/indikator', [MonevController::class, 'indikator']);
 Route::post('/indikator', [MonevController::class, 'insertCheckbox']);
 // Route::get('/indikator', [MonevController::class, 'getDetail']);
@@ -34,13 +46,9 @@ Route::get('/rantai_nilai_multi', [MonevController::class, 'rantaiMulti']);
 Route::get('/jasa_ekosistem_tahunan', [MonevController::class, 'jasaTahunan']);
 Route::get('/jasa_ekosistem_multi', [MonevController::class, 'jasaMulti']);
 Route::get('/kelembagaan', [MonevController::class, 'kelembagaan']);
-Route::get('/petajalan', [MonevController::class, 'petajalan']);
-Route::get('/pendekatan', [MonevController::class, 'pendekatan']);
-Route::get('/isu', [MonevController::class, 'isu']);
-Route::get('/aboutroadmap', [MonevController::class, 'tentangRoadmap']);
-Route::get('/navbar', [MonevController::class, 'navbar']);
+
+// Route::get('/navbar', [MonevController::class, 'navbar']);
 // Route::get('/login', [MonevController::class, 'login']);
-Route::get('/kontributor', [MonevController::class, 'kontributor']);
 Route::get('/admin', [MonevController::class, 'admin']);
 Route::get('/maps', [MonevController::class, 'maps']);
 // Route::get('/petajalan', [MonevController::class, 'getStrategi']);
@@ -52,4 +60,4 @@ Route::get('/session/logout', [SessionController::class, 'logout']);
 
 Route::get('/slider', [SliderController::class, 'index']);
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
