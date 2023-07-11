@@ -11,24 +11,14 @@ class HomeController extends Controller
         return view('pages.01_tentang');
     }
 
-    public function petaJalan(Request $request)
+    public function isustrategi(Request $request)
     {
-        return view('pages.02_petajalan');
+        return view('pages.02_isustrategis');
     }
 
-    public function isu(Request $request)
+    public function visi(Request $request)
     {
-        return view('pages.02_isu');
-    }
-
-    public function tentangRoadMap(Request $request)
-    {
-        return view('pages.02_aboutroadmap');
-    }
-
-    public function pendekatan(Request $request)
-    {
-        return view('pages.02_pendekatan');
+        return view('pages.02_visi');
     }
 
 }

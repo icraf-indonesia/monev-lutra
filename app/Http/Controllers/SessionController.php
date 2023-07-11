@@ -34,7 +34,7 @@ class SessionController extends Controller
             //otentikasi sukses
             return redirect('')->with('success','Berhasil login');
 
-        }else {
+        } else {
             //otentikasi gagal
             return redirect('session')->withErrors('Username dan password yang dimasukan tidak valid');
         }

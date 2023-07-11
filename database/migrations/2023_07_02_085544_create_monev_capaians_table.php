@@ -16,8 +16,10 @@ return new class extends Migration
         Schema::create('monev_capaians', function (Blueprint $table) {
             $table->id();
             $table->string('tahun')->nullable();
+            $table->foreignId('id_indikator');
             $table->string('parameter_pengukuran')->nullable();
             $table->string('capaian')->nullable();
+            $table->integer('status')->default(0);
             $table->timestamps();
         });
     }

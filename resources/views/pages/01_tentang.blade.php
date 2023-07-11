@@ -58,9 +58,9 @@
 @stop
 
 @section('content')
-    <div class="container-fluid" style="max-width: 800px; margin: auto;">
+    <div class="container-fluid" style="max-width: 1170px; margin: auto;">
         <div class="row">
-            <h1><b>Monitoring dan Evaluasi Pengembangan Kakao Luwu Utara</b></h1>
+            <h1 align="center" style="color:#77342C;"><b>Monitoring dan Evaluasi Pengembangan Kakao Luwu Utara</b></h1>
             <div
                 class="swiffy-slider slider-nav-visible slider-nav-autoplay slider-nav-autopause slider-nav-animation slider-nav-animation-fadein slider-nav-animation-fast">
                 <ul class="slider-container">
@@ -101,13 +101,13 @@
                     Monitoring dan Evaluasi (Monev) Pengembangan Kakao Luwu Utara adalah alat bantu dan sistem yang digunakan untuk memantau dan mengevaluasi kemajuan pelaksanaan strategi dan intervensi yang direncanakan melalui peta jalan kakao lestari. Proses monitoring dan evaluasi  diperlukan untuk mengukur tingkat keberlanjutan pengelolaan kakao di Kabupaten Luwu Utara, yang juga mencakup kriteria dan indikator keberlanjutan di tingkat komoditas kakao maupun lanskap.
                 </p>
                 <p>
-                    Monev peta jalan kakao lestari di Kabupaten Luwu Utara dibangun dengan pendekatan jurisdiksi.. Pendekatan jurisdiksi disini adalah pengelolaan komoditas di tingkat kabupaten yang menggabungkan perencanaan wilayah, di mana pemerintah menentukan area lindung dan budidaya (go or no-go area), serta sertifikasi komoditas berkelanjutan. 
+                    Monev peta jalan kakao lestari di Kabupaten Luwu Utara dibangun dengan pendekatan jurisdiksi. Pendekatan jurisdiksi disini adalah pengelolaan komoditas di tingkat kabupaten yang menggabungkan perencanaan wilayah, di mana pemerintah menentukan area lindung dan budidaya (<i>go or no-go area</i>), serta sertifikasi komoditas berkelanjutan. 
                 </p>
                 <p>
                     Pendekatan jurisdiksi ini meliputi pelibatan perusahaan yang berkomitmen untuk membeli komoditas berkelanjutan; Peran pemerintah dalam menetapkan area lindung dan budidaya; Adanya insentif bagi produsen untuk mematuhi aturan secara kolektif; dan Jika jurisdiksi terbukti memiliki pengelolaan komoditas berkelanjutan, maka seluruh produsen di dalamnya akan memiliki predikat serupa.
                 </p>
                 <p>
-                    Dalam membangun sistem monev pengembangan kakao Luwu Utara, disusun seperangkat prinsip, kriteria, dan indikator yang dirumuskan bersama oleh pemerintah daerah, Civil Society Organization (CSO), petani, masyarakat, perguruan tinggi, serta perwakilan sektor swasta. 
+                    Dalam membangun sistem monev pengembangan kakao Luwu Utara, disusun seperangkat prinsip, kriteria, dan indikator yang dirumuskan bersama oleh pemerintah daerah, <i>Civil Society Organization</i> (CSO), petani, masyarakat, perguruan tinggi, serta perwakilan sektor swasta. 
                 </p>
                 <p>
                     Indikator yang digunakan juga terintegrasi dengan indikator kinerja daerah (Indikator Kinerja Utama (IKU) dan Indikator Kinerja Kunci (IKK)) dan standar keberlanjutan seperti Terpercaya, LandScale, SourceUp, dan Kerangka Daya Saing Daerah (KDSD). Dengan demikian, sistem dan alat bantu monev dapat memfasilitasi pemerintah untuk memenuhi berbagai standar keberlanjutan yang berlaku.
@@ -125,8 +125,8 @@
         <div class="row" style="padding-top: 50px;">
             <div class="hidden-xs hidden-sm">
                 <h4 style="text-align: center"><b>Pelaksana Proyek, Mitra, dan Donor</b></h4>
-                <p align="center"><img src="dist/img/logodonor.png" alt=""></p>
-                <p align="center"><img src="dist/img/sfital.png" alt=""></p>
+                <p align="center"><img src="dist/img/logodonor.png" alt="" style="max-width:50%;"></p>
+                <p align="center"><img src="dist/img/sfital.png" alt="" style="max-width:50%;"></p>
             </div>
         </div>
 

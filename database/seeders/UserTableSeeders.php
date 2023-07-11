@@ -16,6 +16,8 @@ class UserTableSeeders extends Seeder
      */
     public function run()
     {
+        DB::table('users')->delete();
+
         DB::table('users')->insert([
             'name' => 'Pokja 1',
             'email'=>'pokja1@gmail.com',
@@ -37,6 +39,30 @@ class UserTableSeeders extends Seeder
         DB::table('users')->insert([
             'name' => 'Kontributor 2',
             'email'=>'kontributor2@gmail.com',
+            'role'=>'kontributor',
+            'password'=>Hash::make('123456')
+        ]);
+        DB::table('users')->insert([
+            'name' => 'Bappelitbangda Lutra',
+            'email'=>'bappelitbangda@gmail.com',
+            'role'=>'admin',
+            'password'=>Hash::make('123456')
+        ]);
+        DB::table('users')->insert([
+            'name' => 'Dinas Pertanian Lutra',
+            'email'=>'dinas_pertanian@gmail.com',
+            'role'=>'admin',
+            'password'=>Hash::make('123456')
+        ]);
+        DB::table('users')->insert([
+            'name' => 'Dinas KOMINFO Lutra',
+            'email'=>'dinas_kominfo@gmail.com',
+            'role'=>'admin',
+            'password'=>Hash::make('123456')
+        ]);
+        DB::table('users')->insert([
+            'name' => 'Forum Kakao Lutra',
+            'email'=>'forum_kakao@gmail.com',
             'role'=>'kontributor',
             'password'=>Hash::make('123456')
         ]);

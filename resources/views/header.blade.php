@@ -1,39 +1,47 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <title>Monitoring & Evaluation of Luwu Utara</title>
-  <meta content="width=device-width, initial-scale=1.0" name="viewport">
-  <meta content="" name="keywords">
-  <meta content="" name="description">
-  <!-- Favicons -->
-  <link href="dist/assets/img/lutra-small.png" rel="icon">
-  <link href="dist/assets/img/apple-touch-icon.png" rel="apple-touch-icon">
-  <!-- Bootstrap CSS File -->
-  <link href="dist/assets/css/bootstrap.min.css" rel="stylesheet">
-  <!-- Libraries CSS Files -->
-  <link href="dist/assets/css/font-awesome.min.css" rel="stylesheet">
-  <!-- Main Stylesheet File -->
-  <link href="dist/assets/css/style.css" rel="stylesheet">
-  <!-- datetimepicker Stylesheet File -->
-  <link href="dist/assets/css/jquery.datepicker2.css" rel="stylesheet">
-  <link href="dist/assets/css/animate.min.css" rel="stylesheet">
-  <!-- data table stylesheet -->
-  <link rel="stylesheet" type="text/css" href="dist/assets/css/datatable.min.css"/>
-  <script src="dist/assets/js/utils.js"></script>
-  <link rel='stylesheet' href='https://unpkg.com/leaflet@1.8.0/dist/leaflet.css' crossorigin='' />
-  <!-- slider -->
-  <script src="https://cdn.jsdelivr.net/npm/swiffy-slider@1.6.0/dist/js/swiffy-slider.min.js" crossorigin="anonymous" defer></script>
-  <link href="https://cdn.jsdelivr.net/npm/swiffy-slider@1.6.0/dist/css/swiffy-slider.min.css" rel="stylesheet" crossorigin="anonymous">
+    <meta charset="utf-8">
+    <title>Monitoring & Evaluation of Luwu Utara</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="" name="keywords">
+    <meta content="" name="description">
+    <!-- Favicons -->
+    <link href="dist/assets/img/lutra-small.png" rel="icon">
+    {{-- <link href="dist/assets/img/apple-touch-icon.png" rel="apple-touch-icon"> --}}
+    <!-- Bootstrap CSS File -->
+    <link href="dist/assets/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Libraries CSS Files -->
+    <link href="dist/assets/css/font-awesome.min.css" rel="stylesheet">
+    <!-- Main Stylesheet File -->
+    <link href="dist/assets/css/style.css" rel="stylesheet">
+    <!-- datetimepicker Stylesheet File -->
+    <link href="dist/assets/css/jquery.datepicker2.css" rel="stylesheet">
+    <link href="dist/assets/css/animate.min.css" rel="stylesheet">
+    <!-- data table stylesheet -->
+    <link rel="stylesheet" type="text/css" href="dist/assets/css/datatable.min.css"/>
+    <script src="dist/assets/js/utils.js"></script>
+    <link rel='stylesheet' href='https://unpkg.com/leaflet@1.8.0/dist/leaflet.css' crossorigin='' />
+    <!-- slider -->
+    <script src="https://cdn.jsdelivr.net/npm/swiffy-slider@1.6.0/dist/js/swiffy-slider.min.js" crossorigin="anonymous" defer></script>
+    <link href="https://cdn.jsdelivr.net/npm/swiffy-slider@1.6.0/dist/css/swiffy-slider.min.css" rel="stylesheet" crossorigin="anonymous">
+
+    <link href="https://fonts.cdnfonts.com/css/rubik?styles=19495" rel="stylesheet">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" ></script>
+    <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
+    <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 </head>
 
 <body class="innerpage-body">
 
    <header>
 	  <nav class="navbar navbar-default navbar-trans navbar-expand-lg ct-navbar-01">
-		<div class="container-fluid">
+		<div class="container-fluid" style="width: 1170px">
 		  <div class="row">
-			<div class="col-md-8 col-sm-12 header-navbar-lft text-center">
+			<div class="col-md-8 col-sm-12 header-navbar-lft text-center" style="padding-left: 0px;">
 				<a class="web-logo1 visible-xs visible-sm" href="{{url('')}}/"><img src="dist/assets/img/header-small.png" class="img-responsive" alt=""></a>
 
 				<div class="hamburger navbar-toggle collapsed mob-icon-menu img-responsive visible-xs visible-sm" data-toggle="slide-collapse" data-target="#slide-navbar-collapse" aria-expanded="false">
@@ -46,11 +54,6 @@
                             </div>
                           </div>
                         </div>
-                        <a class="ico-img-size visible-xs visible-sm" href="chat-page.html"><img src="dist/assets/img/doctordashboard/mail.png" class="img-responsive" alt="">
-                        	<div class="msg-count">
-                        		<span class="msg-span">10</span>
-                        	</div>
-                        </a>
 
 				<ul id="menu" class="hidden-xs hidden-sm" style="padding-right:0px; padding-left:0px;">
                     <li><a class="web-logo" href="{{url('')}}/"><img src="dist/assets/img/header-small.png" class="img-responsive" alt=""></a></li>
@@ -59,8 +62,8 @@
                     <li><a class="prett">Peta Jalan</a>
                         <ul class="menus">
                             {{-- <li><a href="{{url('')}}/aboutroadmap">Selayang Pandang</a></li> --}}
-                            <li><a href="{{url('')}}/pendekatan">Pendekatan Pembangunan</a></li>
-                            <li><a href="{{url('')}}/isu">Isu Strategis, Visi, dan Ruang Lingkup</a></li>
+                            <li><a href="{{url('')}}/isu_strategis">Isu Strategis Peta Jalan</a></li>
+                            <li><a href="{{url('')}}/strategi_intervensi">Visi, Strategi dan Intervensi</a></li>
                             {{-- <li><a href="{{url('')}}/petajalan">Peta Jalan Kakao Lestari</a></li> --}}
                         </ul>
                     </li>
@@ -72,51 +75,46 @@
                     		<li><a href="{{url('')}}/kontributor">Kontributor</a></li>
 						@elseif (Auth::user()->role === "admin")
                     		<li><a href="{{url('')}}/admin">Admin</a></li>
-						@endif 
+						@endif
                     @endif
 				</ul>
 			</div>
-			<div class="col-md-4 col-sm-5 header-navbar-rht hidden-xs hidden-sm">
+			<div class="col-md-4 col-sm-5 header-navbar-rht hidden-xs hidden-sm" style="padding-left: 0px;">
 				  <ul class="text-right m-t-13">
                     @if (Auth::check())
-                    <li>
-                        <a class="header-login" style="border: 0px; text-align:right; pointer-events: none;">{{ Auth::user()->name }}</a>
-					</li>
+                        <li>
+                            <a class="header-login" style="border: 0px; text-align:right; pointer-events: none;">{{ Auth::user()->name }}</a>
+                        </li>
 
-                    <li>
-                        <a href="{{url('')}}/session/logout" class="header-login">Keluar</a>
-					</li>
+                        <li>
+                            <a href="{{url('')}}/session/logout" class="header-login">Keluar</a>
+                        </li>
                     @else
-                    <li>
-						<a href="{{url('')}}/session" class="header-login">Masuk</a>
-					</li>
+                        <li>
+                            <a href="{{url('')}}/session" class="header-login">Masuk</a>
+                        </li>
                     @endif
-					{{-- <li>
-						<a href="{{url('')}}/session" class="header-login">Masuk</a>
-					</li>
-                    @if (Auth::check())
-                    <li>
-                        <a href="{{url('')}}/session/logout" class="header-login">Keluar</a>
-					</li>
-                    @endif --}}
 				  </ul>
 			</div>
 			<div id="slide-navbar-collapse" class="collapse mobile-sidemenu">
                 <ul>
-                    <li><a href="{{url('')}}/">Beranda</a></li>
-                    <li><a class="menu-high" href="#">Peta Jalan</a>
+                    <li><a class="home" href="{{url('')}}/">Beranda</a></li>
+                    <li><a class="prett">Peta Jalan</a>
                         <ul class="menus">
-                                <li><a href="{{url('')}}/aboutroadmap">Selayang Pandang</a></li>
-                                <li><a href="{{url('')}}/pendekatan">Pendekatan Pembangunan</a></li>
-                                <li><a href="{{url('')}}/isu">Isu Strategis, Visi, dan Ruang Lingkup</a></li>
-                                <li><a href="{{url('')}}/petajalan">Peta Jalan Kakao Lestari</a></li>
+                            <li><a href="{{url('')}}/isu_strategis">Isu Strategis Peta Jalan</a></li>
+                            <li><a href="{{url('')}}/strategi_intervensi">Visi, Strategi dan Intervensi</a></li>
                         </ul>
                     </li>
-                    <li><a href="{{url('')}}/indikator">Indikator</a></li>
-                    <li><a href="{{url('')}}/gambaran_umum_tahunan">Profil Jurisdiksi</a></li>
+                    <li><a class="home" href="{{url('')}}/indikator">Indikator</a></li>
+                    <li><a class="home" href="{{url('')}}/gambaran_umum_tahunan">Profil Jurisdiksi</a></li>
                     {{-- <li><a href="{{url('')}}/kelembagaan">Kelembagaan</a></li> --}}
-                    <li><a href="{{url('')}}/kontributor">Kontributor</a></li>
-                    <li><a href="{{url('')}}/admin">Admin</a></li>
+                    @if (Auth::check())
+						@if (Auth::user()->role === "kontributor")
+                    		<li><a href="{{url('')}}/kontributor">Kontributor</a></li>
+						@elseif (Auth::user()->role === "admin")
+                    		<li><a href="{{url('')}}/admin">Admin</a></li>
+						@endif
+                    @endif
                 </ul>
 			</div>
 		  </div>
@@ -166,7 +164,7 @@
             <div class="col-md-3 footer-last hidden-sm hidden-xs">
                 <p class="text-right">Jl. Simpurusiang Masamba No. 27</p>
                 <p class="text-right">Kabupaten Luwu Utara, Sulawesi Selatan, Indonesia</p>
-                <p class="text-right"><i class="fa fa-phone" aria-hidden="true"></i>Telp:(0473) 21003 | <i class="fa fa-phone" aria-hidden="true"></i>Fax:(0473) 21536/22190</p>             
+                <p class="text-right"><i class="fa fa-phone" aria-hidden="true"></i>Telp:(0473) 21003 | <i class="fa fa-phone" aria-hidden="true"></i>Fax:(0473) 21536/22190</p>
             </div>
         </div> --}}
     </div>

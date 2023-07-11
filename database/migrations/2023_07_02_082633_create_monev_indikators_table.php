@@ -27,8 +27,9 @@ return new class extends Migration
             $table->foreignId('id_kdsd');
             $table->string('target')->nullable();
             $table->string('satuan')->nullable();
-            $table->string('id_capaian')->nullable();
-            $table->integer('status')->default(0);
+            // $table->string('id_capaian')->nullable();
+            $table->string('dokumen')->nullable();
+            // $table->integer('status')->default(0);
             $table->timestamps();
         });
     }

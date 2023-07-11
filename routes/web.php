@@ -1,7 +1,7 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\MonevController;
-use App\Http\Controllers\SliderController;
 use App\Http\Controllers\SessionController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\KontributorController;
@@ -20,15 +20,25 @@ use Illuminate\Support\Facades\Route;
 */
 
 // Home & Main Page
-Route::get('/', [HomeController::class, 'index']);
-Route::get('/petajalan', [HomeController::class, 'petaJalan']);
-Route::get('/pendekatan', [HomeController::class, 'pendekatan']);
-Route::get('/isu', [HomeController::class, 'isu']);
-Route::get('/aboutroadmap', [HomeController::class, 'tentangRoadMap']);
+Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::get('/isu_strategis', [HomeController::class, 'isustrategi']);
+Route::get('/strategi_intervensi', [HomeController::class, 'visi']);
 
-// Kontributor
-Route::get('/kontributor', [KontributorController::class, 'index']);
+Route::get('/session', [SessionController::class, 'index'])->name('login');
+Route::post('/session/login', [SessionController::class, 'login']);
 
+// Kontributor & Admin
+Route::group(['middleware' => 'auth'], function(){
+    Route::get('/kontributor', [KontributorController::class, 'index'])->name('kontributor');
+    Route::get('intervensi/{id}', [KontributorController::class, 'intervensi']);
+    Route::get('indikator/{id}', [KontributorController::class, 'indikator']);
+    Route::post('/kontributor/store', [KontributorController::class, 'store']);
+
+    Route::get('/admin', [AdminController::class, 'index'])->name('admin');
+    Route::post('/admin/verification', [AdminController::class, 'verification']);
+
+    Route::get('/session/logout', [SessionController::class, 'logout'])->name('logout');
+});
 
 Route::get('/indikator', [MonevController::class, 'indikator']);
 Route::post('/indikator', [MonevController::class, 'insertCheckbox']);
@@ -49,15 +59,11 @@ Route::get('/kelembagaan', [MonevController::class, 'kelembagaan']);
 
 // Route::get('/navbar', [MonevController::class, 'navbar']);
 // Route::get('/login', [MonevController::class, 'login']);
-Route::get('/admin', [MonevController::class, 'admin']);
+
 Route::get('/maps', [MonevController::class, 'maps']);
 // Route::get('/petajalan', [MonevController::class, 'getStrategi']);
 // Route::get('/petajalan', [MonevController::class, 'getDetail']);
 
-Route::get('/session', [SessionController::class, 'index']);
-Route::post('/session/login', [SessionController::class, 'login']);
-Route::get('/session/logout', [SessionController::class, 'logout']);
-
-Route::get('/slider', [SliderController::class, 'index']);
+// Route::get('/slider', [SliderController::class, 'index']);
 
 

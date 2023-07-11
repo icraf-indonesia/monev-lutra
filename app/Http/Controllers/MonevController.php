@@ -42,6 +42,11 @@ class MonevController extends Controller
         dd($request->all());
     }
 
+    public function tentang(Request $request)
+    {
+        return view('pages.01_tentang');
+    }
+
     public function slider(Request $request)
     {
         return view('pages.slider');
@@ -166,11 +171,6 @@ class MonevController extends Controller
     public function kelembagaan(Request $request)
     {
         return view('pages.05_kelembagaan');
-    }
-
-    public function admin(Request $request)
-    {
-        return view('admin');
     }
 
     public function maps(Request $request)
