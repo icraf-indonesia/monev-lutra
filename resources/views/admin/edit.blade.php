@@ -1,7 +1,7 @@
 @extends('header')
 
 @section('content')
-    <div class="row">
+    <div class="row" style="max-width: 1000px; margin: auto;">
         <div class="col-lg-12 col-md-12 col-sm-12 dct-appoinment">
             <div class="row">
                 <div class="col-md-12">

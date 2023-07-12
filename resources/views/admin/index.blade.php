@@ -1,7 +1,7 @@
 @extends('header')
 
 @section('content')
-    <div class="row">
+    <div class="row" style="max-width: 1200px; margin: auto;">
         <div class="col-lg-12 col-md-12 col-sm-12 dct-appoinment">
             <div class="row">
                 <div class="col-md-12">
@@ -92,7 +92,6 @@
                         </div>
 
                         <div class="tab-pane active" id="verifikasi">
-                            <div class="col-lg-10 col-md-10 col-sm-12 dct-appoinment m-t-10">
                                 <div class="table-responsive">
                                     <table id="tabel-data" class="table table-bordered table-striped" style="width:100%; border:0; font-size:12;">
                                         <thead>
@@ -168,12 +167,10 @@
                                         <li class="page-item"><a class="page-link" href="{{ $tables->url($tables->lastPage()) }}">Last</a></li>
                                     </ul>
                                 </nav>
-                            </div>
                         </div>
 
 
                         <div class="tab-pane" id="daftar-target-capaian">
-                            <div class="col-lg-10 col-md-10 col-sm-12 dct-appoinment m-t-10">
                                 <div class="table-responsive">
                                     <table id="tabel-data" class="table table-bordered table-striped"
                                         style="width:100%; border:0; font-size:12;">
@@ -222,7 +219,6 @@
                                         <li class="page-item"><a class="page-link" href="{{ $tables->url($tables->lastPage()) }}">Last</a></li>
                                     </ul>
                                 </nav>
-                            </div>
                         </div>
 
                         {{-- <div class="tab-pane" id="e">
