@@ -21,6 +21,7 @@
                         </div>
                     @endif
                     <ul class="nav nav-tabs paitent-app-tab">
+                        <li><a href="/admin">Kembali</a></li>
                         <li class="active"><a href="#edit-target" data-toggle="tab">Edit Target Capaian</a></li>
                     </ul>
                     <div class="tab-content" style="padding-top: 10px;">

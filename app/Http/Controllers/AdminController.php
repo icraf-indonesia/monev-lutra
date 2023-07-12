@@ -81,17 +81,26 @@ class AdminController extends Controller
     public function deleteIndikator($id)
     {
         MonevIndikator::destroy($id);
-
         return redirect('/admin')->with('status', 'Data berhasil dihapus.');
     }
 
-    public function verification(Request $request)
+    public function approveCapaian(Request $request, $id)
     {
-        $capaian = MonevCapaian::find($request->id);
-        $capaian->status = $request->verified;
+        $capaian = MonevCapaian::find($id);
+        $capaian->status = $request->status;
         $capaian->verified_by = $request->verified_by;
         $capaian->save();
 
-        return response()->json(['success' => 'Verifikasi sudah terganti']);
+        return redirect('/admin')->with('status', 'Data capaian telah diapprove');
+    }
+
+    public function rejectCapaian(Request $request, $id)
+    {
+        $capaian = MonevCapaian::find($id);
+        $capaian->status = $request->status;
+        $capaian->verified_by = $request->verified_by;
+        $capaian->save();
+
+        return redirect('/admin')->with('status', 'Data capaian perlu direvisi');
     }
 }

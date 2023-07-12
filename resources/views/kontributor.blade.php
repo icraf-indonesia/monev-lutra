@@ -55,15 +55,15 @@
                                                     @if (empty($table->dokumen))
                                                         <td width="2%">Belum ada dokumen</td>
                                                     @else
-                                                        <td width="2%"><a href="{{url('/data_file/'.$table->dokumen)}}" target="_blank">File</a></td>
+                                                        <td width="2%"><a href="{{url('/dokumen/'.$table->dokumen)}}" target="_blank">{{$table->dokumen}}</a></td>
                                                     @endif
                                                     <td width="1%">
                                                         @if($table->status === 0)
-                                                            <span class="badge rounded-pill" style="background-color: #0d6efd !important;">Menunggu</span>
+                                                            <span class="badge rounded-pill" style="background-color: #0d6efd !important;color: #fff;">Menunggu</span>
                                                         @elseif($table->status === 1)
-                                                            <span class="badge rounded-pill" style="background-color: #198754 !important;">Diterima</span>
+                                                            <span class="badge rounded-pill" style="background-color: #198754 !important;color: #fff;">Diterima</span>
                                                         @else
-                                                            <span class="badge rounded-pill" style="background-color: #dc3545 !important;">Revisi</span>
+                                                            <span class="badge rounded-pill" style="background-color: #dc3545 !important;color: #fff;">Revisi</span>
                                                         @endif
                                                     </td>
                                                 </tr>
