@@ -7,32 +7,33 @@
     <meta content="" name="keywords">
     <meta content="" name="description">
     <!-- Favicons -->
-    <link href="dist/assets/img/lutra-small.png" rel="icon">
+    <link href="{{url('')}}/dist/assets/img/lutra-small.png" rel="icon">
     {{-- <link href="dist/assets/img/apple-touch-icon.png" rel="apple-touch-icon"> --}}
     <!-- Bootstrap CSS File -->
-    <link href="dist/assets/css/bootstrap.min.css" rel="stylesheet">
+    <link href="{{url('')}}/dist/assets/css/bootstrap.min.css" rel="stylesheet">
     <!-- Libraries CSS Files -->
-    <link href="dist/assets/css/font-awesome.min.css" rel="stylesheet">
+    <link href="{{url('')}}/dist/assets/css/font-awesome.min.css" rel="stylesheet">
     <!-- Main Stylesheet File -->
-    <link href="dist/assets/css/style.css" rel="stylesheet">
+    <link href="{{url('')}}/dist/assets/css/style.css" rel="stylesheet">
     <!-- datetimepicker Stylesheet File -->
-    <link href="dist/assets/css/jquery.datepicker2.css" rel="stylesheet">
-    <link href="dist/assets/css/animate.min.css" rel="stylesheet">
+    <link href="{{url('')}}/dist/assets/css/jquery.datepicker2.css" rel="stylesheet">
+    <link href="{{url('')}}/dist/assets/css/animate.min.css" rel="stylesheet">
     <!-- data table stylesheet -->
-    <link rel="stylesheet" type="text/css" href="dist/assets/css/datatable.min.css"/>
-    <script src="dist/assets/js/utils.js"></script>
+    <link rel="stylesheet" type="text/css" href="{{url('')}}/dist/assets/css/datatable.min.css"/>
+    <script src="{{url('')}}/dist/assets/js/utils.js"></script>
     <link rel='stylesheet' href='https://unpkg.com/leaflet@1.8.0/dist/leaflet.css' crossorigin='' />
     <!-- slider -->
     <script src="https://cdn.jsdelivr.net/npm/swiffy-slider@1.6.0/dist/js/swiffy-slider.min.js" crossorigin="anonymous" defer></script>
     <link href="https://cdn.jsdelivr.net/npm/swiffy-slider@1.6.0/dist/css/swiffy-slider.min.css" rel="stylesheet" crossorigin="anonymous">
 
-    <link href="https://fonts.cdnfonts.com/css/rubik?styles=19495" rel="stylesheet">
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" ></script>
     <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
     <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+
+    <link href="https://fonts.cdnfonts.com/css/rubik?styles=19495" rel="stylesheet">
 </head>
 
 <body class="innerpage-body">
@@ -42,7 +43,7 @@
 		<div class="container-fluid" style="width: 1170px">
 		  <div class="row">
 			<div class="col-md-8 col-sm-12 header-navbar-lft text-center" style="padding-left: 0px;">
-				<a class="web-logo1 visible-xs visible-sm" href="{{url('')}}/"><img src="dist/assets/img/header-small.png" class="img-responsive" alt=""></a>
+				<a class="web-logo1 visible-xs visible-sm" href="{{url('')}}/"><img src="{{url('')}}/dist/assets/img/header-small.png" class="img-responsive" alt=""></a>
 
 				<div class="hamburger navbar-toggle collapsed mob-icon-menu img-responsive visible-xs visible-sm" data-toggle="slide-collapse" data-target="#slide-navbar-collapse" aria-expanded="false">
 
@@ -56,7 +57,7 @@
                         </div>
 
 				<ul id="menu" class="hidden-xs hidden-sm" style="padding-right:0px; padding-left:0px;">
-                    <li><a class="web-logo" href="{{url('')}}/"><img src="dist/assets/img/header-small.png" class="img-responsive" alt=""></a></li>
+                    <li><a class="web-logo" href="{{url('')}}/"><img src="{{url('')}}/dist/assets/img/header-small.png" class="img-responsive" alt=""></a></li>
                     <li><a class="home" href="{{url('')}}/">Beranda</a></li>
                     {{-- <li><a class="home" href="{{url('')}}/pendekatan">Peta Jalan</a></li> --}}
                     <li><a class="prett">Peta Jalan</a>
@@ -174,17 +175,17 @@
 
 <!-- JavaScript Libraries -->
 
-<script type="text/javascript" src="dist/assets/js/jquery-2.2.0.js"></script>
-<script type="text/javascript" src="dist/assets/js/jquery.datepicker2.js"></script>
-<script type="text/javascript" src="dist/assets/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="dist/assets/js/jquery.min.js"></script>
-<script type="text/javascript" src="dist/assets/js/slick.js"></script>
-<script src="dist/assets/js/Chartjs.js"></script>
+<script type="text/javascript" src="{{url('')}}/dist/assets/js/jquery-2.2.0.js"></script>
+<script type="text/javascript" src="{{url('')}}/dist/assets/js/jquery.datepicker2.js"></script>
+<script type="text/javascript" src="{{url('')}}/dist/assets/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="{{url('')}}/dist/assets/js/jquery.min.js"></script>
+<script type="text/javascript" src="{{url('')}}/dist/assets/js/slick.js"></script>
+<script src="{{url('')}}/dist/assets/js/Chartjs.js"></script>
 <!-- circle animation -->
-<script type="text/javascript" src="dist/assets/js/bookingcount-circle.js"></script>
+<script type="text/javascript" src="{{url('')}}/dist/assets/js/bookingcount-circle.js"></script>
 <!-- circle animation -->
 <!-- datatable -->
-<script type="text/javascript" src="dist/assets/js/datatable.min.js"></script>
+<script type="text/javascript" src="{{url('')}}/dist/assets/js/datatable.min.js"></script>
 <script src='https://unpkg.com/leaflet@1.8.0/dist/leaflet.js' crossorigin=''></script>
 <script src="https://unpkg.com/shpjs@latest/dist/shp.js"></script>
 <script>

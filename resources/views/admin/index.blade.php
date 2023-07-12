@@ -33,75 +33,49 @@
                                 <div class="form-group row">
                                     <label class="col-lg-3 col-form-label">Strategi</label>
                                     <div class="col-lg-9">
-                                        <select class="form-control select">
-                                            <option>Strategi 1</option>
-                                            <option>Strategi 2</option>
+                                        <select class="form-control select" name="strategi" id="strategi">
+                                            <option value="">== Pilih Strategi ==</option>
+                                            @foreach ($strategi as $s)
+                                                <option value="{{$s->id}}">{{$s->strategi}}</option>
+                                            @endforeach
                                         </select>
-                                        <span class="form-text text-muted">Pilih salah satu <b>strategi</b> yang
-                                            sesuai</span>
+                                        <span class="form-text text-muted">Pilih salah satu <b>strategi</b> yang sesuai</span>
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <label class="col-lg-3 col-form-label">Intervensi</label>
                                     <div class="col-lg-9">
-                                        <select class="form-control select">
-                                            <option>Intervensi 1</option>
-                                            <option>Intervensi 2</option>
-                                            <option>Intervensi 3</option>
+                                        <select class="form-control select" name="intervensi" id="intervensi">
+                                            <option value="">== Pilih Intervensi ==</option>
                                         </select>
-                                        <span class="form-text text-muted">Pilih salah satu <b>intervensi</b> yang
-                                            sesuai</span>
+                                        <span class="form-text text-muted">Pilih salah satu <b>intervensi</b> yang sesuai</span>
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <label class="col-lg-3 col-form-label">Indikator</label>
                                     <div class="col-lg-9">
-                                        <select class="form-control select">
-                                            <option>Indikator 1</option>
-                                            <option>Indikator 2</option>
-                                            <option>Indikator 3</option>
-                                            <option>Indikator 4</option>
+                                        <select class="form-control select" name="indikator" id="indikator">
+                                            <option value="">== Pilih Indikator ==</option>
                                         </select>
-                                        <span class="form-text text-muted">Pilih salah satu <b>indikator</b> yang
-                                            sesuai</span>
+                                        <span class="form-text text-muted">Pilih salah satu <b>indikator</b> yang sesuai</span>
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <label class="col-lg-3 col-form-label">Tahun</label>
                                     <div class="col-lg-9">
-                                        <input name="website_name" class="form-control" placeholder="..." type="text">
+                                        <input name="website_name" class="form-control" placeholder="" type="text">
                                     </div>
                                 </div>
                                 <div class="form-group row">
-                                    <label class="col-lg-3 col-form-label">Capaian Indikator</label>
+                                    <label class="col-lg-3 col-form-label">Target Capaian</label>
                                     <div class="col-lg-9">
-                                        <input name="website_name" class="form-control" placeholder="..." type="text">
+                                        <input name="website_name" class="form-control" placeholder="" type="text">
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <label class="col-lg-3 col-form-label">Satuan</label>
                                     <div class="col-lg-9">
-                                        <input name="keywords" class="form-control" placeholder="harusnya terisi otomatis"
-                                            type="text">
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label class="col-lg-3 col-form-label">Nama Pelaksana</label>
-                                    <div class="col-lg-9">
-                                        <input name="website_name" class="form-control" placeholder="..."
-                                            type="text">
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label class="col-lg-3 col-form-label">Tipe Pelaksana</label>
-                                    <div class="col-lg-9">
-                                        <select class="form-control select">
-                                            <option>Pemerintah</option>
-                                            <option>Swasta</option>
-                                            <option>NGO</option>
-                                        </select>
-                                        <span class="form-text text-muted">Pilih salah satu <b>intervensi</b> yang
-                                            sesuai</span>
+                                        <input name="keywords" class="form-control" placeholder="" type="text">
                                     </div>
                                 </div>
                                 <div class="form-group row">
@@ -111,15 +85,7 @@
                                         <span class="form-text text-muted">Ukuran file max. 5 mb</span>
                                     </div>
                                 </div>
-                                <div class="form-group row">
-                                    <label class="col-lg-3 col-form-label">Catatan</label>
-                                    <div class="col-lg-9">
-                                        <input name="website description" class="form-control" placeholder="..."
-                                            type="text">
-                                    </div>
-                                </div>
                                 <div class="m-t-20 text-center">
-                                    <button class="btn">Save as Draft</button>
                                     <button class="btn btn-primary submit-btn">Submit</button>
                                 </div>
                             </form>
@@ -154,11 +120,11 @@
                                                     <td width="2%">{{ $table->satuan }}</td>
                                                     <td width="1%">
                                                         @if($table->status === 0)
-                                                            <span class="badge rounded-pill" style="background-color: #0d6efd !important;">Menunggu</span>
+                                                            <span class="badge rounded-pill" style="background-color: #0d6efd !important; color: #fff;">Menunggu</span>
                                                         @elseif($table->status === 1)
-                                                            <span class="badge rounded-pill" style="background-color: #198754 !important;">Diterima</span>
+                                                            <span class="badge rounded-pill" style="background-color: #198754 !important; color: #fff;">Diterima</span>
                                                         @else
-                                                            <span class="badge rounded-pill" style="background-color: #dc3545 !important;">Revisi</span>
+                                                            <span class="badge rounded-pill" style="background-color: #dc3545 !important; color: #fff;">Revisi</span>
                                                         @endif
                                                     </td>
                                                     <td width="2%">{{ $table->verified_by }}</td>
@@ -206,14 +172,18 @@
                                                     <td width="10%">{{ $t->indikator }}</td>
                                                     <td width="1%">{{ $t->target }}</td>
                                                     <td width="1%">{{ $t->satuan }}</td>
-                                                    @if (empty($table->dokumen))
+                                                    @if (empty($t->dokumen))
                                                         <td width="2%">Belum ada dokumen</td>
                                                     @else
-                                                        <td width="2%"><a href="{{url('/dokumen/'.$t->dokumen)}}" target="_blank">File</a></td>
+                                                        <td width="2%"><a href="{{url('/dokumen/'.$t->dokumen)}}" target="_blank">{{$t->dokumen}}</a></td>
                                                     @endif
                                                     <td width="2%">
-                                                        <a class="custom-badge status-green text-right" href="#">Ubah</a>
-                                                        <a class="custom-badge status-red text-right" href="#">Hapus</a>
+                                                        <a class="custom-badge status-green text-right" href="/admin/indikator/{{ $t->id }}">Ubah</a>
+                                                        {{-- <form action="/admin/indikator/{{ $t->id }}" method="post" class="d-inline">
+                                                            @method('delete')
+                                                            @csrf
+                                                            <button type="submit" class="custom-badge status-red text-right" onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')">Hapus</button>
+                                                        </form> --}}
                                                     </td>
                                                 </tr>
                                             @endforeach

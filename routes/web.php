@@ -36,6 +36,10 @@ Route::group(['middleware' => 'auth'], function(){
 
     Route::get('/admin', [AdminController::class, 'index'])->name('admin');
     Route::post('/admin/verification', [AdminController::class, 'verification']);
+    Route::get('/admin/indikator/{id}', [AdminController::class, 'editIndikator']);
+    Route::put('/admin/indikator/{id}', [AdminController::class, 'updateIndikator']);
+    Route::delete('/admin/indikator/{id}', [AdminController::class, 'deleteIndikator']);
+    Route::delete('/admin/indikator/{id}', [AdminController::class, 'deleteIndikator']);
 
     Route::get('/session/logout', [SessionController::class, 'logout'])->name('logout');
 });

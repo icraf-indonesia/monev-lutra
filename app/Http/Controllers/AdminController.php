@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\MonevCapaian;
+use App\Models\MonevIndikator;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -24,70 +25,64 @@ class AdminController extends Controller
         return view('admin.index', ['strategi'=>$strategi, 'tables'=>$tables, 'target'=>$target]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
         //
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
         //
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function show($id)
     {
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
+    public function editIndikator($id)
     {
-        //
+        $data = DB::table('monev_indikators')
+            ->join('monev_intervensis', 'monev_indikators.id_intervensi', '=', 'monev_intervensis.id')
+            ->join('monev_strategies', 'monev_intervensis.id_strategi', '=', 'monev_strategies.id')
+            ->where('monev_indikators.id', $id)
+            ->select('monev_indikators.id as id', 'monev_indikators.indikator as indikator', 'monev_strategies.strategi as strategi', 'monev_intervensis.intervensi as intervensi' , 'target', 'satuan', 'dokumen')
+            ->first();
+
+        // return view('admin.edit', ['data' => MonevIndikator::find($id)]);
+        return view('admin.edit', ['data' => $data]);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
+    public function updateIndikator(Request $request, $id)
     {
-        //
+        $rules = [
+            'target' => 'required',
+            'satuan' => 'required'
+        ];
+
+        $validatedData = $request->validate($rules);
+        $validatedData['target'] = $request->target;
+        $validatedData['satuan'] = $request->satuan;
+
+        $dok = $request->dokumen;
+        if($dok){
+            $nama_file = time()."_".$dok->getClientOriginalName();
+            // isi dengan nama folder tempat kemana file diupload
+            $tujuan_upload = 'dokumen';
+            $dok->move($tujuan_upload, $nama_file);
+        }
+        $validatedData['dokumen'] = $nama_file;
+
+        MonevIndikator::find($id)->update($validatedData);
+        return redirect('/admin')->with('status', 'Berhasil mengubah target');
+
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
+    public function deleteIndikator($id)
     {
-        //
+        MonevIndikator::destroy($id);
+
+        return redirect('/admin')->with('status', 'Data berhasil dihapus.');
     }
 
     public function verification(Request $request)
