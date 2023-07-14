@@ -1,7 +1,7 @@
 @extends('header')
 
 @section('content')
-    <div class="row">
+    <div class="row" style="max-width: 1200px; margin: auto;">
         <div class="col-lg-12 col-md-12 col-sm-12 dct-appoinment">
             <div class="row">
                 <div class="col-md-12">
@@ -21,9 +21,9 @@
                         </div>
                     @endif
                     <ul class="nav nav-tabs paitent-app-tab">
-                        <li class="active"><a href="#daftar-target-capaian" data-toggle="tab">Manajemen Target Capaian</a></li>
-                        <li><a href="#tambah-target" data-toggle="tab">Tambah Target Capaian</a></li>
-                        <li><a href="#verifikasi" data-toggle="tab">Verifikasi Capaian</a></li>
+                        <li><a href="#daftar-target-capaian" data-toggle="tab">Manajemen Target Capaian</a></li>
+                        {{-- <li><a href="#tambah-target" data-toggle="tab">Tambah Target Capaian</a></li> --}}
+                        <li  class="active"><a href="#verifikasi" data-toggle="tab">Verifikasi Capaian</a></li>
                         {{-- <li><a href="#e" data-toggle="tab">Hapus Data</a></li> --}}
                     </ul>
                     <div class="tab-content" style="padding-top: 10px;">
@@ -91,11 +91,9 @@
                             </form>
                         </div>
 
-                        <div class="tab-pane" id="verifikasi">
-                            <div class="col-lg-10 col-md-10 col-sm-12 dct-appoinment m-t-10">
+                        <div class="tab-pane active" id="verifikasi">
                                 <div class="table-responsive">
-                                    <table id="tabel-data" class="table table-bordered table-striped"
-                                        style="width:100%; border:0; font-size:12;">
+                                    <table id="tabel-data" class="table table-bordered table-striped" style="width:100%; border:0; font-size:12;">
                                         <thead>
                                             <tr>
                                                 <th>No.</th>
@@ -128,8 +126,31 @@
                                                         @endif
                                                     </td>
                                                     <td width="2%">{{ $table->verified_by }}</td>
-                                                    <td width="2%">
-                                                        <input style="min-width: 75px;" class="toggle-class" data-id="{{$table->id}}" data-ver="{{Auth::user()->name}}"  type="checkbox" data-onstyle="success" data-offstyle="danger" data-toggle="toggle" data-on="Terverifikasi" data-off="Belum" {{ $table->status ? 'checked' : '' }} >
+                                                    <td width="5%">
+                                                        @if($table->status == 0)
+                                                            <form action="/admin/verify/{{ $table->id }}" method="post" class="d-inline" style="float: left; margin-right: 5px;">
+                                                                @method('put')
+                                                                @csrf
+                                                                <input type="hidden" value="1" name="status">
+                                                                <input type="hidden" value="{{Auth::user()->name}}" name="verified_by">
+                                                                <button type="submit" class="custom-badge status-blue" onclick="return confirm('Approval data ini?')">Approve</button>
+                                                            </form>
+                                                            <form action="/admin/reject/{{ $table->id }}" method="post" class="d-inline">
+                                                                @method('put')
+                                                                @csrf
+                                                                <input type="hidden" value="2" name="status">
+                                                                <input type="hidden" value="{{Auth::user()->name}}" name="verified_by">
+                                                                <button type="submit" class="custom-badge status-red" onclick="return confirm('Approval data ini?')">Revisi</button>
+                                                            </form>
+                                                        @elseif($table->status == 2)
+                                                            <form action="/admin/verify/{{ $table->id }}" method="post" class="d-inline" style="float: left; margin-right: 5px;">
+                                                                @method('put')
+                                                                @csrf
+                                                                <input type="hidden" value="1" name="status">
+                                                                <input type="hidden" value="{{Auth::user()->name}}" name="verified_by">
+                                                                <button type="submit" class="custom-badge status-blue" onclick="return confirm('Approval data ini?')">Approve</button>
+                                                            </form>
+                                                        @endif
                                                     </td>
                                                 </tr>
                                             @endforeach
@@ -146,12 +167,10 @@
                                         <li class="page-item"><a class="page-link" href="{{ $tables->url($tables->lastPage()) }}">Last</a></li>
                                     </ul>
                                 </nav>
-                            </div>
                         </div>
 
 
-                        <div class="tab-pane active" id="daftar-target-capaian">
-                            <div class="col-lg-10 col-md-10 col-sm-12 dct-appoinment m-t-10">
+                        <div class="tab-pane" id="daftar-target-capaian">
                                 <div class="table-responsive">
                                     <table id="tabel-data" class="table table-bordered table-striped"
                                         style="width:100%; border:0; font-size:12;">
@@ -200,7 +219,6 @@
                                         <li class="page-item"><a class="page-link" href="{{ $tables->url($tables->lastPage()) }}">Last</a></li>
                                     </ul>
                                 </nav>
-                            </div>
                         </div>
 
                         {{-- <div class="tab-pane" id="e">
@@ -211,31 +229,4 @@
             </div>
         </div>
     </div>
-
-    <script type="text/javascript">
-        $(function() {
-          $('.toggle-class').change(function() {
-              var verified = $(this).prop('checked') == true ? 1 : 2;
-              console.log(verified);
-              var id = $(this).data('id');
-              var verified_by = $(this).data('ver');
-
-              $.ajax({
-                  type: "POST",
-                  dataType: "json",
-                  url: '/admin/verification',
-                  headers: {'X-CSRF-TOKEN': '{{ csrf_token() }}' },
-                  data: {'verified': verified, 'id': id, 'verified_by':verified_by},
-                  success: function(data){
-                    alert(data.success);
-                    toastr.options.closeButton = true;
-                    toastr.options.closeMethod = 'fadeOut';
-                    toastr.options.closeDuration = 100;
-                    toastr.success(data.success);
-                    location.reload();
-                  }
-              });
-          });
-        });
-    </script>
 @endsection

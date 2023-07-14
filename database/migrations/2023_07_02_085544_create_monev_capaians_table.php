@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('parameter_pengukuran')->nullable();
             $table->string('capaian')->nullable();
             $table->integer('status')->default(0);
+            $table->string('verified_by')->nullable();
             $table->timestamps();
         });
     }

@@ -1,7 +1,7 @@
 @extends('header')
 
 @section('content')
-    <div class="row">
+    <div class="row" style="max-width: 1600px; margin: auto;">
         <div class="col-lg-12 col-md-12 col-sm-12 dct-appoinment">
             <div class="row">
                 <div class="col-md-12">
@@ -27,7 +27,6 @@
                     </ul>
                     <div class="tab-content" style="padding-top: 10px;">
                         <div class="tab-pane active" id="a">
-                            <div class="col-lg-10 col-md-10 col-sm-12 dct-appoinment m-t-10">
                                 <div class="table-responsive">
                                     <table id="tabel-data" class="table table-bordered table-striped"
                                         style="width:100%; border:0; font-size:12;">
@@ -55,15 +54,15 @@
                                                     @if (empty($table->dokumen))
                                                         <td width="2%">Belum ada dokumen</td>
                                                     @else
-                                                        <td width="2%"><a href="{{url('/data_file/'.$table->dokumen)}}" target="_blank">File</a></td>
+                                                        <td width="2%"><a href="{{url('/dokumen/'.$table->dokumen)}}" target="_blank">{{$table->dokumen}}</a></td>
                                                     @endif
                                                     <td width="1%">
                                                         @if($table->status === 0)
-                                                            <span class="badge rounded-pill" style="background-color: #0d6efd !important;">Menunggu</span>
+                                                            <span class="badge rounded-pill" style="background-color: #0d6efd !important;color: #fff;">Menunggu</span>
                                                         @elseif($table->status === 1)
-                                                            <span class="badge rounded-pill" style="background-color: #198754 !important;">Diterima</span>
+                                                            <span class="badge rounded-pill" style="background-color: #198754 !important;color: #fff;">Diterima</span>
                                                         @else
-                                                            <span class="badge rounded-pill" style="background-color: #dc3545 !important;">Revisi</span>
+                                                            <span class="badge rounded-pill" style="background-color: #dc3545 !important;color: #fff;">Revisi</span>
                                                         @endif
                                                     </td>
                                                 </tr>
@@ -81,7 +80,6 @@
                                         <li class="page-item"><a class="page-link" href="{{ $tables->url($tables->lastPage()) }}">Last</a></li>
                                     </ul>
                                 </nav>
-                            </div>
                         </div>
 
                         {{-- tab insert capaian  --}}
