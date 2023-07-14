@@ -32,7 +32,7 @@ class UserTableSeeders extends Seeder
             'email'=>'kontributor1@gmail.com',
             'role'=>'kontributor',
             'password'=>Hash::make('123456'),
-            'id_stakeholder'=>13
+            'id_stakeholder'=>0
         ]);
         DB::table('users')->insert([
             'name' => 'Admin',
