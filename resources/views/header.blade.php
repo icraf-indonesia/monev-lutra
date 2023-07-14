@@ -38,7 +38,7 @@
 		<div class="container-fluid" style="width: 1170px">
 		  <div class="row">
 			<div class="col-md-8 col-sm-12 header-navbar-lft text-center" style="padding-left: 0px;">
-				<a class="web-logo1 visible-xs visible-sm" href="{{url('')}}/"><img src="{{url('')}}/dist/assets/img/header-small.png" class="img-responsive" alt=""></a>
+				<a class="web-logo1 visible-xs visible-sm" href="{{url('')}}/"><img src="{{url('')}}/dist/assets/img/header-kab-small.png" class="img-responsive" alt=""></a>
 
 				<div class="hamburger navbar-toggle collapsed mob-icon-menu img-responsive visible-xs visible-sm" data-toggle="slide-collapse" data-target="#slide-navbar-collapse" aria-expanded="false">
 
@@ -52,7 +52,7 @@
                         </div>
 
 				<ul id="menu" class="hidden-xs hidden-sm" style="padding-right:0px; padding-left:0px;">
-                    <li><a class="web-logo" href="{{url('')}}/"><img src="{{url('')}}/dist/assets/img/header-small.png" class="img-responsive" alt=""></a></li>
+                    <li><a class="web-logo" href="{{url('')}}/"><img src="{{url('')}}/dist/assets/img/header-kab-small.png" class="img-responsive" alt=""></a></li>
                     <li><a class="home" href="{{url('')}}/">Beranda</a></li>
                     {{-- <li><a class="home" href="{{url('')}}/pendekatan">Peta Jalan</a></li> --}}
                     <li><a class="prett">Peta Jalan</a>

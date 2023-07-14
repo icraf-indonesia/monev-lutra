@@ -124,8 +124,8 @@
         </div>
         <div class="row" style="padding-top: 50px;">
             <div class="hidden-xs hidden-sm">
-                <h4 style="text-align: center"><b>Pelaksana Proyek, Mitra, dan Donor</b></h4>
-                <p align="center"><img src="dist/img/logodonor.png" alt="" style="max-width:50%;"></p>
+                <h4 style="text-align: center"><b>Didukung oleh</b></h4>
+                {{-- <p align="center"><img src="dist/img/logodonor.png" alt="" style="max-width:50%;"></p> --}}
                 <p align="center"><img src="dist/img/sfital.png" alt="" style="max-width:50%;"></p>
             </div>
         </div>
