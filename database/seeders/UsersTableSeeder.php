@@ -7,7 +7,7 @@ use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 
-class UserTableSeeders extends Seeder
+class UsersTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -24,7 +24,7 @@ class UserTableSeeders extends Seeder
             'email'=>'pokja1@gmail.com',
             'role'=>'admin',
             'password'=>Hash::make('123456'),
-            'id_stakeholder'=>0
+            'id_stakeholder'=>15
         ]);
         DB::table('users')->insert([
             'name' => 'Kontributor 1',
@@ -32,7 +32,7 @@ class UserTableSeeders extends Seeder
             'email'=>'kontributor1@gmail.com',
             'role'=>'kontributor',
             'password'=>Hash::make('123456'),
-            'id_stakeholder'=>0
+            'id_stakeholder'=>15
         ]);
         DB::table('users')->insert([
             'name' => 'Admin',
@@ -40,7 +40,7 @@ class UserTableSeeders extends Seeder
             'email'=>'admin@gmail.com',
             'role'=>'admin',
             'password'=>Hash::make('lutra2023'),
-            'id_stakeholder'=>0
+            'id_stakeholder'=>15
         ]);
         DB::table('users')->insert([
             'name' => 'Bappelitbangda Lutra',
@@ -48,7 +48,7 @@ class UserTableSeeders extends Seeder
             'email'=>'bappelitbangda_lutra@gmail.com',
             'role'=>'admin',
             'password'=>Hash::make('lutra2023'),
-            'id_stakeholder'=>0
+            'id_stakeholder'=>15
         ]);
         DB::table('users')->insert([
             'name' => 'Dinas Pertanian Lutra',
@@ -56,7 +56,7 @@ class UserTableSeeders extends Seeder
             'email'=>'distan_lutra@gmail.com',
             'role'=>'admin',
             'password'=>Hash::make('lutra2023'),
-            'id_stakeholder'=>0
+            'id_stakeholder'=>15
         ]);
         DB::table('users')->insert([
             'name' => 'Disdagindkukm Lutra',
@@ -104,12 +104,12 @@ class UserTableSeeders extends Seeder
             'email'=>'diskominfo_lutra@gmail.com',
             'role'=>'admin',
             'password'=>Hash::make('lutra2023'),
-            'id_stakeholder'=>0
+            'id_stakeholder'=>15
         ]);
         DB::table('users')->insert([
             'name' => 'BPKPD Lutra',
             'username' => 'bpkpd_lutra',
-            'email'=>'diskominfo_lutra@gmail.com',
+            'email'=>'diskominfo_lutra1@gmail.com',
             'role'=>'kontributor',
             'password'=>Hash::make('lutra2023'),
             'id_stakeholder'=>12
@@ -128,7 +128,7 @@ class UserTableSeeders extends Seeder
             'email'=>'kphrongkong_lutra@gmail.com',
             'role'=>'kontributor',
             'password'=>Hash::make('lutra2023'),
-            'id_stakeholder'=>15
+            'id_stakeholder'=>14
         ]);
         DB::table('users')->insert([
             'name' => 'Univ Andi Djemma Lutra',
@@ -136,7 +136,7 @@ class UserTableSeeders extends Seeder
             'email'=>'univandidjemma_lutra@gmail.com',
             'role'=>'kontributor',
             'password'=>Hash::make('lutra2023'),
-            'id_stakeholder'=>15
+            'id_stakeholder'=>14
         ]);
         DB::table('users')->insert([
             'name' => 'MARS Lutra',
@@ -144,7 +144,7 @@ class UserTableSeeders extends Seeder
             'email'=>'mars_lutra@gmail.com',
             'role'=>'kontributor',
             'password'=>Hash::make('lutra2023'),
-            'id_stakeholder'=>15
+            'id_stakeholder'=>14
         ]);
         DB::table('users')->insert([
             'name' => 'Olam Indonesia',
@@ -152,7 +152,7 @@ class UserTableSeeders extends Seeder
             'email'=>'olam_indonesia@gmail.com',
             'role'=>'kontributor',
             'password'=>Hash::make('lutra2023'),
-            'id_stakeholder'=>15
+            'id_stakeholder'=>14
         ]);
         DB::table('users')->insert([
             'name' => 'Forum Kakao Lutra',
@@ -160,7 +160,7 @@ class UserTableSeeders extends Seeder
             'email'=>'forumkakao_lutra@gmail.com',
             'role'=>'kontributor',
             'password'=>Hash::make('lutra2023'),
-            'id_stakeholder'=>15
+            'id_stakeholder'=>14
         ]);
         DB::table('users')->insert([
             'name' => 'Asosiasi Kakao Lutra',
@@ -168,7 +168,7 @@ class UserTableSeeders extends Seeder
             'email'=>'asosiasikakao_lutra@gmail.com',
             'role'=>'kontributor',
             'password'=>Hash::make('lutra2023'),
-            'id_stakeholder'=>15
+            'id_stakeholder'=>14
         ]);
         DB::table('users')->insert([
             'name' => 'Asosiasi Kakao Doctor',
@@ -176,7 +176,7 @@ class UserTableSeeders extends Seeder
             'email'=>'kakaodoctor_lutra@gmail.com',
             'role'=>'kontributor',
             'password'=>Hash::make('lutra2023'),
-            'id_stakeholder'=>15
+            'id_stakeholder'=>14
         ]);
         DB::table('users')->insert([
             'name' => 'Chalodo Lutra',
@@ -184,7 +184,7 @@ class UserTableSeeders extends Seeder
             'email'=>'chalodo_lutra@gmail.com',
             'role'=>'kontributor',
             'password'=>Hash::make('lutra2023'),
-            'id_stakeholder'=>15
+            'id_stakeholder'=>14
         ]);
         DB::table('users')->insert([
             'name' => 'Koperasi SIMULTAN',
@@ -192,7 +192,7 @@ class UserTableSeeders extends Seeder
             'email'=>'koperasi_simultan@gmail.com',
             'role'=>'kontributor',
             'password'=>Hash::make('lutra2023'),
-            'id_stakeholder'=>15
+            'id_stakeholder'=>14
         ]);
         DB::table('users')->insert([
             'name' => 'P4S Kakao',
@@ -200,7 +200,7 @@ class UserTableSeeders extends Seeder
             'email'=>'p4skakao@gmail.com',
             'role'=>'kontributor',
             'password'=>Hash::make('lutra2023'),
-            'id_stakeholder'=>15
+            'id_stakeholder'=>14
         ]);
         DB::table('users')->insert([
             'name' => 'Koperasi Masagena',
@@ -216,7 +216,7 @@ class UserTableSeeders extends Seeder
             'email'=>'readsi_lutra@gmail.com',
             'role'=>'kontributor',
             'password'=>Hash::make('lutra2023'),
-            'id_stakeholder'=>15
+            'id_stakeholder'=>14
         ]);
         DB::table('users')->insert([
             'name' => 'Universitas Hasanuddin',
@@ -224,14 +224,15 @@ class UserTableSeeders extends Seeder
             'email'=>'unhas@gmail.com',
             'role'=>'kontributor',
             'password'=>Hash::make('lutra2023'),
-            'id_stakeholder'=>15
+            'id_stakeholder'=>14
         ]);
         DB::table('users')->insert([
             'name' => 'Program ACTIVE',
             'username' => 'program_active',
             'email'=>'program_active@gmail.com',
             'role'=>'kontributor',
-            'password'=>Hash::make('lutra2023')
+            'password'=>Hash::make('lutra2023'),
+            'id_stakeholder'=>14
         ]);
         DB::table('users')->insert([
             'name' => 'Program Lascar Cocoa',
@@ -239,7 +240,7 @@ class UserTableSeeders extends Seeder
             'email'=>'lascar_cocoa@gmail.com',
             'role'=>'kontributor',
             'password'=>Hash::make('lutra2023'),
-            'id_stakeholder'=>15
+            'id_stakeholder'=>14
         ]);
         DB::table('users')->insert([
             'name' => 'Save The Children',
@@ -247,7 +248,7 @@ class UserTableSeeders extends Seeder
             'email'=>'stchildren@gmail.com',
             'role'=>'kontributor',
             'password'=>Hash::make('lutra2023'),
-            'id_stakeholder'=>15
+            'id_stakeholder'=>14
         ]);
         DB::table('users')->insert([
             'name' => 'Sekretariat Pokja',
@@ -255,7 +256,7 @@ class UserTableSeeders extends Seeder
             'email'=>'sekpokja@gmail.com',
             'role'=>'kontributor',
             'password'=>Hash::make('lutra2023'),
-            'id_stakeholder'=>15
+            'id_stakeholder'=>14
         ]);
         DB::table('users')->insert([
             'name' => 'UKM Lutra',
@@ -263,7 +264,7 @@ class UserTableSeeders extends Seeder
             'email'=>'ukm_lutra@gmail.com',
             'role'=>'kontributor',
             'password'=>Hash::make('lutra2023'),
-            'id_stakeholder'=>15
+            'id_stakeholder'=>14
         ]);
 
 

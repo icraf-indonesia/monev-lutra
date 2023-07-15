@@ -31,8 +31,9 @@ class StakeholderSeeder extends Seeder
             10 => array ('id' => 11, 'stakeholder' => 'Dinas Transmigrasi dan Tenaga Kerja'),
             11 => array ('id' => 12, 'stakeholder' => 'Badan Perencanaan Pembangunan, Penelitian, dan Pengembangan Daerah'),
             12 => array ('id' => 13, 'stakeholder' => 'Dinas Komunikasi, Informatika, Statiskti, dan Persandian'),
-            13 => array ('id' => 14, 'stakeholder' => 'Dinas Pemberdayaan Masyarakat dan Desa'),
-            14 => array ('id' => 15, 'stakeholder' => 'Non Pemkab')
+            13 => array ('id' => 14, 'stakeholder' => 'Non Pemkab'),
+            14 => array ('id' => 15, 'stakeholder' => 'Spv Kontributor')
+            # permasalahannya adalah banyak id yang tidak punya indikator jadi banyak user yang idnya ga match dengan indikator jadi ga akan tampil
         ));
     }
 }

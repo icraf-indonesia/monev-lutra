@@ -5,21 +5,34 @@ namespace App\Http\Controllers;
 use App\Models\MonevCapaian;
 use App\Models\MonevIndikator;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class KontributorController extends Controller
 {
     public function index()
     {
-        $strategi = DB::table('monev_strategies')->get();
+        $id_stakeholder = Auth::user()->getStakeholderId();
 
-        $tables = DB::table('monev_indikators')
-                        ->join('monev_capaians', 'monev_indikators.id', '=', 'monev_capaians.id_indikator')
+        $strategi =  DB::table('stakeholders')
+                        ->leftJoin('indikator_stakeholder', 'indikator_stakeholder.id_stakeholder', '=', 'stakeholders.id')
+                        ->leftJoin('monev_indikators', 'monev_indikators.id', '=', 'indikator_stakeholder.id_indikator')
+                        ->leftJoin('monev_intervensis', 'monev_indikators.id_intervensi', '=', 'monev_intervensis.id')
+                        ->leftJoin('monev_strategies', 'monev_strategies.id', '=', 'monev_intervensis.id_strategi')
+                        ->where('indikator_stakeholder.id_stakeholder', $id_stakeholder)
+                        ->whereNotNull('strategi')
+                        ->select('strategi','monev_strategies.id as id')
+                        ->get()->unique('strategi');
+
+        $indikator =  DB::table('stakeholders')
+                        ->leftJoin('indikator_stakeholder', 'indikator_stakeholder.id_stakeholder', '=', 'stakeholders.id')
+                        ->leftJoin('monev_indikators', 'monev_indikators.id', '=', 'indikator_stakeholder.id_indikator')
+                        ->leftJoin('monev_capaians', 'monev_indikators.id', '=', 'monev_capaians.id_indikator')
+                        ->where('indikator_stakeholder.id_stakeholder', $id_stakeholder)
                         ->select('monev_indikators.id', 'monev_indikators.indikator', 'target', 'satuan', 'tahun', 'capaian', 'dokumen', 'status')
                         ->paginate(10);
 
-        return view('kontributor', ['strategi'=>$strategi, 'tables'=>$tables]);
+        return view('kontributor', ['strategi' => $strategi, 'tables' => $indikator]);
     }
 
     public function intervensi($id)

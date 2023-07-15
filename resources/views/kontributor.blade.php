@@ -43,30 +43,38 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            @foreach ($tables as $table)
-                                                <tr>
-                                                    <td width="1%">{{ (($tables->currentPage() * 10) - 10) + $loop->iteration }}</td>
-                                                    <td width="10%">{{ $table->indikator }}</td>
-                                                    <td width="1%">{{ $table->tahun }}</td>
-                                                    <td width="1%">{{ $table->target }}</td>
-                                                    <td width="2%">{{ $table->capaian }}</td>
-                                                    <td width="2%">{{ $table->satuan }}</td>
-                                                    @if (empty($table->dokumen))
-                                                        <td width="2%">Belum ada dokumen</td>
-                                                    @else
-                                                        <td width="2%"><a href="{{url('/dokumen/'.$table->dokumen)}}" target="_blank">{{$table->dokumen}}</a></td>
-                                                    @endif
-                                                    <td width="1%">
-                                                        @if($table->status === 0)
-                                                            <span class="badge rounded-pill" style="background-color: #0d6efd !important;color: #fff;">Menunggu</span>
-                                                        @elseif($table->status === 1)
-                                                            <span class="badge rounded-pill" style="background-color: #198754 !important;color: #fff;">Diterima</span>
+                                            @if (count($tables))
+                                                @foreach ($tables as $table)
+                                                    <tr>
+                                                        <td width="1%">{{ (($tables->currentPage() * 10) - 10) + $loop->iteration }}</td>
+                                                        <td width="10%">{{ $table->indikator }}</td>
+                                                        <td width="1%">{{ $table->tahun }}</td>
+                                                        <td width="1%">{{ $table->target }}</td>
+                                                        <td width="2%">{{ $table->capaian }}</td>
+                                                        <td width="2%">{{ $table->satuan }}</td>
+                                                        @if (empty($table->dokumen))
+                                                            <td width="2%">Belum ada dokumen</td>
                                                         @else
-                                                            <span class="badge rounded-pill" style="background-color: #dc3545 !important;color: #fff;">Revisi</span>
+                                                            <td width="2%"><a href="{{url('/dokumen/'.$table->dokumen)}}" target="_blank">{{$table->dokumen}}</a></td>
                                                         @endif
-                                                    </td>
+                                                        <td width="1%">
+                                                            @if($table->status === 0)
+                                                                <span class="badge rounded-pill" style="background-color: #0d6efd !important;color: #fff;">Menunggu</span>
+                                                            @elseif($table->status === 1)
+                                                                <span class="badge rounded-pill" style="background-color: #198754 !important;color: #fff;">Diterima</span>
+                                                            @else
+                                                                <span class="badge rounded-pill" style="background-color: #dc3545 !important;color: #fff;">Revisi</span>
+                                                            @endif
+                                                        </td>
+                                                    </tr>
+                                                @endforeach
+                                            @else
+                                            <tbody>
+                                                <tr>
+                                                    <td>Tidak ada data</td>
                                                 </tr>
-                                            @endforeach
+                                            </tbody>
+                                            @endif
                                         </tbody>
                                     </table>
                                 </div>
