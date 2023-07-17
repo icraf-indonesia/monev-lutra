@@ -140,8 +140,9 @@ class DasborController extends Controller
 
     public function lahanMulti()
     {
-
-        return view('pages.dasbor_lahan_multi');
+        $luas_kaw_hutan = DB::table('luas_kawasan_hutan')
+                            ->get();
+        return view('pages.dasbor_lahan_multi', ['luas_kaw_hutan'=>$luas_kaw_hutan]);
     }
 
     public function modalTahunan(Request $request)
