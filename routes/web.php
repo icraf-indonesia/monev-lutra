@@ -45,7 +45,6 @@ Route::group(['middleware' => 'auth'], function(){
 });
 
 Route::get('/indikator', [MonevController::class, 'indikator']);
-Route::post('/indikator', [MonevController::class, 'insertCheckbox']);
 // Route::get('/indikator', [MonevController::class, 'getDetail']);
 Route::get('/gambaran_umum_tahunan', [MonevController::class, 'jurisdiksi']);
 Route::get('/gambaran_umum_multi', [MonevController::class, 'umumMulti']);

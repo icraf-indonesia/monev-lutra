@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Monitoring & Evaluation of Luwu Utara</title>
+    <title>@yield('page_title') | Monitoring & Evaluation of Luwu Utara</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="" name="keywords">
     <meta content="" name="description">
@@ -41,15 +41,14 @@
 				<a class="web-logo1 visible-xs visible-sm" href="{{url('')}}/"><img src="{{url('')}}/dist/assets/img/header-kab-small.png" class="img-responsive" alt=""></a>
 
 				<div class="hamburger navbar-toggle collapsed mob-icon-menu img-responsive visible-xs visible-sm" data-toggle="slide-collapse" data-target="#slide-navbar-collapse" aria-expanded="false">
-
-                          <div class="burger-main">
-                            <div class="burger-inner">
-                              <span class="top"></span>
-                              <span class="mid"></span>
-                              <span class="bot"></span>
-                            </div>
-                          </div>
+                    <div class="burger-main">
+                        <div class="burger-inner">
+                            <span class="top"></span>
+                            <span class="mid"></span>
+                            <span class="bot"></span>
                         </div>
+                    </div>
+                </div>
 
 				<ul id="menu" class="hidden-xs hidden-sm" style="padding-right:0px; padding-left:0px;">
                     <li><a class="web-logo" href="{{url('')}}/"><img src="{{url('')}}/dist/assets/img/header-kab-small.png" class="img-responsive" alt=""></a></li>
@@ -181,8 +180,13 @@
 <!-- circle animation -->
 <!-- datatable -->
 <script type="text/javascript" src="{{url('')}}/dist/assets/js/datatable.min.js"></script>
-<script src='https://unpkg.com/leaflet@1.8.0/dist/leaflet.js' crossorigin=''></script>
-<script src="https://unpkg.com/shpjs@latest/dist/shp.js"></script>
+
+@yield('customJSLibrary')
+
+<script>
+    @yield('customJS')
+</script>
+
 <script>
     $(document).ready(function() {
         $("#patientfilter").DataTable( {
@@ -519,71 +523,6 @@
         }
     });
 </script>
-<script>
-    let map, markers = [];
-
-    function initMap() {
-        map = L.map('map', {
-            center: {
-                lat: -2.412288070373402,
-                lng: 120.08931533060061,
-            },
-            zoom: 7
-        });
-
-        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            attribution: '© OpenStreetMap'
-        }).addTo(map);
-
-        var geo = L.geoJson({features:[]}, {
-            onEachFeature: function popUp(f, l) {
-                var out = [];
-                if (f.properties){
-                for(var key in f.properties){
-                    out.push(key + ": " + f.properties[key]);
-                }
-                l.bindPopup(out.join("<br />"));
-                }
-            }
-        }).addTo(map);
-
-        var base = '{{url('')}}/shp/lutra.zip';
-        shp(base).then(function(data){
-            geo.addData(data);
-        });
-
-        map.on('click', mapClicked);
-    }
-
-    initMap();
-
-    function generateMarker(data, index) {
-        return L.marker(data.position, {
-                draggable: data.draggable
-            })
-            .on('click', (event) => markerClicked(event, index))
-            .on('dragend', (event) => markerDragEnd(event, index));
-    }
-
-    /* ------------------------- Handle Map Click Event ------------------------- */
-    function mapClicked($event) {
-        console.log(map);
-        console.log($event.latlng.lat, $event.latlng.lng);
-    }
-
-    /* ------------------------ Handle Marker Click Event ----------------------- */
-    function markerClicked($event, index) {
-        console.log(map);
-        console.log($event.latlng.lat, $event.latlng.lng);
-    }
-
-    /* ----------------------- Handle Marker DragEnd Event ---------------------- */
-    function markerDragEnd($event, index) {
-        console.log(map);
-        console.log($event.target.getLatLng());
-    }
-</script>
-
 
 </body>
 </html>

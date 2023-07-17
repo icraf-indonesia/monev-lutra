@@ -1,5 +1,7 @@
 @extends('header')
 
+@section('page_title', 'Kelola Target Capaian')
+
 @section('content')
     <div class="row" style="max-width: 1200px; margin: auto;">
         <div class="col-lg-12 col-md-12 col-sm-12 dct-appoinment">

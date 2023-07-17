@@ -145,16 +145,6 @@
                                         <input name="satuan" class="form-control @error('satuan') is-invalid @enderror" placeholder="" type="text">
                                     </div>
                                 </div>
-                                {{-- <div class="form-group row">
-                                    @error('dokumen')
-                                        <div class="invalid-feedback">{{ $message }}</div>
-                                    @enderror
-                                    <label class="col-lg-3 col-form-label">Upload Dokumen</label>
-                                    <div class="col-lg-9">
-                                        <input class="form-control @error('dokumen') is-invalid @enderror" type="file" name="dokumen">
-                                        <span class="form-text text-muted">Ukuran file max. 5 mb</span>
-                                    </div>
-                                </div> --}}
                                 <div class="m-t-20 text-center">
                                     <button class="btn btn-primary submit-btn" type="submit">Tambah Capaian</button>
                                 </div>
@@ -165,54 +155,59 @@
             </div>
         </div>
     </div>
-
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment-with-locales.min.js"></script>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/css/bootstrap-datetimepicker.css" rel="stylesheet">
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.min.js"></script>
-    <script type="text/javascript">
-        $(document).ready(function() {
-            $('select[name="strategi"]').on('change', function() {
-                var strategiID = $(this).val();
-                if(strategiID) {
-                    $.ajax({
-                        url: '/intervensi/' + strategiID,
-                        type: "GET",
-                        dataType: "json",
-                        success: function(data) {
-                            $('select[name="intervensi"]').empty();
-                            $.each(data, function(key, value) {
-                                $('select[name="intervensi"]').append('<option value="'+ key +'">'+ value +'</option>');
-                            });
-                        }
-                    });
-                } else {
-                    $('select[name="intervensi"]').empty();
-                }
-            });
-
-            $('select[name="intervensi"]').on('change', function() {
-                var intervensiID = $(this).val();
-                if(intervensiID) {
-                    $.ajax({
-                        url: '/indikator/' + intervensiID,
-                        type: "GET",
-                        dataType: "json",
-                        success: function(data2) {
-                            $('select[name="indikator"]').empty();
-                            $.each(data2, function(key, value) {
-                                $('select[name="indikator"]').append('<option value="'+ key +'">'+ value +'</option>');
-                            });
-                        }
-                    });
-                } else {
-                    $('select[name="indikator"]').empty();
-                }
-            });
-        });
-
-        $('.date-own').datetimepicker({
-            viewMode: 'years',
-            format: 'YYYY'
-        });
-    </script>
 @stop
+
+@section('customJSLibrary')
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment-with-locales.min.js"></script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/css/bootstrap-datetimepicker.css" rel="stylesheet">
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.min.js"></script>
+@stop
+
+@section('customJS')
+$(document).ready(function() {
+    $('select[name="strategi"]').on('change', function() {
+        var strategiID = $(this).val();
+        if(strategiID) {
+            $.ajax({
+                url: '/intervensi/' + strategiID,
+                type: "GET",
+                dataType: "json",
+                success: function(data) {
+                    $('select[name="intervensi"]').empty();
+                    $.each(data, function(key, value) {
+                        $('select[name="intervensi"]').append('<option value="'+ key +'">'+ value +'</option>');
+                    });
+                }
+            });
+        } else {
+            $('select[name="intervensi"]').empty();
+        }
+    });
+
+    $('select[name="intervensi"]').on('change', function() {
+        var intervensiID = $(this).val();
+        if(intervensiID) {
+            $.ajax({
+                url: '/indikator/' + intervensiID,
+                type: "GET",
+                dataType: "json",
+                success: function(data2) {
+                    $('select[name="indikator"]').empty();
+                    $.each(data2, function(key, value) {
+                        $('select[name="indikator"]').append('<option value="'+ key +'">'+ value +'</option>');
+                    });
+                }
+            });
+        } else {
+            $('select[name="indikator"]').empty();
+        }
+    });
+});
+
+$('.date-own').datetimepicker({
+    viewMode: 'years',
+    format: 'YYYY'
+});
+@stop
+
+

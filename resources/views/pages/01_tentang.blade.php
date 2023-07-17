@@ -1,5 +1,7 @@
 @extends('header')
 
+@section('page_title', 'Beranda')
+
 @section('css')
     <style type="text/css">
         * {
@@ -101,13 +103,13 @@
                     Monitoring dan Evaluasi (Monev) Pengembangan Kakao Luwu Utara adalah alat bantu dan sistem yang digunakan untuk memantau dan mengevaluasi kemajuan pelaksanaan strategi dan intervensi yang direncanakan melalui peta jalan kakao lestari. Proses monitoring dan evaluasi  diperlukan untuk mengukur tingkat keberlanjutan pengelolaan kakao di Kabupaten Luwu Utara, yang juga mencakup kriteria dan indikator keberlanjutan di tingkat komoditas kakao maupun lanskap.
                 </p>
                 <p>
-                    Monev peta jalan kakao lestari di Kabupaten Luwu Utara dibangun dengan pendekatan jurisdiksi. Pendekatan jurisdiksi disini adalah pengelolaan komoditas di tingkat kabupaten yang menggabungkan perencanaan wilayah, di mana pemerintah menentukan area lindung dan budidaya (<i>go or no-go area</i>), serta sertifikasi komoditas berkelanjutan. 
+                    Monev peta jalan kakao lestari di Kabupaten Luwu Utara dibangun dengan pendekatan jurisdiksi. Pendekatan jurisdiksi disini adalah pengelolaan komoditas di tingkat kabupaten yang menggabungkan perencanaan wilayah, di mana pemerintah menentukan area lindung dan budidaya (<i>go or no-go area</i>), serta sertifikasi komoditas berkelanjutan.
                 </p>
                 <p>
                     Pendekatan jurisdiksi ini meliputi pelibatan perusahaan yang berkomitmen untuk membeli komoditas berkelanjutan; Peran pemerintah dalam menetapkan area lindung dan budidaya; Adanya insentif bagi produsen untuk mematuhi aturan secara kolektif; dan Jika jurisdiksi terbukti memiliki pengelolaan komoditas berkelanjutan, maka seluruh produsen di dalamnya akan memiliki predikat serupa.
                 </p>
                 <p>
-                    Dalam membangun sistem monev pengembangan kakao Luwu Utara, disusun seperangkat prinsip, kriteria, dan indikator yang dirumuskan bersama oleh pemerintah daerah, <i>Civil Society Organization</i> (CSO), petani, masyarakat, perguruan tinggi, serta perwakilan sektor swasta. 
+                    Dalam membangun sistem monev pengembangan kakao Luwu Utara, disusun seperangkat prinsip, kriteria, dan indikator yang dirumuskan bersama oleh pemerintah daerah, <i>Civil Society Organization</i> (CSO), petani, masyarakat, perguruan tinggi, serta perwakilan sektor swasta.
                 </p>
                 <p>
                     Indikator yang digunakan juga terintegrasi dengan indikator kinerja daerah (Indikator Kinerja Utama (IKU) dan Indikator Kinerja Kunci (IKK)) dan standar keberlanjutan seperti Terpercaya, LandScale, SourceUp, dan Kerangka Daya Saing Daerah (KDSD). Dengan demikian, sistem dan alat bantu monev dapat memfasilitasi pemerintah untuk memenuhi berbagai standar keberlanjutan yang berlaku.
@@ -120,7 +122,7 @@
                 <h2 style="padding-bottom:20px;">Peta Intervensi Kabupaten Luwu Utara</h2>
                 <div id='map'></div>
             </div>
-            
+
         </div>
         <div class="row" style="padding-top: 50px;">
             <div class="hidden-xs hidden-sm">
@@ -141,4 +143,74 @@
             $('.slider').slick();
         });
     </script>
+@stop
+
+@section('customJSLibrary')
+<script src="https://unpkg.com/shpjs@latest/dist/shp.js"></script>
+<script src='https://unpkg.com/leaflet@1.8.0/dist/leaflet.js' crossorigin=''></script>
+@stop
+
+@section('customJS')
+let map, markers = [];
+
+function initMap() {
+    map = L.map('map', {
+        center: {
+            lat: -2.412288070373402,
+            lng: 120.08931533060061,
+        },
+        zoom: 7
+    });
+
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '© OpenStreetMap'
+    }).addTo(map);
+
+    var geo = L.geoJson({features:[]}, {
+        onEachFeature: function popUp(f, l) {
+            var out = [];
+            if (f.properties){
+            for(var key in f.properties){
+                out.push(key + ": " + f.properties[key]);
+            }
+            l.bindPopup(out.join("<br />"));
+            }
+        }
+    }).addTo(map);
+
+    var base = '{{url('')}}/shp/lutra.zip';
+    shp(base).then(function(data){
+        geo.addData(data);
+    });
+
+    map.on('click', mapClicked);
+}
+
+initMap();
+
+function generateMarker(data, index) {
+    return L.marker(data.position, {
+            draggable: data.draggable
+        })
+        .on('click', (event) => markerClicked(event, index))
+        .on('dragend', (event) => markerDragEnd(event, index));
+}
+
+/* ------------------------- Handle Map Click Event ------------------------- */
+function mapClicked($event) {
+    console.log(map);
+    console.log($event.latlng.lat, $event.latlng.lng);
+}
+
+/* ------------------------ Handle Marker Click Event ----------------------- */
+function markerClicked($event, index) {
+    console.log(map);
+    console.log($event.latlng.lat, $event.latlng.lng);
+}
+
+/* ----------------------- Handle Marker DragEnd Event ---------------------- */
+function markerDragEnd($event, index) {
+    console.log(map);
+    console.log($event.target.getLatLng());
+}
 @stop

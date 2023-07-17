@@ -32,7 +32,7 @@ class KontributorController extends Controller
                         ->select('monev_indikators.id', 'monev_indikators.indikator', 'target', 'satuan', 'tahun', 'capaian', 'dokumen', 'status')
                         ->paginate(10);
 
-        return view('kontributor', ['strategi' => $strategi, 'tables' => $indikator]);
+        return view('kontributor.index', ['strategi' => $strategi, 'tables' => $indikator]);
     }
 
     public function intervensi($id)
@@ -124,6 +124,6 @@ class KontributorController extends Controller
             'capaian' => $request->capaian
         ]);
 
-        return redirect('/kontributor#b')->with('status' ,'Data berhasil ditambah.');
+        return redirect()->route('kontributor')->withFragment('#b')->with('status' ,'Data berhasil ditambah.');
     }
 }
