@@ -22,13 +22,17 @@
     <!-- data table stylesheet -->
     <link rel="stylesheet" type="text/css" href="{{url('')}}/dist/assets/css/datatable.min.css"/>
     <script src="{{url('')}}/dist/assets/js/utils.js"></script>
-    <link rel='stylesheet' href='https://unpkg.com/leaflet@1.8.0/dist/leaflet.css' crossorigin='' />
+    <link rel='stylesheet' href='https://unpkg.com/leaflet@1.9.4/dist/leaflet.css' crossorigin='' />
     <!-- slider -->
     <script src="https://cdn.jsdelivr.net/npm/swiffy-slider@1.6.0/dist/js/swiffy-slider.min.js" crossorigin="anonymous" defer></script>
     <link href="https://cdn.jsdelivr.net/npm/swiffy-slider@1.6.0/dist/css/swiffy-slider.min.css" rel="stylesheet" crossorigin="anonymous">
 
     <link href="https://fonts.cdnfonts.com/css/rubik?styles=19495" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+
+    <style type="text/css">
+    @yield('customCSS')
+    </style>
 </head>
 
 <body class="innerpage-body">
@@ -63,7 +67,7 @@
                         </ul>
                     </li>
                     <li><a class="home" href="{{url('')}}/indikator">Indikator</a></li>
-                    <li><a class="home" href="{{url('')}}/gambaran_umum_tahunan">Profil Jurisdiksi</a></li>
+                    <li><a class="home" href="{{url('')}}/capaian/tahunan">Profil Jurisdiksi</a></li>
                     {{-- <li><a class="home" href="{{url('')}}/kelembagaan">Kelembagaan</a></li> --}}
                     @if (Auth::check())
 						@if (Auth::user()->role === "kontributor")

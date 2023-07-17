@@ -1,0 +1,417 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+
+class DasborController extends Controller
+{
+    public function index(Request $request)
+    {
+        $year = isset($request->year) ? $request->year : 2021;
+
+        $tahun = DB::table('monev_capaians')
+                ->get()->unique('tahun');
+
+        $q_strategi = 'WITH tbl_summary AS (
+                    SELECT  monev_strategies.strategi,
+                            monev_indikators.indikator,
+                            monev_indikators.target,
+                            monev_indikators.satuan,
+                            monev_capaians.tahun,
+                            monev_capaians.capaian,
+                            monev_capaians.capaian/monev_indikators.target*100 as persen
+                    FROM monev_indikators, monev_intervensis, monev_strategies, monev_capaians
+                    WHERE monev_intervensis.id = monev_indikators.id_intervensi
+                    AND monev_strategies.id = monev_intervensis.id_strategi
+                    AND monev_indikators.id = monev_capaians.id_indikator
+                    AND tahun = '. $year .'
+                    ) SELECT strategi, round(avg(persen), 2) as persen FROM tbl_summary GROUP BY strategi
+                UNION
+                    SELECT strategi,
+                           NULL AS persen
+                    FROM monev_strategies
+                    WHERE strategi NOT IN (
+                        SELECT strategi
+                            FROM tbl_summary
+                            WHERE tbl_summary.strategi = monev_strategies.strategi
+                    )';
+        $capaian_by_strategi = DB::select($q_strategi);
+
+        $q_intervensi = 'WITH tbl_summary AS (
+            SELECT  monev_intervensis.intervensi,
+                    monev_indikators.indikator,
+                    monev_indikators.target,
+                    monev_indikators.satuan,
+                    monev_capaians.tahun,
+                    monev_capaians.capaian,
+                    monev_capaians.capaian/monev_indikators.target*100 as persen
+            FROM monev_indikators, monev_intervensis, monev_capaians
+            WHERE monev_intervensis.id = monev_indikators.id_intervensi
+            AND monev_indikators.id = monev_capaians.id_indikator
+            AND tahun = '. $year .'
+            ) SELECT intervensi, round(avg(persen), 2) as persen FROM tbl_summary GROUP BY intervensi
+        UNION
+            SELECT intervensi,
+                   NULL AS persen
+            FROM monev_intervensis
+            WHERE intervensi NOT IN (
+                SELECT intervensi
+                    FROM tbl_summary
+                    WHERE tbl_summary.intervensi = monev_intervensis.intervensi
+            )';
+        $capaian_by_intervensi = DB::select($q_intervensi);
+
+        return view('pages.dasbor_capaian_tahunan', [
+            'capaian_by_intervensi' => $capaian_by_intervensi,
+            'capaian_by_strategi' => $capaian_by_strategi,
+            'tahun' => $tahun,
+            'year' => $year
+        ]);
+    }
+
+    public function capaianMulti()
+    {
+        $q_multi = 'SELECT tahun,
+                        ROUND(AVG(CASE WHEN strategi = "Alokasi dan tata guna lahan berkelanjutan" THEN persen ELSE NULL END),2) AS s1,
+                        ROUND(AVG(CASE WHEN strategi = "Insentif jasa ekosistem dari kakao berkelanjutan" THEN persen ELSE NULL END),2) AS s2,
+                        ROUND(AVG(CASE WHEN strategi = "Memperbaiki rantai pasok yang berkelanjutan" THEN persen ELSE NULL END),2) AS s3,
+                        ROUND(AVG(CASE WHEN strategi = "Meningkatkan akses masyarakat terutama petani kakao terhadap modal penghidupan" THEN persen ELSE NULL END),2) AS s4,
+                        ROUND(AVG(CASE WHEN strategi = "Meningkatkan produktivitas dan diversifikasi produk kakao" THEN persen ELSE NULL END),2) AS s5
+                    FROM (
+                        SELECT
+                            monev_strategies.id,
+                            monev_strategies.strategi,
+                            monev_indikators.indikator,
+                            monev_indikators.target,
+                            monev_indikators.satuan,
+                            monev_capaians.tahun,
+                            monev_capaians.capaian,
+                            monev_capaians.capaian/monev_indikators.target*100 as persen
+                        FROM monev_indikators, monev_intervensis, monev_strategies, monev_capaians
+                        WHERE monev_intervensis.id = monev_indikators.id_intervensi AND monev_strategies.id = monev_intervensis.id_strategi AND monev_indikators.id = monev_capaians.id_indikator
+                    ) sub
+                    GROUP BY 1
+                    ORDER BY 2 DESC';
+
+        $capaian_multi = DB::select($q_multi);
+
+        return view('pages.dasbor_capaian_multi', ['capaian_multi' => $capaian_multi]);
+    }
+
+    public function lahanTahunan(Request $request)
+    {
+        $year = isset($request->year) ? $request->year : 2021;
+
+        $tahun = DB::table('monev_capaians')
+                ->get()->unique('tahun');
+
+        $q_lahan = 'SELECT monev_indikators.indikator,
+                        monev_indikators.stakeholder1,
+                        monev_indikators.target,
+                        monev_indikators.satuan,
+                        monev_capaians.tahun,
+                        monev_capaians.capaian,
+                        ROUND(monev_capaians.capaian/monev_indikators.target*100, 2) as persen,
+                        monev_indikators.id_iku,
+                        monev_indikators.id_ikk,
+                        monev_indikators.id_terpercaya,
+                        monev_indikators.id_landscale,
+                        monev_indikators.id_sourceup,
+                        monev_indikators.id_kdsd,
+                        monev_indikators.dokumen
+                    FROM monev_indikators, monev_intervensis, monev_strategies, monev_capaians
+                    WHERE monev_intervensis.id = monev_indikators.id_intervensi
+                    AND monev_strategies.id = monev_intervensis.id_strategi
+                    AND monev_indikators.id = monev_capaians.id_indikator
+                    AND tahun = '. $year .'
+                    AND monev_strategies.id = 1
+                    ORDER BY monev_indikators.id';
+
+        $capaian_lahan = DB::select($q_lahan);
+
+        return view('pages.dasbor_lahan_tahunan', [
+            'capaian_lahan' => $capaian_lahan,
+            'tahun' => $tahun,
+            'year' => $year
+        ]);
+    }
+
+    public function lahanMulti()
+    {
+
+        return view('pages.dasbor_lahan_multi');
+    }
+
+    public function modalTahunan(Request $request)
+    {
+        $year = isset($request->year) ? $request->year : 2021;
+
+        $tahun = DB::table('monev_capaians')
+                ->get()->unique('tahun');
+
+        $q_modal = 'SELECT monev_indikators.indikator,
+                        monev_indikators.stakeholder1,
+                        monev_indikators.target,
+                        monev_indikators.satuan,
+                        monev_capaians.tahun,
+                        monev_capaians.capaian,
+                        ROUND(monev_capaians.capaian/monev_indikators.target*100, 2) as persen,
+                        monev_indikators.id_iku,
+                        monev_indikators.id_ikk,
+                        monev_indikators.id_terpercaya,
+                        monev_indikators.id_landscale,
+                        monev_indikators.id_sourceup,
+                        monev_indikators.id_kdsd,
+                        monev_indikators.dokumen
+                    FROM monev_indikators, monev_intervensis, monev_strategies, monev_capaians
+                    WHERE monev_intervensis.id = monev_indikators.id_intervensi
+                    AND monev_strategies.id = monev_intervensis.id_strategi
+                    AND monev_indikators.id = monev_capaians.id_indikator
+                    AND tahun = '. $year .'
+                    AND monev_strategies.id = 2
+                    ORDER BY monev_indikators.id';
+
+        $capaian_modal = DB::select($q_modal);
+
+        return view('pages.dasbor_modal_tahunan', [
+            'capaian_modal' => $capaian_modal,
+            'tahun' => $tahun,
+            'year' => $year
+        ]);
+    }
+
+    public function modalMulti()
+    {
+        $q_multi = 'SELECT tahun,
+                        ROUND(AVG(CASE WHEN intervensi = "2.1 Kemudahan akses sertifikasi lahan" THEN persen ELSE NULL END),2) AS i01,
+                        ROUND(AVG(CASE WHEN intervensi = "2.2 Optimalisasi perhutanan sosial berbasis kakao" THEN persen ELSE NULL END),2) AS i02,
+                        ROUND(AVG(CASE WHEN intervensi = "2.3 Penyuluhan kakao yang tepat sasaran" THEN persen ELSE NULL END),2) AS i03,
+                        ROUND(AVG(CASE WHEN intervensi = "2.4 Pengembangan kelembagaan keuangan petani kakao" THEN persen ELSE NULL END),2) AS i04,
+                        ROUND(AVG(CASE WHEN intervensi = "2.5 Korporasi petani kakao" THEN persen ELSE NULL END),2) AS i05,
+                        ROUND(AVG(CASE WHEN intervensi = "2.6 Bantuan peralatan pertanian" THEN persen ELSE NULL END),2) AS i06,
+                        ROUND(AVG(CASE WHEN intervensi = "2.7 Pelibatan dan pemberdayaan perempuan" THEN persen ELSE NULL END),2) AS i07,
+                        ROUND(AVG(CASE WHEN intervensi = "2.8 Pelatihan dan penyediaan sarana dan prasarana untuk menjaga keselamatan dan kesehatan kerja" THEN persen ELSE NULL END),2) AS i08,
+                        ROUND(AVG(CASE WHEN intervensi = "2.9 Sistem pencegahan dan pengawasan pekerja anak" THEN persen ELSE NULL END),2) AS i09,
+                        ROUND(AVG(CASE WHEN intervensi = "2.10 Kebijakan kakao lestari" THEN persen ELSE NULL END),2) AS i10,
+                        ROUND(AVG(CASE WHEN intervensi = "2.11 Asuransi pertanian kakao" THEN persen ELSE NULL END),2) AS i11
+                    FROM (
+                    SELECT monev_intervensis.id,
+                        monev_intervensis.intervensi,
+                        monev_indikators.indikator,
+                        monev_indikators.target,
+                        monev_indikators.satuan,
+                        monev_capaians.tahun,
+                        monev_capaians.capaian,
+                        monev_capaians.capaian/monev_indikators.target*100 as persen
+                        FROM monev_indikators, monev_intervensis, monev_capaians
+                        WHERE monev_intervensis.id = monev_indikators.id_intervensi
+                        AND monev_indikators.id = monev_capaians.id_indikator
+                    ) sub
+                    GROUP BY 1
+                    ORDER BY 2 DESC';
+
+        $modal_multi = DB::select($q_multi);
+
+        return view('pages.dasbor_modal_multi', ['modal_multi' => $modal_multi]);
+    }
+
+    public function produktivitasTahunan(Request $request)
+    {
+        $year = isset($request->year) ? $request->year : 2021;
+
+        $tahun = DB::table('monev_capaians')
+                ->get()->unique('tahun');
+
+        $q_produktivitas = 'SELECT monev_indikators.indikator,
+                        monev_indikators.stakeholder1,
+                        monev_indikators.target,
+                        monev_indikators.satuan,
+                        monev_capaians.tahun,
+                        monev_capaians.capaian,
+                        ROUND(monev_capaians.capaian/monev_indikators.target*100, 2) as persen,
+                        monev_indikators.id_iku,
+                        monev_indikators.id_ikk,
+                        monev_indikators.id_terpercaya,
+                        monev_indikators.id_landscale,
+                        monev_indikators.id_sourceup,
+                        monev_indikators.id_kdsd,
+                        monev_indikators.dokumen
+                    FROM monev_indikators, monev_intervensis, monev_strategies, monev_capaians
+                    WHERE monev_intervensis.id = monev_indikators.id_intervensi
+                    AND monev_strategies.id = monev_intervensis.id_strategi
+                    AND monev_indikators.id = monev_capaians.id_indikator
+                    AND tahun = '. $year .'
+                    AND monev_strategies.id = 3
+                    ORDER BY monev_indikators.id';
+
+        $capaian_produktivitas = DB::select($q_produktivitas);
+
+        return view('pages.dasbor_produktivitas_tahunan', [
+            'capaian_produktivitas' => $capaian_produktivitas,
+            'tahun' => $tahun,
+            'year' => $year
+        ]);
+    }
+
+    public function produktivitasMulti()
+    {
+        $q_multi = 'SELECT tahun,
+                        ROUND(AVG(CASE WHEN intervensi = "3.1 Budidaya kakao dengan penerapan GAP" THEN persen ELSE NULL END),2) AS i01,
+                        ROUND(AVG(CASE WHEN intervensi = "3.2 Akses terhadap sarana dan prasarana pendukung usaha tani kakao" THEN persen ELSE NULL END),2) AS i02,
+                        ROUND(AVG(CASE WHEN intervensi = "3.3 Diversifikasi produk kakao" THEN persen ELSE NULL END),2) AS i03,
+                        ROUND(AVG(CASE WHEN intervensi = "3.4 Agribisnis kakao" THEN persen ELSE NULL END),2) AS i04
+                    FROM (
+                    SELECT monev_intervensis.id,
+                        monev_intervensis.intervensi,
+                        monev_indikators.indikator,
+                        monev_indikators.target,
+                        monev_indikators.satuan,
+                        monev_capaians.tahun,
+                        monev_capaians.capaian,
+                        monev_capaians.capaian/monev_indikators.target*100 as persen
+                        FROM monev_indikators, monev_intervensis, monev_capaians
+                        WHERE monev_intervensis.id = monev_indikators.id_intervensi
+                        AND monev_indikators.id = monev_capaians.id_indikator
+                    ) sub
+                    GROUP BY 1
+                    ORDER BY 2 DESC';
+
+        $produktivitas_multi = DB::select($q_multi);
+
+        return view('pages.dasbor_produktivitas_multi', ['produktivitas_multi' => $produktivitas_multi]);
+    }
+
+    public function rantaiNilaiTahunan(Request $request)
+    {
+        $year = isset($request->year) ? $request->year : 2021;
+
+        $tahun = DB::table('monev_capaians')
+                ->get()->unique('tahun');
+
+        $q_nilai = 'SELECT monev_indikators.indikator,
+                        monev_indikators.stakeholder1,
+                        monev_indikators.target,
+                        monev_indikators.satuan,
+                        monev_capaians.tahun,
+                        monev_capaians.capaian,
+                        ROUND(monev_capaians.capaian/monev_indikators.target*100, 2) as persen,
+                        monev_indikators.id_iku,
+                        monev_indikators.id_ikk,
+                        monev_indikators.id_terpercaya,
+                        monev_indikators.id_landscale,
+                        monev_indikators.id_sourceup,
+                        monev_indikators.id_kdsd,
+                        monev_indikators.dokumen
+                    FROM monev_indikators, monev_intervensis, monev_strategies, monev_capaians
+                    WHERE monev_intervensis.id = monev_indikators.id_intervensi
+                    AND monev_strategies.id = monev_intervensis.id_strategi
+                    AND monev_indikators.id = monev_capaians.id_indikator
+                    AND tahun = '. $year .'
+                    AND monev_strategies.id = 4
+                    ORDER BY monev_indikators.id';
+
+        $capaian_nilai = DB::select($q_nilai);
+
+        return view('pages.dasbor_rantainilai_tahunan', [
+            'capaian_nilai' => $capaian_nilai,
+            'tahun' => $tahun,
+            'year' => $year
+        ]);
+    }
+
+    public function rantaiNilaiMulti()
+    {
+        $q_multi = 'SELECT tahun,
+                            ROUND(AVG(CASE WHEN intervensi = "4.1 Pengembangan rantai pasok yang efektif dan integratif" THEN persen ELSE NULL END),2) AS i01,
+                            ROUND(AVG(CASE WHEN intervensi = "4.2 Sistem pencatatan dan pengelolaan dokumen" THEN persen ELSE NULL END),2) AS i02,
+                            ROUND(AVG(CASE WHEN intervensi = "4.3 Sertifikasi komoditas kakao berkelanjutan" THEN persen ELSE NULL END),2) AS i03
+                        FROM (
+                        SELECT monev_intervensis.id,
+                            monev_intervensis.intervensi,
+                            monev_indikators.indikator,
+                            monev_indikators.target,
+                            monev_indikators.satuan,
+                            monev_capaians.tahun,
+                            monev_capaians.capaian,
+                            monev_capaians.capaian/monev_indikators.target*100 as persen
+                            FROM monev_indikators, monev_intervensis, monev_capaians
+                            WHERE monev_intervensis.id = monev_indikators.id_intervensi
+                            AND monev_indikators.id = monev_capaians.id_indikator
+                        ) sub
+                        GROUP BY 1
+                        ORDER BY 2 DESC';
+
+        $rantainilai_multi = DB::select($q_multi);
+
+        return view('pages.dasbor_rantainilai_multi', ['rantainilai_multi' => $rantainilai_multi]);
+    }
+
+    public function jasaEkosistemTahunan(Request $request)
+    {
+        $year = isset($request->year) ? $request->year : 2021;
+
+        $tahun = DB::table('monev_capaians')
+                ->get()->unique('tahun');
+
+        $q_ekosistem = 'SELECT monev_indikators.indikator,
+                        monev_indikators.stakeholder1,
+                        monev_indikators.target,
+                        monev_indikators.satuan,
+                        monev_capaians.tahun,
+                        monev_capaians.capaian,
+                        ROUND(monev_capaians.capaian/monev_indikators.target*100, 2) as persen,
+                        monev_indikators.id_iku,
+                        monev_indikators.id_ikk,
+                        monev_indikators.id_terpercaya,
+                        monev_indikators.id_landscale,
+                        monev_indikators.id_sourceup,
+                        monev_indikators.id_kdsd,
+                        monev_indikators.dokumen
+                    FROM monev_indikators, monev_intervensis, monev_strategies, monev_capaians
+                    WHERE monev_intervensis.id = monev_indikators.id_intervensi
+                    AND monev_strategies.id = monev_intervensis.id_strategi
+                    AND monev_indikators.id = monev_capaians.id_indikator
+                    AND tahun = '. $year .'
+                    AND monev_strategies.id = 5
+                    ORDER BY monev_indikators.id';
+
+        $capaian_ekosistem = DB::select($q_ekosistem);
+
+        return view('pages.dasbor_ekosistem_tahunan', [
+            'capaian_ekosistem' => $capaian_ekosistem,
+            'tahun' => $tahun,
+            'year' => $year
+        ]);
+    }
+
+    public function jasaEkosistemMulti()
+    {
+        $q_multi = 'SELECT tahun,
+                            ROUND(AVG(CASE WHEN intervensi = "5.1 Kompensasi Imbal Jasa Lingkungan Hidup (KIJLH) antar daerah berupa Transfer Anggaran berbasis Ekologi (TAKE) di tingkat kabupaten untuk peningkatan fungsi daerah aliran sungai (DAS), keanekaragaman hayati, dan stok karbon" THEN persen ELSE NULL END),2) AS i01,
+                            ROUND(AVG(CASE WHEN intervensi = "5.2 Pembayaran jasa lingkungan hidup (PJLH) untuk peningkatan fungsi DAS, keanekaragaman hayati dan kontrak berbasis performa untuk peningkatan stok karbon" THEN persen ELSE NULL END),2) AS i02,
+                            ROUND(AVG(CASE WHEN intervensi = "5.3 Label ramah lingkungan hidup" THEN persen ELSE NULL END),2) AS i03,
+                            ROUND(AVG(CASE WHEN intervensi = "5.4 Dana penanggulangan pencemaran dan/atau kerusakan dan pemulihan lingkungan hidup" THEN persen ELSE NULL END),2) AS i04,
+                            ROUND(AVG(CASE WHEN intervensi = "5.5 Penghargaan kinerja di bidang perlindungan dan pengelolaan lingkungan hidup" THEN persen ELSE NULL END),2) AS i05
+                        FROM (
+                        SELECT monev_intervensis.id,
+                            monev_intervensis.intervensi,
+                            monev_indikators.indikator,
+                            monev_indikators.target,
+                            monev_indikators.satuan,
+                            monev_capaians.tahun,
+                            monev_capaians.capaian,
+                            monev_capaians.capaian/monev_indikators.target*100 as persen
+                            FROM monev_indikators, monev_intervensis, monev_capaians
+                            WHERE monev_intervensis.id = monev_indikators.id_intervensi
+                            AND monev_indikators.id = monev_capaians.id_indikator
+                        ) sub
+                        GROUP BY 1
+                        ORDER BY 2 DESC';
+
+        $ekosistem_multi = DB::select($q_multi);
+
+        return view('pages.dasbor_ekosistem_multi', ['ekosistem_multi' => $ekosistem_multi]);
+    }
+}

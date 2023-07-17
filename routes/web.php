@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\DasborController;
 use App\Http\Controllers\MonevController;
 use App\Http\Controllers\SessionController;
 use App\Http\Controllers\HomeController;
@@ -44,20 +45,23 @@ Route::group(['middleware' => 'auth'], function(){
     Route::get('/session/logout', [SessionController::class, 'logout'])->name('logout');
 });
 
+# Indikator
 Route::get('/indikator', [MonevController::class, 'indikator']);
-// Route::get('/indikator', [MonevController::class, 'getDetail']);
-Route::get('/gambaran_umum_tahunan', [MonevController::class, 'jurisdiksi']);
-Route::get('/gambaran_umum_multi', [MonevController::class, 'umumMulti']);
-Route::get('/alokasi_tataguna_lahan_tahunan', [MonevController::class, 'alokasiTahunan']);
-Route::get('/alokasi_tataguna_lahan_multi', [MonevController::class, 'alokasiMulti']);
-Route::get('/akses_modal_tahunan', [MonevController::class, 'aksesTahunan']);
-Route::get('/akses_modal_multi', [MonevController::class, 'aksesMulti']);
-Route::get('/produktivitas_tahunan', [MonevController::class, 'produktivitasTahunan']);
-Route::get('/produktivitas_multi', [MonevController::class, 'produktivitasMulti']);
-Route::get('/rantai_nilai_tahunan', [MonevController::class, 'rantaiTahunan']);
-Route::get('/rantai_nilai_multi', [MonevController::class, 'rantaiMulti']);
-Route::get('/jasa_ekosistem_tahunan', [MonevController::class, 'jasaTahunan']);
-Route::get('/jasa_ekosistem_multi', [MonevController::class, 'jasaMulti']);
+
+# Profil Jurisdiksi
+Route::get('/capaian/tahunan', [DasborController::class, 'index']);
+Route::get('/capaian/multi', [DasborController::class, 'capaianMulti']);
+Route::get('/lahan/tahunan', [DasborController::class, 'lahanTahunan']);
+Route::get('/lahan/multi', [DasborController::class, 'lahanMulti']);
+Route::get('/modal/tahunan', [DasborController::class, 'modalTahunan']);
+Route::get('/modal/multi', [DasborController::class, 'modalMulti']);
+Route::get('/produktivitas/tahunan', [DasborController::class, 'produktivitasTahunan']);
+Route::get('/produktivitas/multi', [DasborController::class, 'produktivitasMulti']);
+Route::get('/rantainilai/tahunan', [DasborController::class, 'rantaiNilaiTahunan']);
+Route::get('/rantainilai/multi', [DasborController::class, 'rantaiNilaiMulti']);
+Route::get('/jasaekosistem/tahunan', [DasborController::class, 'jasaEkosistemTahunan']);
+Route::get('/jasaekosistem/multi', [DasborController::class, 'jasaEkosistemMulti']);
+
 Route::get('/kelembagaan', [MonevController::class, 'kelembagaan']);
 
 // Route::get('/navbar', [MonevController::class, 'navbar']);

@@ -2,6 +2,21 @@
 
 @section('page_title', 'Beranda')
 
+@section('customCSS')
+.info {
+    padding: 6px 8px;
+    font: 14px/16px Arial, Helvetica, sans-serif;
+    background: white;
+    background: rgba(255,255,255,0.8);
+    box-shadow: 0 0 15px rgba(0,0,0,0.2);
+    border-radius: 5px;
+}
+.info h4 {
+    margin: 0 0 5px;
+    color: #777;
+}
+@stop
+
 @section('css')
     <style type="text/css">
         * {
@@ -159,26 +174,48 @@ function initMap() {
             lat: -2.412288070373402,
             lng: 120.08931533060061,
         },
-        zoom: 7
+        zoom: 9
     });
 
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         attribution: '© OpenStreetMap'
     }).addTo(map);
 
+    const info = L.control();
+
+    info.onAdd = function(map) {
+        this._div = L.DomUtil.create('div', 'info');
+        this.update();
+        return this._div;
+    }
+
+    info.update = function (props) {
+        this._div.innerHTML = '<h4>Peta Intervensi</h4>' +  (props ?
+            '<b>' + props.Intrv + '</b>'
+            : 'Arahkan pointer ke peta');
+    };
+
+    info.addTo(map);
+
     var geo = L.geoJson({features:[]}, {
+        style,
         onEachFeature: function popUp(f, l) {
-            var out = [];
-            if (f.properties){
-            for(var key in f.properties){
-                out.push(key + ": " + f.properties[key]);
-            }
-            l.bindPopup(out.join("<br />"));
-            }
+            //var out = [];
+            //if (f.properties){
+            //    for(var key in f.properties){
+            //        out.push(key + ": " + f.properties[key]);
+            //    }
+            //    l.bindPopup(out.join("<br />"));
+            //}
+            l.on({
+                mouseover: highlightFeature,
+                mouseout: resetHighlight,
+                click: zoomToFeature
+            });
         }
     }).addTo(map);
 
-    var base = '{{url('')}}/shp/lutra.zip';
+    var base = '{{url('')}}/shp/Invervention_map_v1_J_F.zip';
     shp(base).then(function(data){
         geo.addData(data);
     });
@@ -187,6 +224,52 @@ function initMap() {
 }
 
 initMap();
+
+function highlightFeature(e) {
+    const layer = e.target;
+    layer.setStyle({
+        weight: 5,
+        color: '#666',
+        dashArray: '',
+        fillOpacity: 0.7
+    });
+
+    layer.bringToFront();
+
+    info.update(layer.feature.properties);
+}
+
+function resetHighlight(e) {
+    geo.resetStyle(e.target);
+    info.update();
+}
+
+function zoomToFeature(e){
+    map.fitBounds(e.target.getBounds());
+}
+
+function getColor(i) {
+    return i === 0 ? '#b2182b' :
+           i === 1 ? '#d6604d' :
+           i === 2 ? '#f4a582' :
+           i === 3 ? '#fddbc7' :
+           i === 4 ? '#f7f7f7' :
+           i === 5 ? '#d1e5f0' :
+           i === 6 ? '#92c5de' :
+           i === 7 ? '#4393c3' :
+                    '#2166ac';
+}
+
+function style(feature) {
+    return {
+        weight: 2,
+        opacity: 1,
+        color: 'white',
+        dashArray: '3',
+        fillOpacity: 0.7,
+        fillColor: getColor(feature.properties.Value)
+    };
+}
 
 function generateMarker(data, index) {
     return L.marker(data.position, {
