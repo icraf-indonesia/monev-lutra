@@ -140,9 +140,56 @@ class DasborController extends Controller
 
     public function lahanMulti()
     {
-        $luas_kaw_hutan = DB::table('luas_kawasan_hutan')
+        $q_multi = 'SELECT tahun,
+                        ROUND(AVG(CASE WHEN intervensi = "1.1 Alokasi kebun kakao dengan mempertimbangkan kesesuaian lahan dan tata ruang kabupaten" THEN persen ELSE NULL END),2) AS i01,
+                        ROUND(AVG(CASE WHEN intervensi = "1.2 Alokasi peremajaaan lahan kakao" THEN persen ELSE NULL END),2) AS i02,
+                        ROUND(AVG(CASE WHEN intervensi = "1.3 Perluasan terbatas kebun kakao" THEN persen ELSE NULL END),2) AS i03,
+                        ROUND(AVG(CASE WHEN intervensi = "1.4 Pengembangan agroforestri kakao" THEN persen ELSE NULL END),2) AS i04
+                    FROM (
+                    SELECT monev_intervensis.id,
+                        monev_intervensis.intervensi,
+                        monev_indikators.indikator,
+                        monev_indikators.target,
+                        monev_indikators.satuan,
+                        monev_capaians.tahun,
+                        monev_capaians.capaian,
+                        monev_capaians.capaian/monev_indikators.target*100 as persen
+                        FROM monev_indikators, monev_intervensis, monev_capaians
+                        WHERE monev_intervensis.id = monev_indikators.id_intervensi
+                        AND monev_indikators.id = monev_capaians.id_indikator
+                    ) sub
+                    GROUP BY 1
+                    ORDER BY 2 DESC';
+
+        $lahan_multi = DB::select($q_multi);
+
+        $q_luas_af_kakao = DB::select('SELECT DISTINCT(c.kecamatan), c.luas as l1, c1.luas as l2
+                                    FROM luas_agroforestri_kakao c
+                                    INNER JOIN luas_agroforestri_kakao c1
+                                        ON c.tahun <> c1.tahun
+                                        AND c.kecamatan = c1.kecamatan');
+
+        $q_luas_aloc_kakao = DB::select('SELECT DISTINCT(c.kecamatan), c.luas as l1, c1.luas as l2
+                                    FROM luas_alokasi_lahan_kakao c
+                                    INNER JOIN luas_alokasi_lahan_kakao c1
+                                        ON c.tahun <> c1.tahun
+                                        AND c.kecamatan = c1.kecamatan');
+
+        // $luas_af_kakao = DB::select($q_luas_af_kakao);
+        // $luas_aloc_kakao = DB::select($q_luas_aloc_kakao);
+
+        $luas_af_kakao = DB::table('luas_agroforestri_kakao')
+                            ->where('tahun', '=', '2021')
                             ->get();
-        return view('pages.dasbor_lahan_multi', ['luas_kaw_hutan'=>$luas_kaw_hutan]);
+        $luas_aloc_kakao = DB::table('luas_alokasi_lahan_kakao')
+                            ->where('tahun', '=', '2021')
+                            ->get();
+
+        return view('pages.dasbor_lahan_multi', [
+            'luas_aloc_kakao' => $luas_aloc_kakao,
+            'luas_af_kakao' => $luas_af_kakao,
+            'lahan_multi' => $lahan_multi
+        ]);
     }
 
     public function modalTahunan(Request $request)
