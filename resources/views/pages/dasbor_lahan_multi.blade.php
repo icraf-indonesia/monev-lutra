@@ -30,62 +30,94 @@
                             </div>
                         </div>
                     </div> --}}
-                    <h3>Tabel Luas HCV/HCS</h3>
+                    <table id="patientfilter" class="table table-striped dt-responsive nowrap" cellspacing="0"width="100%">
+                        <thead>
+                            <tr>
+                                <th>Tahun</th>
+                                <th>Alokasi kebun kakao</th>
+                                <th>Alokasi peremajaaan lahan kakao</th>
+                                <th>Perluasan terbatas kebun kakao</th>
+                                <th>Pengembangan agroforestri kakao</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($lahan_multi as $item)
+                                <tr>
+                                    <td>{{ $item->tahun }}</td>
+                                    <td>
+                                        @if (is_null($item->i01))
+                                            <span class="badge shade-yellow min-90" style="width: 0%;">0%</span>
+                                        @else
+                                            <span class="badge shade-yellow min-90"
+                                                    style="color: #fff; text-align: right; font-weight: 500; line-height: 1.4; width:
+                                                    {{ $item->i01 }}%;">
+                                                {{ $item->i01 }}%
+                                            </span>
+                                        @endif
+                                    </td>
+                                    <td>
+                                        @if (is_null($item->i02))
+                                            <span class="badge shade-yellow min-90" style="width: 0%;">0%</span>
+                                        @else
+                                            <span class="badge shade-yellow min-90"
+                                                    style="color: #fff; text-align: right; font-weight: 500; line-height: 1.4; width:
+                                                    {{ $item->i02 }}%;">
+                                                {{ $item->i02 }}%
+                                            </span>
+                                        @endif
+                                    </td>
+                                    <td>
+                                        @if (is_null($item->i03))
+                                            <span class="badge shade-yellow min-90" style="width: 0%;">0%</span>
+                                        @else
+                                            <span class="badge shade-yellow min-90"
+                                                    style="color: #fff; text-align: right; font-weight: 500; line-height: 1.4; width:
+                                                    {{ $item->i03 }}%;">
+                                                {{ $item->i03 }}%
+                                            </span>
+                                        @endif
+                                    </td>
+                                    <td>
+                                        @if (is_null($item->i04))
+                                            <span class="badge shade-yellow min-90" style="width: 0%;">0%</span>
+                                        @else
+                                            <span class="badge shade-yellow min-90"
+                                                    style="color: #fff; text-align: right; font-weight: 500; line-height: 1.4; width:
+                                                    {{ $item->i04 }}%;">
+                                                {{ $item->i04 }}%
+                                            </span>
+                                        @endif
+                                    </td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                    <h3>Tabel Luas Agroforestri Kakao</h3>
                     <div class="tab-pane active" id="a">
                         <table id="patientfilter" class="table table-striped dt-responsive nowrap" cellspacing="0"
                             width="100%">
                             <tr>
                                 <th>Kecamatan</th>
-                                <th>2022 (Ha)</th>
-                                <th>2023 (Ha)</th>
-                                <th>2024 (Ha)</th>
+                                <th>2021 (Ha)</th>
+                                {{-- <th>2022 (Ha)</th> --}}
                             </tr>
                             <tr>
-                                <td>Baebunta</td>
-                                <td>1207</td>
-                                <td>8500</td>
-                                <td>16870</td>
-                            </tr>
-                            <tr>
-                                <td>Bone Bone</td>
-                                <td>18976</td>
-                                <td>20162</td>
-                                <td>21405</td>
-                            </tr>
-                            <tr>
-                                <td>Limbong</td>
-                                <td>100</td>
-                                <td>1400</td>
-                                <td>2980</td>
-                            </tr>
-                            <tr>
-                                <td>Malangke</td>
-                                <td>8090</td>
-                                <td>10540</td>
-                                <td>17930</td>
-                            </tr>
-                            <tr>
-                                <td>Masamba</td>
-                                <td>103450</td>
-                                <td>105524</td>
-                                <td>142000</td>
-                            </tr>
-                            <tr>
-                                <td>Rampi</td>
-                                <td>230</td>
-                                <td>540</td>
-                                <td>1078</td>
+                            @foreach ($luas_af_kakao as $ll)
+                                <tr>
+                                    <td>{{$ll->kecamatan}}</td>
+                                    <td>{{$ll->luas}}</td>
+                                </tr>
+                            @endforeach
                             </tr>
                         </table>
                         <h3>Tabel Luas Alokasi Lahan untuk Tanaman Kakao</h3>
-                        <h3>Tabel Luas Kawasan Hutan</h3>
-                        <table id="patientfilter" class="table table-striped dt-responsive nowrap" cellspacing="0"
-                            width="100%">
+                        <table id="patientfilter" class="table table-striped dt-responsive nowrap" cellspacing="0" width="100%">
                             <tr>
                                 <th>Kecamatan</th>
                                 <th>2021 (Ha)</th>
+                                {{-- <th>2022 (Ha)</th> --}}
                             </tr>
-                            @foreach ($luas_kaw_hutan as $l)
+                            @foreach ($luas_aloc_kakao as $l)
                                 <tr>
                                     <td>{{$l->kecamatan}}</td>
                                     <td>{{$l->luas}}</td>
