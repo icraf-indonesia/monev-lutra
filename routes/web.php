@@ -6,6 +6,7 @@ use App\Http\Controllers\MonevController;
 use App\Http\Controllers\SessionController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\KontributorController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 // use Illuminate\Support\Facades\DB;
 
@@ -33,6 +34,7 @@ Route::group(['middleware' => 'auth'], function(){
     Route::get('/kontributor', [KontributorController::class, 'index'])->name('kontributor');
     Route::get('intervensi/{id}', [KontributorController::class, 'intervensi']);
     Route::get('indikator/{id}', [KontributorController::class, 'indikator']);
+    Route::get('satuan/{id}', [KontributorController::class, 'satuan']);
     Route::post('/kontributor/store', [KontributorController::class, 'store']);
 
     Route::get('/admin', [AdminController::class, 'index'])->name('admin');
@@ -41,6 +43,8 @@ Route::group(['middleware' => 'auth'], function(){
     Route::get('/admin/indikator/{id}', [AdminController::class, 'editIndikator']);
     Route::put('/admin/indikator/{id}', [AdminController::class, 'updateIndikator']);
     Route::delete('/admin/indikator/{id}', [AdminController::class, 'deleteIndikator']);
+
+    Route::get('/admin/user', [UserController::class, 'index']);
 
     Route::get('/session/logout', [SessionController::class, 'logout'])->name('logout');
 });

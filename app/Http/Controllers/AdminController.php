@@ -15,6 +15,7 @@ class AdminController extends Controller
 
         $tables = DB::table('monev_indikators')
                         ->join('monev_capaians', 'monev_indikators.id', '=', 'monev_capaians.id_indikator')
+                        ->orderByDesc('monev_capaians.id')
                         ->select('monev_capaians.id', 'monev_indikators.indikator', 'target', 'satuan', 'tahun', 'capaian', 'verified_by', 'status')
                         ->paginate(10);
 

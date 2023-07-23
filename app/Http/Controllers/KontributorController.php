@@ -29,6 +29,7 @@ class KontributorController extends Controller
                         ->leftJoin('monev_indikators', 'monev_indikators.id', '=', 'indikator_stakeholder.id_indikator')
                         ->leftJoin('monev_capaians', 'monev_indikators.id', '=', 'monev_capaians.id_indikator')
                         ->where('indikator_stakeholder.id_stakeholder', $id_stakeholder)
+                        ->orderByDesc('monev_indikators.id')
                         ->select('monev_indikators.id', 'monev_indikators.indikator', 'target', 'satuan', 'tahun', 'capaian', 'dokumen', 'status')
                         ->paginate(10);
 
@@ -49,6 +50,14 @@ class KontributorController extends Controller
                             ->where('id_intervensi', $id)
                             ->pluck('indikator','id');
         return json_encode($indikator);
+    }
+
+    public function satuan($id)
+    {
+        $satuan = DB::table('monev_indikators')
+                            ->where('id', $id)
+                            ->pluck('satuan','id');
+        return json_encode($satuan);
     }
 
     public function store_old(Request $request)
@@ -110,7 +119,7 @@ class KontributorController extends Controller
             'indikator' => 'required',
             'tahun' => 'required',
             'capaian' => 'required',
-            'satuan' => 'required'
+            // 'satuan' => 'required'
         ]);
 
         $detail_indikator = DB::table('monev_indikators')
