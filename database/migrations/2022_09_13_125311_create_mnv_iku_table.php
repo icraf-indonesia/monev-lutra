@@ -15,10 +15,10 @@ return new class extends Migration
     {
         Schema::create('mnv_iku', function (Blueprint $table) {
             $table->id();
-            $table->string('nama_indikator_iku')->nullable();
-            $table->string('desc_indikator_iku')->nullable();
-            $table->string('level_iku')->nullable();
-            $table->string('metode_pengukuran_iku')->nullable();
+            $table->string('nama_indikator')->nullable();
+            $table->string('desc_indikator')->nullable();
+            $table->string('level')->nullable();
+            $table->string('metode_pengukuran')->nullable();
             $table->timestamps();
         });
     }
