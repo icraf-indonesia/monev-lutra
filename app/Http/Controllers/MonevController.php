@@ -56,7 +56,7 @@ class MonevController extends Controller
 
     public function tentang(Request $request)
     {
-        return view('pages.01_tentang');
+        return view('pages.beranda');
     }
 
     public function slider(Request $request)
@@ -67,11 +67,6 @@ class MonevController extends Controller
     public function navbar(Request $request)
     {
         return view('navbar');
-    }
-
-    public function kelembagaan(Request $request)
-    {
-        return view('pages.05_kelembagaan');
     }
 
     public function maps(Request $request)

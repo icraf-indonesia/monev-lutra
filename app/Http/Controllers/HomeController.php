@@ -8,17 +8,17 @@ class HomeController extends Controller
 {
     public function index()
     {
-        return view('pages.01_tentang');
+        return view('pages.beranda');
     }
 
     public function isustrategi(Request $request)
     {
-        return view('pages.02_isustrategis');
+        return view('pages.petajalan_isu');
     }
 
     public function visi(Request $request)
     {
-        return view('pages.02_visi');
+        return view('pages.petajalan_visi');
     }
 
 }
