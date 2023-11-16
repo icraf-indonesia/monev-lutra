@@ -9,26 +9,28 @@
                 @include('dasbor_sidebar')
             </div>
         </div>
-        <div class="col-lg-10 col-md-10 col-sm-10 dct-appoinment m-t-10">
+        <div class="col-lg-10 col-md-10 col-sm-12 dct-appoinment m-t-10">
             <!-- Table section  -->
             <div class="row">
                 <div class="col-md-12 patient-app-01">
                     <h3>Tabel Capaian</h3>
                     <label for="year">Tahun:</label>
-                    <form method="GET">
-                        <select name="year" id="year" style="margin-left:10px; width:150px;" onchange="this.form.submit()">
-                            @foreach ($tahun as $t)
-                                <option {{ ($year == $t->tahun) ? "selected":"" }} value='{{$t->tahun}}'>{{$t->tahun}}</option>
-                            @endforeach
-                        </select>
-                    </form>
+                    <select name="year" id="year" style="margin-left:10px; width:150px;" value=>
+                        <option value=2021>2021</option>
+                        <option value=2022 selected>2022</option>
+                        <option value=2023>2023</option>
+                        <option value=2024>2024</option>
+                        <option value=2025>2025</option>
+                        <option value=2026>2026</option>
+                    </select>
                     <ul class="nav nav-tabs paitent-app-tab">
-                        <li class="active"><a href="#strategi" data-toggle="tab">Strategi</a></li>
-                        <li><a href="#intervensi" data-toggle="tab">Intervensi</a></li>
+                        <li class="active"><a href="#a" data-toggle="tab">Strategi</a></li>
+                        <li><a href="#b" data-toggle="tab">Intervensi</a></li>
                     </ul>
                     <div class="tab-content">
-                        <div class="tab-pane active" id="strategi">
-                            <table id="patientfilter" class="table table-striped dt-responsive nowrap" cellspacing="0" width="100%">
+                        <div class="tab-pane active" id="a">
+                            <table id="patientfilter" class="table table-striped dt-responsive nowrap" cellspacing="0"
+                                width="100%">
                                 <thead>
                                     <tr>
                                         <th>Strategi</th>
@@ -36,24 +38,48 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($capaian_by_strategi as $item)
-                                        <tr>
-                                            <td width="50%">{{ $item->strategi }}</td>
-                                            <td>
-                                                @if (is_null($item->persen))
-                                                    <span class="badge shade-yellow min-90" style="width: 0%;">0%</span>
-                                                @else
-                                                    <span class="badge shade-yellow min-90" style="color: #fff; text-align: right; font-weight: 500; line-height: 1.4; width: {{ $item->persen }}%;">
-                                                        {{ $item->persen }}%
-                                                    </span>
-                                                @endif
-                                            </td>
-                                        </tr>
-                                    @endforeach
+                                    {{-- @foreach ($aspek as $item)
+                                                    <tr>
+                                                    <td width="50%">{{ $item->strategi }}</td>
+                                                    <td>
+                                                        <span class="badge shade-yellow min-90" style="width: 60%;">28.6%</span>
+                                                    </td>
+                                                    </tr>
+                                                     @endforeach --}}
+                                    <tr>
+                                        <td>1. Alokasi dan tataguna lahan</td>
+                                        <td>
+                                            <span class="badge shade-yellow min-90" style="width: 29%;">28.6%</span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>2. Akses modal penghidupan​</td>
+                                        <td>
+                                            <span class="badge shade-yellow min-90" style="width: 36%;">36%</span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>3. Produktivitas dan diversifikasi</td>
+                                        <td>
+                                            <span class="badge shade-yellow min-90" style="width: 35%;">35%</span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>4. Rantai nilai</td>
+                                        <td>
+                                            <span class="badge shade-yellow min-90" style="width: 15%;">15%</span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>5. Jasa ekosistem</td>
+                                        <td>
+                                            <span class="badge shade-yellow min-90" style="width: 19%;">19%</span>
+                                        </td>
+                                    </tr>
                                 </tbody>
                             </table>
                         </div>
-                        <div class="tab-pane" id="intervensi">
+                        <div class="tab-pane" id="b">
                             <table id="patientfiltertoday" class="display" style="width:100%">
                                 <thead>
                                     <tr>
@@ -62,20 +88,95 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($capaian_by_intervensi as $item2)
-                                        <tr>
-                                            <td width="50%">{{ $item2->intervensi }}</td>
-                                            <td>
-                                                @if (is_null($item2->persen))
-                                                    <span class="badge shade-yellow min-90" style="width: 0%;">0%</span>
-                                                @else
-                                                    <span class="badge shade-yellow min-90" style="color: #fff; text-align: right; font-weight: 500; line-height: 1.4; width: {{ $item2->persen }}%;">
-                                                        {{ $item2->persen }}%
-                                                    </span>
-                                                @endif
-                                            </td>
-                                        </tr>
-                                    @endforeach
+                                    {{-- @foreach ($tables_jurisdiction as $table)
+                                <tr>
+                                <td width="50%">{{ $table->intervensi }}</td>
+                                <td>
+                                    <span class="badge shade-green min-90" style="width: 45%;">45%</span>
+                                </td>
+                                </tr>
+                                 @endforeach --}}
+                                    <tr>
+                                        <td>1.1 Alokasi kebun kakao dengan mempertimbangkan kesesuaian lahan dan kawasan
+                                            lindung</td>
+                                        <td>
+                                            <span class="badge shade-green min-90" style="width: 75%;">75%</span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>1.2 Alokasi peremajaan lahan kakao</td>
+                                        <td>
+                                            <span class="badge shade-green min-90" style="width: 60%;">60%</span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>1.3 Pengembangan agroforestri kakao</td>
+                                        <td>
+                                            <span class="badge shade-green min-90" style="width: 30%;">30%</span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>2.1 Kemudahan akses sertifikasi lahan</td>
+                                        <td>
+                                            <span class="badge shade-green min-90" style="width: 25%;">25%</span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>2.2 Optimalisasi perhutanan sosial berbasis kakao</td>
+                                        <td>
+                                            <span class="badge shade-green min-90" style="width: 45%;">45%</span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>2.3 Penyuluhan kakao yang tepat sasaran</td>
+                                        <td>
+                                            <span class="badge shade-green min-90" style="width: 72%;">72%</span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>3.1 Budidaya kakao dengan penerapan GAP</td>
+                                        <td>
+                                            <span class="badge shade-green min-90" style="width: 10%;">10%</span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>3.2 Akses terhadap sarana dan prasarana pendukung usaha tani kakao</td>
+                                        <td>
+                                            <span class="badge shade-green min-90" style="width: 17%;">17%</span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>4.1 Pengembangan rantai pasok yang efektif dan integratif</td>
+                                        <td>
+                                            <span class="badge shade-green min-90" style="width: 36%;">36%</span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>4.2 Sistem pencatatan dan pengelolaan dokumen</td>
+                                        <td>
+                                            <span class="badge shade-green min-90" style="width: 5%;">5%</span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>4.3 Sertifikasi komoditas kakao berkelanjutan</td>
+                                        <td>
+                                            <span class="badge shade-green min-90" style="width: 14%;">14%</span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>5.1 Kompensasi/imbal jasa lingkungan hidup antar daerah berupa Transfer Anggaran
+                                            berbasis Ekologi di tingkat Kabupaten untuk peningkatan fungsi daerah aliran
+                                            sungai</td>
+                                        <td>
+                                            <span class="badge shade-green min-90" style="width: 77%;">77%</span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>5.2 Pembayaran jasa lingkungan hidup</td>
+                                        <td>
+                                            <span class="badge shade-green min-90" style="width: 54%;">54%</span>
+                                        </td>
+                                    </tr>
                                 </tbody>
                             </table>
                         </div>
