@@ -24,41 +24,35 @@
                     @endif
                     <ul class="nav nav-tabs paitent-app-tab">
                         <li><a href="/admin">Kembali</a></li>
-                        <li class="active"><a href="#edit-target" data-toggle="tab">Ubah Target Indikator</a></li>
+                        <li class="active"><a href="#edit-target" data-toggle="tab">Ubah Target Kegiatan</a></li>
                     </ul>
                     <div class="tab-content" style="padding-top: 10px;">
                         <div class="tab-pane active" id="edit-target">
-                            <form class="page-box" method="post" action="/admin/indikator/{{ $data->id }}" enctype="multipart/form-data">
+                            <form class="page-box" method="post" action="/admin/kegiatan/{{ $data->id }}" enctype="multipart/form-data">
                                 @csrf
                                 @method('put')
                                 <div class="form-group row">
-                                    <label class="col-lg-3 col-form-label">Strategi</label>
+                                    <label class="col-lg-3 col-form-label">Kegiatan</label>
                                     <div class="col-lg-9">
                                         <input class="form-control" type="text" name="strategi" value="{{ old('strategi', $data->strategi) }}" disabled>
                                     </div>
                                 </div>
                                 <div class="form-group row">
-                                    <label class="col-lg-3 col-form-label">Intervensi</label>
+                                    <label class="col-lg-3 col-form-label">Periode</label>
                                     <div class="col-lg-9">
-                                        <input class="form-control" type="text" name="intervensi" value="{{ old('intervensi', $data->intervensi) }}" disabled>
+                                        <input name="satuan" class="form-control @error('satuan') is-invalid @enderror" type="text" value="{{ old('satuan', $data->satuan) }}">
                                     </div>
                                 </div>
                                 <div class="form-group row">
-                                    <label class="col-lg-3 col-form-label">Indikator</label>
-                                    <div class="col-lg-9">
-                                        <input class="form-control" type="text" name="indikator" value="{{ old('indikator', $data->indikator) }}" disabled>
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label class="col-lg-3 col-form-label">Target Capaian</label>
+                                    <label class="col-lg-3 col-form-label">Target Volume</label>
                                     <div class="col-lg-9">
                                         <input name="target" class="form-control @error('target') is-invalid @enderror" type="text" required value="{{ old('target', $data->target) }}">
                                     </div>
                                 </div>
                                 <div class="form-group row">
-                                    <label class="col-lg-3 col-form-label">Satuan</label>
+                                    <label class="col-lg-3 col-form-label">Target Anggaran</label>
                                     <div class="col-lg-9">
-                                        <input name="satuan" class="form-control @error('satuan') is-invalid @enderror" type="text" value="{{ old('satuan', $data->satuan) }}">
+                                        <input name="target" class="form-control @error('target') is-invalid @enderror" type="text" required value="{{ old('target', $data->target) }}">
                                     </div>
                                 </div>
                                 <div class="m-t-20 text-center">
