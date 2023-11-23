@@ -23,8 +23,8 @@
                         </div>
                     @endif
                     <ul class="nav nav-tabs paitent-app-tab">
-                        <li><a href="#daftar-target-indikator" data-toggle="tab">Manajemen Target Indikator</a></li>
-                        <li  class="active"><a href="#verifikasi" data-toggle="tab">Verifikasi Capaian Indikator</a></li>
+                        <li class="active"><a href="#daftar-target-indikator" data-toggle="tab">Manajemen Target Indikator</a></li>
+                        <li><a href="#verifikasi" data-toggle="tab">Verifikasi Capaian Indikator</a></li>
                         <li><a href="#daftar-target-kegiatan" data-toggle="tab">Manajemen Target Kegiatan</a></li>
                         <li><a href="#verifikasi-kegiatan" data-toggle="tab">Verifikasi Kegiatan</a></li>
                     </ul>

@@ -29,8 +29,8 @@
                     </ul>
                     <div class="tab-content">
                         <div class="tab-pane active" id="a">
-                            <table id="patientfilter" class="table table-striped dt-responsive nowrap" cellspacing="0"
-                                width="100%">
+                            {{-- tabel strategi --}}
+                            <table class="table table-striped dt-responsive nowrap" cellspacing="0">
                                 <thead>
                                     <tr>
                                         <th>Strategi</th>
@@ -38,14 +38,6 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {{-- @foreach ($aspek as $item)
-                                                    <tr>
-                                                    <td width="50%">{{ $item->strategi }}</td>
-                                                    <td>
-                                                        <span class="badge shade-yellow min-90" style="width: 60%;">28.6%</span>
-                                                    </td>
-                                                    </tr>
-                                                     @endforeach --}}
                                     <tr>
                                         <td>1. Alokasi dan tataguna lahan</td>
                                         <td>
@@ -78,9 +70,67 @@
                                     </tr>
                                 </tbody>
                             </table>
+
+                            {{-- tabel indikator kunci --}}
+                            <table class="table table-striped dt-responsive nowrap" cellspacing="0"
+                                width="100%">
+                                <thead>
+                                    <tr>
+                                        <th>Strategi</th>
+                                        <th>Indikator Makro</th>
+                                        <th>Target</th>
+                                        <th>Satuan</th>
+                                        <th>Capaian Saat Ini</th>
+                                        <th>Tingkat Capaian</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>1. Alokasi dan tataguna lahan</td>
+                                        <td>Indikator makro 1</td>
+                                        <td>-</td>
+                                        <td>-</td>
+                                        <td>-</td>
+                                        <td>-</td>
+                                    </tr>
+                                    <tr>
+                                        <td>2. Akses modal penghidupan​</td>
+                                        <td>Indikator makro 2</td>
+                                        <td>-</td>
+                                        <td>-</td>
+                                        <td>-</td>
+                                        <td>-</td>
+                                    </tr>
+                                    <tr>
+                                        <td>3. Produktivitas dan diversifikasi</td>
+                                        <td>Indikator makro 3</td>
+                                        <td>-</td>
+                                        <td>-</td>
+                                        <td>-</td>
+                                        <td>-</td>
+                                    </tr>
+                                    <tr>
+                                        <td>4. Rantai nilai</td>
+                                        <td>Indikator makro 4</td>
+                                        <td>-</td>
+                                        <td>-</td>
+                                        <td>-</td>
+                                        <td>-</td>
+                                    </tr>
+                                    <tr>
+                                        <td>5. Jasa ekosistem</td>
+                                        <td>Indikator makro 5</td>
+                                        <td>-</td>
+                                        <td>-</td>
+                                        <td>-</td>
+                                        <td>-</td>
+                                    </tr>
+                                </tbody>
+                            </table>
                         </div>
                         <div class="tab-pane" id="b">
-                            <table id="patientfiltertoday" class="display" style="width:100%">
+                            {{-- tabel intervensi --}}
+                            <table class="table table-striped dt-responsive nowrap" style="width:100%">
                                 <thead>
                                     <tr>
                                         <th>Intervensi</th>
@@ -88,14 +138,6 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {{-- @foreach ($tables_jurisdiction as $table)
-                                <tr>
-                                <td width="50%">{{ $table->intervensi }}</td>
-                                <td>
-                                    <span class="badge shade-green min-90" style="width: 45%;">45%</span>
-                                </td>
-                                </tr>
-                                 @endforeach --}}
                                     <tr>
                                         <td>1.1 Alokasi kebun kakao dengan mempertimbangkan kesesuaian lahan dan kawasan
                                             lindung</td>
