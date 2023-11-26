@@ -13,8 +13,8 @@
     <form action="/session/login" method="POST">
     @csrf
     <div class="mb-3">
-        <label for="email" class="form-label">Email<span class="text-danger">*</span></label>
-        <input type="email" name="email" value="{{ Session::get('email') }}" class="form-control">
+        <label for="username" class="form-label">Username<span class="text-danger">*</span></label>
+        <input type="username" name="username" value="{{ Session::get('username') }}" class="form-control">
     </div>
     <div class="mb-3">
         <label for="password" class="form-label">Password<span class="text-danger">*</span></label>

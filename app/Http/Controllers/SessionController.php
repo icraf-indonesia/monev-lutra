@@ -16,17 +16,17 @@ class SessionController extends Controller
 
     function login(Request $request)
     {
-        Session::flash('email',$request->email);
+        Session::flash('username', $request->username);
         $request->validate([
-            'email' => 'required',
+            'username' => 'required',
             'password' => 'required'
         ],[
-            'email.required' => 'Email wajib diisi',
+            'username.required' => 'Username wajib diisi',
             'password.required' => 'Password wajib diisi'
         ]);
 
         $infologin = [
-            'email'=>$request->email,
+            'username'=>$request->username,
             'password'=>$request->password
         ];
 
