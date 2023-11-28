@@ -23,8 +23,8 @@ class MonevIndikatorSeeder extends Seeder
             array (
                 'id' => 1,
                 'indikator' => 'Luas kawasan hutan',
-                'stakeholder1' => 'Kesatuan Pengelolaan Hutan',
-                'stakeholder2' => 'Dinas Pekerjaan Umum, Tata Ruang, Perumahan, Kawasan Permukiman, dan Pertanahan; Bappelitbangda',
+                'stakeholder1' => 'KPH',
+                'stakeholder2' => 'KPH',
                 'id_intervensi' => 1,
                 'id_iku' => 2,
                 'id_ikk' => 2,
