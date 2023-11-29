@@ -252,6 +252,15 @@
                                     </div>
                                 </div>
                                 <div class="form-group row">
+                                    <label class="col-lg-3 col-form-label">Lembaga</label>
+                                    <div class="col-lg-9">
+                                        <select class="form-control select" name="lembaga" id="lembaga">
+                                            <option value="">== Pilih Lembaga ==</option>
+                                        </select>
+                                        <span class="form-text text-muted">Pilih salah satu <b>lembaga</b> yang sesuai</span>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
                                     <label class="col-lg-3 col-form-label">Periode</label>
                                     <div class="col-lg-9">
                                         <input name="tahun" class="date-own form-control @error('tahun') is-invalid @enderror" placeholder="" type="text">
