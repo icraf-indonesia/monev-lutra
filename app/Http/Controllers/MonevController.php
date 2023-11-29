@@ -51,7 +51,7 @@ class MonevController extends Controller
 
         $strategies = DB::table('monev_strategies')->get();
 
-        return view('pages.03_indikator', ['strat'=>$strategies, 'tables'=>$indikator]);
+        return view('pages.indikator', ['strat'=>$strategies, 'tables'=>$indikator]);
     }
 
     public function tentang(Request $request)

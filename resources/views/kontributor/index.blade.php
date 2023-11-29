@@ -272,7 +272,7 @@
                                         <select class="form-control select" name="indikator" id="indikator">
                                             <option value="">== Pilih Kegiatan ==</option>
                                         </select>
-                                        <span class="form-text text-muted">Pilih salah satu <b>Kegiatan</b> yang
+                                        <span class="form-text text-muted">Pilih salah satu <b>kegiatan</b> yang
                                             sesuai</span>
                                     </div>
                                 </div>
