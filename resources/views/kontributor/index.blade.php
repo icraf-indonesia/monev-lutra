@@ -96,7 +96,7 @@
 
                         {{-- tab insert capaian  --}}
                         <div class="tab-pane" id="b">
-                            <form class="page-box" method="post" action="/kontributor/store_capaian">
+                            <form class="page-box" method="post" action="/kontributor/store_capaian" enctype="multipart/form-data">
                                 @csrf
                                 <div class="form-group row">
                                     <label class="col-lg-3 col-form-label">Strategi</label>
@@ -227,7 +227,7 @@
 
                         {{-- tab insert kegiatan  --}}
                         <div class="tab-pane" id="d">
-                            <form class="page-box" method="post" action="/kontributor/storeKegiatan">
+                            <form class="page-box" method="post" action="/kontributor/store_kegiatan">
                                 @csrf
                                 <div class="form-group row">
                                     <label class="col-lg-3 col-form-label">Strategi</label>
@@ -255,6 +255,9 @@
                                     <div class="col-lg-9">
                                         <select class="form-control select" name="lembaga" id="lembaga">
                                             <option value="">== Pilih Lembaga ==</option>
+                                            @foreach ($lembaga as $l)
+                                                <option value="{{$l->id}}">{{$l->lembaga}}</option>
+                                            @endforeach
                                         </select>
                                         <span class="form-text text-muted">Pilih salah satu <b>lembaga</b> yang sesuai</span>
                                     </div>
@@ -262,7 +265,8 @@
                                 <div class="form-group row">
                                     <label class="col-lg-3 col-form-label">Periode</label>
                                     <div class="col-lg-9">
-                                        <input name="periode" class="date-own form-control @error('periode') is-invalid @enderror" placeholder="" type="text">
+                                        From <input name="periode1" class="date-own" placeholder="" type="text">
+                                        To <input name="periode2" class="date-own" placeholder="" type="text">
                                     </div>
                                 </div>
                                 <div class="form-group row">

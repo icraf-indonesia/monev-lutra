@@ -34,7 +34,9 @@ class KontributorController extends Controller
                         ->select('monev_indikators.id', 'monev_indikators.indikator', 'target', 'satuan', 'tahun', 'capaian', 'monev_capaians.dokumen', 'status')
                         ->paginate(10);
 
-        return view('kontributor.index', ['strategi' => $strategi, 'tables' => $indikator]);
+        $lembaga = DB::table('lembaga')->get();
+
+        return view('kontributor.index', ['strategi' => $strategi, 'tables' => $indikator, 'lembaga' => $lembaga]);
     }
 
     public function intervensi($id)
@@ -121,7 +123,7 @@ class KontributorController extends Controller
             'tahun' => 'required',
             'capaian' => 'required',
             // 'satuan' => 'required',
-            'dokumen' => 'required|file|image|mimes:jpeg,png,jpg,pdf,xlsx,xls,doc,docx|max:5120'
+            'dokumen' => 'required|mimes:pdf,xlsx,xls,doc,docx|max:5120'
         ]);
 
         $file = $request->dokumen;
@@ -136,9 +138,10 @@ class KontributorController extends Controller
                             ->where('id', $request->indikator)
                             ->first()->indikator;
 
-        $monev_capaian = MonevCapaian::create([
+        MonevCapaian::create([
             'tahun' => $request->tahun,
-            'parameter_pengukuran' => $detail_indikator->indikator,
+            'id_indikator' => $request->indikator,
+            'parameter_pengukuran' => $detail_indikator,
             'capaian' => $request->capaian,
             'dokumen' => $nama_file
         ]);
@@ -152,8 +155,7 @@ class KontributorController extends Controller
             'strategi' => 'required',
             'intervensi' => 'required',
             'lembaga' => 'required',
-            'tahun' => 'required',
-            'periode' => 'required',
+            // 'periode' => 'required',
             'kegiatan' => 'required',
             'realisasi_volume' => 'required',
             'realisasi_anggaran' => 'required',
@@ -165,7 +167,7 @@ class KontributorController extends Controller
                             ->first()->kegiatan;
 
         MonevRealisasi::create([
-            'periode' => $request->tahun,
+            'periode' => $request->periode1 . '+' . $request->periode2,
             'id_kegiatan' => $request->indikator,
             'realisasi_volume' => $request->realisasi_volume,
             'realisasi_anggaran' => $request->realisasi_anggaran
