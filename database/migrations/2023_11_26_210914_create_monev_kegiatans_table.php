@@ -18,6 +18,9 @@ return new class extends Migration
             $table->string('kegiatan')->nullable();
             $table->foreignId('id_strategi');
             $table->foreignId('id_intervensi');
+            $table->foreignId('id_lembaga');
+            $table->string('indikator_kegiatan');
+            $table->string('nomenklatur')->nullable();
             $table->string('target_volume')->nullable();
             $table->string('target_anggaran')->nullable();
             $table->timestamps();

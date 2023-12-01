@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\MonevCapaian;
 use App\Models\MonevIndikator;
+use App\Models\MonevRealisasi;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -26,11 +27,11 @@ class KontributorController extends Controller
 
         $indikator =  DB::table('stakeholders')
                         ->leftJoin('indikator_stakeholder', 'indikator_stakeholder.id_stakeholder', '=', 'stakeholders.id')
-                        ->leftJoin('monev_indikators', 'monev_indikators.id', '=', 'indikator_stakeholder.id_indikator')
+                        ->leftJoin('monev_indikators', 'monev_indikators.id', '=', 'indikator_stakeholder.id_indikator') # have to check this line
                         ->leftJoin('monev_capaians', 'monev_indikators.id', '=', 'monev_capaians.id_indikator')
                         ->where('indikator_stakeholder.id_stakeholder', $id_stakeholder)
                         ->orderByDesc('monev_indikators.id')
-                        ->select('monev_indikators.id', 'monev_indikators.indikator', 'target', 'satuan', 'tahun', 'capaian', 'dokumen', 'status')
+                        ->select('monev_indikators.id', 'monev_indikators.indikator', 'target', 'satuan', 'tahun', 'capaian', 'monev_capaians.dokumen', 'status')
                         ->paginate(10);
 
         return view('kontributor.index', ['strategi' => $strategi, 'tables' => $indikator]);
@@ -56,7 +57,7 @@ class KontributorController extends Controller
     {
         $satuan = DB::table('monev_indikators')
                             ->where('id', $id)
-                            ->pluck('satuan','id');
+                            ->pluck('dokumen', 'satuan', 'id');
         return json_encode($satuan);
     }
 
@@ -68,8 +69,8 @@ class KontributorController extends Controller
             'indikator' => 'required',
             'tahun' => 'required',
             'capaian' => 'required',
-            'satuan' => 'required',
-            'dokumen' => 'required|file|image|mimes:jpeg,png,jpg,pdf|max:2048'
+            // 'satuan' => 'required',
+            'dokumen' => 'required|file|image|mimes:jpeg,png,jpg,pdf,xlsx,xls,doc,docx|max:5120'
         ]);
 
         $file = $request->dokumen;
@@ -111,7 +112,7 @@ class KontributorController extends Controller
         return redirect('/')->with('status' ,'Data berhasil ditambah.');
     }
 
-    public function store(Request $request)
+    public function storeCapaian(Request $request)
     {
         $request->validate([
             'strategi' => 'required',
@@ -119,20 +120,57 @@ class KontributorController extends Controller
             'indikator' => 'required',
             'tahun' => 'required',
             'capaian' => 'required',
-            // 'satuan' => 'required'
+            // 'satuan' => 'required',
+            'dokumen' => 'required|file|image|mimes:jpeg,png,jpg,pdf,xlsx,xls,doc,docx|max:5120'
         ]);
+
+        $file = $request->dokumen;
+
+		$nama_file = time()."_".$file->getClientOriginalName();
+
+      	// isi dengan nama folder tempat kemana file diupload
+		$tujuan_upload = 'dokumen';
+		$file->move($tujuan_upload, $nama_file);
 
         $detail_indikator = DB::table('monev_indikators')
                             ->where('id', $request->indikator)
                             ->first()->indikator;
 
-        MonevCapaian::create([
+        $monev_capaian = MonevCapaian::create([
             'tahun' => $request->tahun,
-            'id_indikator' => $request->indikator,
-            'parameter_pengukuran' => $detail_indikator,
-            'capaian' => $request->capaian
+            'parameter_pengukuran' => $detail_indikator->indikator,
+            'capaian' => $request->capaian,
+            'dokumen' => $nama_file
         ]);
 
         return redirect()->route('kontributor')->withFragment('#b')->with('status' ,'Data berhasil ditambah.');
+    }
+
+    public function storeKegiatan(Request $request)
+    {
+        $request->validate([
+            'strategi' => 'required',
+            'intervensi' => 'required',
+            'lembaga' => 'required',
+            'tahun' => 'required',
+            'periode' => 'required',
+            'kegiatan' => 'required',
+            'realisasi_volume' => 'required',
+            'realisasi_anggaran' => 'required',
+            // 'satuan' => 'required'
+        ]);
+
+        $detail_kegiatan = DB::table('monev_kegiatans')
+                            ->where('id', $request->kegiatan)
+                            ->first()->kegiatan;
+
+        MonevRealisasi::create([
+            'periode' => $request->tahun,
+            'id_kegiatan' => $request->indikator,
+            'realisasi_volume' => $request->realisasi_volume,
+            'realisasi_anggaran' => $request->realisasi_anggaran
+        ]);
+
+        return redirect()->route('kontributor')->withFragment('#d')->with('status' ,'Data berhasil ditambah.');
     }
 }

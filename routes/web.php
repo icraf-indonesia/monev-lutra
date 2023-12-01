@@ -36,6 +36,8 @@ Route::group(['middleware' => 'auth'], function(){
     Route::get('indikator/{id}', [KontributorController::class, 'indikator']);
     Route::get('satuan/{id}', [KontributorController::class, 'satuan']);
     Route::post('/kontributor/store', [KontributorController::class, 'store']);
+    Route::post('/kontributor/store_kegiatan', [KontributorController::class, 'storeKegiatan']);
+    Route::post('/kontributor/store_capaian', [KontributorController::class, 'storeCapaian']);
 
     Route::get('/admin', [AdminController::class, 'index'])->name('admin');
     Route::put('/admin/verify/{id}', [AdminController::class, 'approveCapaian']);

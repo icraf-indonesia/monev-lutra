@@ -96,7 +96,7 @@
 
                         {{-- tab insert capaian  --}}
                         <div class="tab-pane" id="b">
-                            <form class="page-box" method="post" action="/kontributor/store">
+                            <form class="page-box" method="post" action="/kontributor/store_capaian">
                                 @csrf
                                 <div class="form-group row">
                                     <label class="col-lg-3 col-form-label">Strategi</label>
@@ -125,8 +125,7 @@
                                         <select class="form-control select" name="indikator" id="indikator">
                                             <option value="">== Pilih Indikator ==</option>
                                         </select>
-                                        <span class="form-text text-muted">Pilih salah satu <b>indikator</b> yang
-                                            sesuai</span>
+                                        <span class="form-text text-muted">Pilih salah satu <b>indikator</b> yang sesuai</span>
                                     </div>
                                 </div>
                                 <div class="form-group row">
@@ -150,8 +149,8 @@
                                 <div class="form-group row">
                                     <label class="col-lg-3 col-form-label">Upload Dokumen</label>
                                     <div class="col-lg-9">
-                                        <input class="form-control" type="file">
-                                        <span class="form-text text-muted">Ukuran file max. 5 mb</span>
+                                        <input class="form-control @error('dokumen') is-invalid @enderror" type="file" name="dokumen" >
+                                        <span class="form-text text-muted" id="dokumenPendukung">Catatan:</span><span class="form-text text-muted"> (Ukuran file max. 5 mb)</span>
                                     </div>
                                 </div>
                                 <div class="m-t-20 text-center">
@@ -228,7 +227,7 @@
 
                         {{-- tab insert kegiatan  --}}
                         <div class="tab-pane" id="d">
-                            <form class="page-box" method="post" action="/kontributor/store">
+                            <form class="page-box" method="post" action="/kontributor/storeKegiatan">
                                 @csrf
                                 <div class="form-group row">
                                     <label class="col-lg-3 col-form-label">Strategi</label>
@@ -263,13 +262,13 @@
                                 <div class="form-group row">
                                     <label class="col-lg-3 col-form-label">Periode</label>
                                     <div class="col-lg-9">
-                                        <input name="tahun" class="date-own form-control @error('tahun') is-invalid @enderror" placeholder="" type="text">
+                                        <input name="periode" class="date-own form-control @error('periode') is-invalid @enderror" placeholder="" type="text">
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <label class="col-lg-3 col-form-label">Kegiatan</label>
                                     <div class="col-lg-9">
-                                        <select class="form-control select" name="indikator" id="indikator">
+                                        <select class="form-control select" name="kegiatan" id="kegiatan">
                                             <option value="">== Pilih Kegiatan ==</option>
                                         </select>
                                         <span class="form-text text-muted">Pilih salah satu <b>kegiatan</b> yang
@@ -279,25 +278,25 @@
                                 <div class="form-group row">
                                     <label class="col-lg-3 col-form-label">Target Volume</label>
                                     <div class="col-lg-9">
-                                        <input name="satuan" class="form-control" placeholder="" type="text" disabled id="satuan">
+                                        <input name="target_volume" class="form-control" placeholder="" type="text" disabled id="target_volume">
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <label class="col-lg-3 col-form-label">Target Anggaran</label>
                                     <div class="col-lg-9">
-                                        <input name="satuan" class="form-control" placeholder="" type="text" disabled id="satuan">
+                                        <input name="target_anggaran" class="form-control" placeholder="" type="text" disabled id="target_anggaran">
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <label class="col-lg-3 col-form-label">Realisasi Volume</label>
                                     <div class="col-lg-9">
-                                        <input name="capaian" class="form-control @error('capaian') is-invalid @enderror" placeholder="" type="text">
+                                        <input name="realisasi_volume" class="form-control @error('realisasi_volume') is-invalid @enderror" placeholder="" type="text">
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <label class="col-lg-3 col-form-label">Realisasi Anggaran</label>
                                     <div class="col-lg-9">
-                                        <input name="capaian" class="form-control @error('capaian') is-invalid @enderror" placeholder="" type="text">
+                                        <input name="realisasi_anggaran" class="form-control @error('realisasi_anggaran') is-invalid @enderror" placeholder="" type="text">
                                     </div>
                                 </div>
                                 <div class="m-t-20 text-center">
@@ -366,10 +365,11 @@ $(document).ready(function() {
                 type: "GET",
                 dataType: "json",
                 success: function(data3) {
-                    $('input[name="satuan"]').empty();
+                    {{-- console.log(data3); --}}
                     $.each(data3, function(key, value) {
                         //$('input[name="satuan"]').append(' value="'+ value +'">');
-                        document.getElementById('satuan').value = value;
+                        document.getElementById('satuan').value = key;
+                        $('#dokumenPendukung').text(value);
                     });
                 }
             });

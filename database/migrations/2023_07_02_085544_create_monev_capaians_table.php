@@ -19,6 +19,7 @@ return new class extends Migration
             $table->foreignId('id_indikator');
             $table->string('parameter_pengukuran')->nullable();
             $table->string('capaian')->nullable();
+            $table->string('dokumen')->nullable();
             $table->integer('status')->default(0);
             $table->string('verified_by')->nullable();
             $table->timestamps();
