@@ -63,6 +63,25 @@ class KontributorController extends Controller
         return json_encode($satuan);
     }
 
+    public function kegiatan($intervensi, $lembaga)
+    {
+        $lembaga = DB::table('monev_kegiatans')
+                            ->where('id_intervensi', $intervensi)
+                            ->where('id_lembaga', $lembaga)
+                            ->pluck('kegiatan', 'id');
+
+        return json_encode($lembaga);
+    }
+
+    public function target($id)
+    {
+        $target = DB::table('monev_kegiatans')
+                            ->where('id', $id)
+                            ->pluck('target_volume', 'target_anggaran');
+
+        return json_encode($target);
+    }
+
     public function store_old(Request $request)
     {
         $request->validate([
@@ -155,20 +174,20 @@ class KontributorController extends Controller
             'strategi' => 'required',
             'intervensi' => 'required',
             'lembaga' => 'required',
-            // 'periode' => 'required',
+            'periode1' => 'required',
+            'periode2' => 'required',
             'kegiatan' => 'required',
             'realisasi_volume' => 'required',
-            'realisasi_anggaran' => 'required',
-            // 'satuan' => 'required'
+            'realisasi_anggaran' => 'required'
         ]);
 
-        $detail_kegiatan = DB::table('monev_kegiatans')
+        $kegiatan = DB::table('monev_kegiatans')
                             ->where('id', $request->kegiatan)
-                            ->first()->kegiatan;
+                            ->first()->id_kegiatan;
 
         MonevRealisasi::create([
-            'periode' => $request->periode1 . '+' . $request->periode2,
-            'id_kegiatan' => $request->indikator,
+            'periode' => $request->periode1 . '-' . $request->periode2,
+            'id_kegiatan' => $kegiatan,
             'realisasi_volume' => $request->realisasi_volume,
             'realisasi_anggaran' => $request->realisasi_anggaran
         ]);

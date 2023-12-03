@@ -35,6 +35,8 @@ Route::group(['middleware' => 'auth'], function(){
     Route::get('intervensi/{id}', [KontributorController::class, 'intervensi']);
     Route::get('indikator/{id}', [KontributorController::class, 'indikator']);
     Route::get('satuan/{id}', [KontributorController::class, 'satuan']);
+    Route::get('kegiatan/{id_i}/{id_l}', [KontributorController::class, 'kegiatan']);
+    Route::get('target/{id}', [KontributorController::class, 'target']);
     Route::post('/kontributor/store', [KontributorController::class, 'store']);
     Route::post('/kontributor/store_kegiatan', [KontributorController::class, 'storeKegiatan']);
     Route::post('/kontributor/store_capaian', [KontributorController::class, 'storeCapaian']);

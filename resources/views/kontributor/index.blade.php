@@ -232,7 +232,7 @@
                                 <div class="form-group row">
                                     <label class="col-lg-3 col-form-label">Strategi</label>
                                     <div class="col-lg-9">
-                                        <select class="form-control select" name="strategi" id="strategi">
+                                        <select class="form-control select" name="strategi2" id="strategi2">
                                             <option value="">== Pilih Strategi ==</option>
                                             @foreach ($strategi as $s)
                                                 <option value="{{$s->id}}">{{$s->strategi}}</option>
@@ -244,7 +244,7 @@
                                 <div class="form-group row">
                                     <label class="col-lg-3 col-form-label">Intervensi</label>
                                     <div class="col-lg-9">
-                                        <select class="form-control select" name="intervensi" id="intervensi">
+                                        <select class="form-control select" name="intervensi2" id="intervensi2">
                                             <option value="">== Pilih Intervensi ==</option>
                                         </select>
                                         <span class="form-text text-muted">Pilih salah satu <b>intervensi</b> yang sesuai</span>
@@ -275,8 +275,7 @@
                                         <select class="form-control select" name="kegiatan" id="kegiatan">
                                             <option value="">== Pilih Kegiatan ==</option>
                                         </select>
-                                        <span class="form-text text-muted">Pilih salah satu <b>kegiatan</b> yang
-                                            sesuai</span>
+                                        <span class="form-text text-muted">Pilih salah satu <b>kegiatan</b> yang sesuai</span>
                                     </div>
                                 </div>
                                 <div class="form-group row">
@@ -332,6 +331,7 @@ $(document).ready(function() {
                 dataType: "json",
                 success: function(data) {
                     $('select[name="intervensi"]').empty();
+                    $('select[name="intervensi"]').append('<option value="">== Pilih Intervensi ==</option>');
                     $.each(data, function(key, value) {
                         $('select[name="intervensi"]').append('<option value="'+ key +'">'+ value +'</option>');
                     });
@@ -339,6 +339,26 @@ $(document).ready(function() {
             });
         } else {
             $('select[name="intervensi"]').empty();
+        }
+    });
+
+    $('select[name="strategi2"]').on('change', function() {
+        var strategiID = $(this).val();
+        if(strategiID) {
+            $.ajax({
+                url: '/intervensi/' + strategiID,
+                type: "GET",
+                dataType: "json",
+                success: function(data) {
+                    $('select[name="intervensi2"]').empty();
+                    $('select[name="intervensi2"]').append('<option value="">== Pilih Intervensi ==</option>');
+                    $.each(data, function(key, value) {
+                        $('select[name="intervensi2"]').append('<option value="'+ key +'">'+ value +'</option>');
+                    });
+                }
+            });
+        } else {
+            $('select[name="intervensi2"]').empty();
         }
     });
 
@@ -351,6 +371,7 @@ $(document).ready(function() {
                 dataType: "json",
                 success: function(data2) {
                     $('select[name="indikator"]').empty();
+                    $('select[name="indikator"]').append('<option value="">== Pilih Indikator ==</option>');
                     $.each(data2, function(key, value) {
                         $('select[name="indikator"]').append('<option value="'+ key +'">'+ value +'</option>');
                     });
@@ -381,12 +402,60 @@ $(document).ready(function() {
             $('input[name="satuan"]').empty();
         }
     });
+
+    $('select[name="lembaga"]').on('change', function() {
+        var lembagaID = $(this).val();
+        var intervensiID = $('#intervensi2').val();
+        {{-- var intervensiID = $("select[name='intervensi']").val(); --}}
+
+        if(lembagaID) {
+            $.ajax({
+                url: '/kegiatan/' + intervensiID + '/' + lembagaID,
+                type: "GET",
+                dataType: "json",
+                success: function(data4) {
+                    $('select[name="kegiatan"]').empty();
+                    $('select[name="kegiatan"]').append('<option value="">== Pilih Kegiatan ==</option>');
+                    $.each(data4, function(key, value) {
+                        $('select[name="kegiatan"]').append('<option value="'+ key +'">'+ value +'</option>');
+                    });
+                }
+            });
+        } else {
+            $('input[name="kegiatan"]').empty();
+        }
+    });
+
+    $('select[name="kegiatan"]').on('change', function() {
+        var kegiatanID = $(this).val();
+        if(kegiatanID) {
+            $.ajax({
+                url: '/target/' + kegiatanID,
+                type: "GET",
+                dataType: "json",
+                success: function(data5) {
+                    $.each(data5, function(key, value) {
+                        document.getElementById('target_volume').value = value;
+                        document.getElementById('target_anggaran').value = key;
+                    });
+                }
+            });
+        } else {
+            $('input[name="satuan"]').empty();
+        }
+    });
 });
 
 $('.date-own').datetimepicker({
     viewMode: 'years',
     format: 'YYYY'
 });
+
+function getFormattedDate(date) {
+    var year1 = date.getFullYear();
+    var year2 = date.getFullYear() + 1;
+    return year1 + '-' + year2;
+}
 @stop
 
 
