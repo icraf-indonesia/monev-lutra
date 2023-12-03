@@ -171,9 +171,6 @@ class KontributorController extends Controller
     public function storeKegiatan(Request $request)
     {
         $request->validate([
-            'strategi' => 'required',
-            'intervensi' => 'required',
-            'lembaga' => 'required',
             'periode1' => 'required',
             'periode2' => 'required',
             'kegiatan' => 'required',
@@ -181,13 +178,9 @@ class KontributorController extends Controller
             'realisasi_anggaran' => 'required'
         ]);
 
-        $kegiatan = DB::table('monev_kegiatans')
-                            ->where('id', $request->kegiatan)
-                            ->first()->id_kegiatan;
-
         MonevRealisasi::create([
             'periode' => $request->periode1 . '-' . $request->periode2,
-            'id_kegiatan' => $kegiatan,
+            'id_kegiatan' => $request->kegiatan,
             'realisasi_volume' => $request->realisasi_volume,
             'realisasi_anggaran' => $request->realisasi_anggaran
         ]);
