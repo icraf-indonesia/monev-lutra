@@ -14,9 +14,8 @@ return new class extends Migration
     public function up()
     {
         Schema::create('monev_indikator_makros', function (Blueprint $table) {
-            $table->id();
-            $table->string('indikator_makro')->nullable();
-            $table->timestamps();
+            $table->foreignId('id_strategi');
+            $table->foreignId('id_indikator');
         });
     }
 

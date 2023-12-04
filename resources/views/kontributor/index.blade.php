@@ -168,34 +168,33 @@
                                         <tr>
                                             <th>No.</th>
                                             <th>Kegiatan</th>
+                                            <th>Nomenklatur Kegiatan</th>
+                                            <th>Indikator</th>
                                             <th>Periode</th>
                                             <th>Target Volume</th>
                                             <th>Target Anggaran</th>
-                                            <th>Diisi oleh</th>
                                             <th>Realisasi Volume</th>
                                             <th>Realisasi Anggaran</th>
                                             <th>Status</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @if (count($tables))
-                                            @foreach ($tables as $table)
+                                        @if (count($realisasi))
+                                            @foreach ($realisasi as $r)
                                                 <tr>
-                                                    <td width="1%">{{ (($tables->currentPage() * 10) - 10) + $loop->iteration }}</td>
-                                                    <td width="10%">{{ $table->indikator }}</td>
-                                                    <td width="1%">{{ $table->tahun }}</td>
-                                                    <td width="1%">{{ $table->target }}</td>
-                                                    <td width="2%">{{ $table->capaian }}</td>
-                                                    <td width="2%">{{ $table->satuan }}</td>
-                                                    @if (empty($table->dokumen))
-                                                        <td width="2%">Belum ada dokumen</td>
-                                                    @else
-                                                        <td width="2%"><a href="{{url('/dokumen/'.$table->dokumen)}}" target="_blank">{{$table->dokumen}}</a></td>
-                                                    @endif
+                                                    <td width="1%">{{ (($realisasi->currentPage() * 10) - 10) + $loop->iteration }}</td>
+                                                    <td width="8%">{{ $r->kegiatan }}</td>
+                                                    <td width="1%">{{ $r->nomenklatur }}</td>
+                                                    <td width="1%">{{ $r->indikator_kegiatan }}</td>
+                                                    <td width="2%">{{ $r->periode }}</td>
+                                                    <td width="2%">{{ $r->target_volume }}</td>
+                                                    <td width="2%">{{ $r->target_anggaran }}</td>
+                                                    <td width="2%">{{ $r->realisasi_volume }}</td>
+                                                    <td width="2%">{{ $r->realisasi_anggaran }}</td>
                                                     <td width="1%">
-                                                        @if($table->status === 0)
+                                                        @if($r->status === 0)
                                                             <span class="badge rounded-pill" style="background-color: #0d6efd !important;color: #fff;">Menunggu</span>
-                                                        @elseif($table->status === 1)
+                                                        @elseif($r->status === 1)
                                                             <span class="badge rounded-pill" style="background-color: #198754 !important;color: #fff;">Diterima</span>
                                                         @else
                                                             <span class="badge rounded-pill" style="background-color: #dc3545 !important;color: #fff;">Revisi</span>
@@ -204,11 +203,11 @@
                                                 </tr>
                                             @endforeach
                                         @else
-                                        <tbody>
-                                            <tr>
-                                                <td>Tidak ada data</td>
-                                            </tr>
-                                        </tbody>
+                                            <tbody>
+                                                <tr>
+                                                    <td>Tidak ada data</td>
+                                                </tr>
+                                            </tbody>
                                         @endif
                                     </tbody>
                                 </table>
@@ -216,11 +215,11 @@
                                 <br />
                                 <nav aria-label="Page navigation">
                                     <ul class="pagination">
-                                        <li class="page-item"><a class="page-link" href="{{ $tables->url($tables->onFirstPage()) }}">First</a></li>
-                                        <li class="page-item"><a class="page-link" href="{{ $tables->previousPageUrl() }}">Previous</a></li>
-                                        <li class="page-item"><a class="page-link" href="#">{{ $tables->currentPage() }}</a></li>
-                                        <li class="page-item"><a class="page-link" href="{{ $tables->nextPageUrl() }}">Next</a></li>
-                                        <li class="page-item"><a class="page-link" href="{{ $tables->url($tables->lastPage()) }}">Last</a></li>
+                                        <li class="page-item"><a class="page-link" href="{{ $realisasi->url($realisasi->onFirstPage()) }}">First</a></li>
+                                        <li class="page-item"><a class="page-link" href="{{ $realisasi->previousPageUrl() }}">Previous</a></li>
+                                        <li class="page-item"><a class="page-link" href="#">{{ $realisasi->currentPage() }}</a></li>
+                                        <li class="page-item"><a class="page-link" href="{{ $realisasi->nextPageUrl() }}">Next</a></li>
+                                        <li class="page-item"><a class="page-link" href="{{ $realisasi->url($realisasi->lastPage()) }}">Last</a></li>
                                     </ul>
                                 </nav>
                         </div>

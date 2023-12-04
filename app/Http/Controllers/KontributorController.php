@@ -34,9 +34,17 @@ class KontributorController extends Controller
                         ->select('monev_indikators.id', 'monev_indikators.indikator', 'target', 'satuan', 'tahun', 'capaian', 'monev_capaians.dokumen', 'status')
                         ->paginate(10);
 
+
+        $realisasi =  DB::table('monev_realisasis')
+                        ->leftJoin('monev_kegiatans', 'monev_realisasis.id_kegiatan', '=', 'monev_kegiatans.id')
+                        // ->where('indikator_stakeholder.id_stakeholder', $id_stakeholder)
+                        ->orderByDesc('monev_realisasis.id')
+                        ->select('monev_realisasis.id', 'monev_kegiatans.kegiatan', 'nomenklatur', 'indikator_kegiatan', 'periode', 'target_volume', 'target_anggaran', 'realisasi_volume', 'realisasi_anggaran', 'status')
+                        ->paginate(10);
+
         $lembaga = DB::table('lembaga')->get();
 
-        return view('kontributor.index', ['strategi' => $strategi, 'tables' => $indikator, 'lembaga' => $lembaga]);
+        return view('kontributor.index', ['strategi' => $strategi, 'realisasi' => $realisasi, 'tables' => $indikator, 'lembaga' => $lembaga]);
     }
 
     public function intervensi($id)
