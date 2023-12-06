@@ -27,7 +27,12 @@ class StakeholderSeeder extends Seeder
             6 => array ('id' => 7, 'stakeholder' => 'DP3AP2KB'),
             7 => array ('id' => 8, 'stakeholder' => 'DPUTRPKP2'),
             8 => array ('id' => 9, 'stakeholder' => 'KPH'),
-            9 => array ('id' => 10, 'stakeholder' => 'Sekretariat')
+            9 => array ('id' => 10, 'stakeholder' => 'Sekretariat'),
+            10 => array ('id' => 11, 'stakeholder' => 'BPHL'),
+            11 => array ('id' => 12, 'stakeholder' => 'BPN'),
+            12 => array ('id' => 13, 'stakeholder' => 'Disdik'),
+            13 => array ('id' => 14, 'stakeholder' => 'Diskominfo'),
+            14 => array ('id' => 15, 'stakeholder' => 'Disnakertrans')
         ));
 
         // DB::table('stakeholders')->insert(array (
