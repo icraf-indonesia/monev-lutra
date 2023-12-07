@@ -18,21 +18,21 @@ class LembagaSeeder extends Seeder
         DB::table('lembaga')->delete();
 
         DB::table('lembaga')->insert(array (
-            0 => array ('id' => 1, 'stakeholder' => 'Bappelitbangda'),
-            1 => array ('id' => 2, 'stakeholder' => 'BPBD'),
-            2 => array ('id' => 3, 'stakeholder' => 'DPMD'),
-            3 => array ('id' => 4, 'stakeholder' => 'Dinas Pertanian'),
-            4 => array ('id' => 5, 'stakeholder' => 'DLH'),
-            5 => array ('id' => 6, 'stakeholder' => 'DP2KUKM'),
-            6 => array ('id' => 7, 'stakeholder' => 'DP3AP2KB'),
-            7 => array ('id' => 8, 'stakeholder' => 'DPUTRPKP2'),
-            8 => array ('id' => 9, 'stakeholder' => 'KPH'),
-            9 => array ('id' => 10, 'stakeholder' => 'Sekretariat'),
-            10 => array ('id' => 11, 'stakeholder' => 'BPHL'),
-            11 => array ('id' => 12, 'stakeholder' => 'BPN'),
-            12 => array ('id' => 13, 'stakeholder' => 'Disdik'),
-            13 => array ('id' => 14, 'stakeholder' => 'Diskominfo'),
-            14 => array ('id' => 15, 'stakeholder' => 'Disnakertrans')
+            0 => array ('id' => 1, 'lembaga' => 'Bappelitbangda'),
+            1 => array ('id' => 2, 'lembaga' => 'BPBD'),
+            2 => array ('id' => 3, 'lembaga' => 'DPMD'),
+            3 => array ('id' => 4, 'lembaga' => 'Dinas Pertanian'),
+            4 => array ('id' => 5, 'lembaga' => 'DLH'),
+            5 => array ('id' => 6, 'lembaga' => 'DP2KUKM'),
+            6 => array ('id' => 7, 'lembaga' => 'DP3AP2KB'),
+            7 => array ('id' => 8, 'lembaga' => 'DPUTRPKP2'),
+            8 => array ('id' => 9, 'lembaga' => 'KPH'),
+            9 => array ('id' => 10, 'lembaga' => 'Sekretariat'),
+            10 => array ('id' => 11, 'lembaga' => 'BPHL'),
+            11 => array ('id' => 12, 'lembaga' => 'BPN'),
+            12 => array ('id' => 13, 'lembaga' => 'Disdik'),
+            13 => array ('id' => 14, 'lembaga' => 'Diskominfo'),
+            14 => array ('id' => 15, 'lembaga' => 'Disnakertrans')
         ));
     }
 }
