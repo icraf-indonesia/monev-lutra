@@ -28,7 +28,7 @@
                     </ul>
                     <div class="tab-content" style="padding-top: 10px;">
                         <div class="tab-pane active" id="edit-target">
-                            <form class="page-box" method="post" action="/admin/kegiatan/{{ $data->id }}" enctype="multipart/form-data">
+                            <form class="page-box" method="post" action="/admin/kegiatan/{{ $data->id }}">
                                 @csrf
                                 @method('put')
                                 <div class="form-group row">

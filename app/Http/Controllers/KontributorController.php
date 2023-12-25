@@ -39,7 +39,7 @@ class KontributorController extends Controller
                         ->leftJoin('monev_kegiatans', 'monev_realisasis.id_kegiatan', '=', 'monev_kegiatans.id')
                         // ->where('indikator_stakeholder.id_stakeholder', $id_stakeholder)
                         ->orderByDesc('monev_realisasis.id')
-                        ->select('monev_realisasis.id', 'monev_kegiatans.kegiatan', 'nomenklatur', 'indikator_kegiatan', 'periode', 'target_volume', 'target_anggaran', 'realisasi_volume', 'realisasi_anggaran', 'status')
+                        ->select('monev_realisasis.id', 'monev_kegiatans.kegiatan', 'nomenklatur', 'indikator_kegiatan', 'monev_kegiatans.periode', 'target_volume', 'target_anggaran', 'realisasi_volume', 'realisasi_anggaran', 'status')
                         ->paginate(10);
 
         $lembaga = DB::table('lembaga')->get();

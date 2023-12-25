@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('realisasi_volume')->nullable();
             $table->string('realisasi_anggaran')->nullable();
             $table->integer('status')->default(0);
+            $table->string('entered_by')->nullable();
             $table->string('verified_by')->nullable();
             $table->timestamps();
         });

@@ -48,6 +48,9 @@ Route::group(['middleware' => 'auth'], function(){
     Route::put('/admin/indikator/{id}', [AdminController::class, 'updateIndikator']);
     Route::delete('/admin/indikator/{id}', [AdminController::class, 'deleteIndikator']);
 
+    Route::get('/admin/kegiatan/{id}', [AdminController::class, 'editKegiatan']);
+    Route::put('/admin/kegiatan/{id}', [AdminController::class, 'updateKegiatan']);
+
     Route::get('/admin/user', [UserController::class, 'index']);
 
     Route::get('/session/logout', [SessionController::class, 'logout'])->name('logout');

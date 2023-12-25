@@ -28,7 +28,7 @@
                     </ul>
                     <div class="tab-content" style="padding-top: 10px;">
                         <div class="tab-pane active" id="edit-target">
-                            <form class="page-box" method="post" action="/admin/indikator/{{ $data->id }}" enctype="multipart/form-data">
+                            <form class="page-box" method="post" action="/admin/indikator/{{ $data->id }}">
                                 @csrf
                                 @method('put')
                                 <div class="form-group row">
@@ -50,7 +50,7 @@
                                     </div>
                                 </div>
                                 <div class="form-group row">
-                                    <label class="col-lg-3 col-form-label">Target Capaian</label>
+                                    <label class="col-lg-3 col-form-label">Target</label>
                                     <div class="col-lg-9">
                                         <input name="target" class="form-control @error('target') is-invalid @enderror" type="text" required value="{{ old('target', $data->target) }}">
                                     </div>
