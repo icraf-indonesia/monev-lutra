@@ -1,6 +1,6 @@
 @extends('header')
 
-@section('page_title', 'Ubah Capaian')
+@section('page_title', 'Ubah Target Kegiatan')
 
 @section('content')
     <div class="row" style="max-width: 1000px; margin: auto;">
@@ -23,7 +23,7 @@
                         </div>
                     @endif
                     <ul class="nav nav-tabs paitent-app-tab">
-                        <li><a href="/admin">Kembali</a></li>
+                        <li><a href="/admin/kegiatan">Kembali</a></li>
                         <li class="active"><a href="#edit-target" data-toggle="tab">Ubah Target Kegiatan</a></li>
                     </ul>
                     <div class="tab-content" style="padding-top: 10px;">
@@ -32,27 +32,39 @@
                                 @csrf
                                 @method('put')
                                 <div class="form-group row">
-                                    <label class="col-lg-3 col-form-label">Kegiatan</label>
+                                    <label class="col-lg-3 col-form-label">Periode</label>
                                     <div class="col-lg-9">
-                                        <input class="form-control" type="text" name="strategi" value="{{ old('strategi', $data->strategi) }}" disabled>
+                                        <input class="form-control" type="text" name="periode" value="{{ old('periode', $data->periode) }}" disabled>
                                     </div>
                                 </div>
                                 <div class="form-group row">
-                                    <label class="col-lg-3 col-form-label">Periode</label>
+                                    <label class="col-lg-3 col-form-label">Kegiatan</label>
                                     <div class="col-lg-9">
-                                        <input name="satuan" class="form-control @error('satuan') is-invalid @enderror" type="text" value="{{ old('satuan', $data->satuan) }}">
+                                        <textarea class="form-control @error('kegiatan') is-invalid @enderror" name="kegiatan" rows="5" disabled>{{ old('kegiatan', $data->kegiatan) }}</textarea>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-lg-3 col-form-label">Nomenklatur Kegiatan</label>
+                                    <div class="col-lg-9">
+                                        <textarea class="form-control @error('nomenklatur') is-invalid @enderror" name="nomenklatur" rows="5">{{ old('nomenklatur', $data->nomenklatur) }}</textarea>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-lg-3 col-form-label">Indikator</label>
+                                    <div class="col-lg-9">
+                                        <textarea class="form-control @error('indikator_kegiatan') is-invalid @enderror" name="indikator_kegiatan" rows="5">{{ old('indikator_kegiatan', $data->indikator_kegiatan) }}</textarea>
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <label class="col-lg-3 col-form-label">Target Volume</label>
                                     <div class="col-lg-9">
-                                        <input name="target" class="form-control @error('target') is-invalid @enderror" type="text" required value="{{ old('target', $data->target) }}">
+                                        <input name="target_volume" class="form-control @error('target_volume') is-invalid @enderror" type="text" value="{{ old('target_volume', $data->target_volume) }}">
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <label class="col-lg-3 col-form-label">Target Anggaran</label>
                                     <div class="col-lg-9">
-                                        <input name="target" class="form-control @error('target') is-invalid @enderror" type="text" required value="{{ old('target', $data->target) }}">
+                                        <input name="target_anggaran" class="form-control @error('target_anggaran') is-invalid @enderror" type="text" value="{{ old('target_anggaran', $data->target_anggaran) }}">
                                     </div>
                                 </div>
                                 <div class="m-t-20 text-center">

@@ -1,6 +1,6 @@
 @extends('header')
 
-@section('page_title', 'Ubah Capaian')
+@section('page_title', 'Ubah Target Indikator')
 
 @section('content')
     <div class="row" style="max-width: 1000px; margin: auto;">
