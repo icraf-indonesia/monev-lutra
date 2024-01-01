@@ -37,19 +37,33 @@ Route::group(['middleware' => 'auth'], function(){
     Route::get('satuan/{id}', [KontributorController::class, 'satuan']);
     Route::get('kegiatan/{id_i}/{id_l}', [KontributorController::class, 'kegiatan']);
     Route::get('target/{id}', [KontributorController::class, 'target']);
+
+    Route::get('/kontributor/capaian/tambah', [KontributorController::class, 'tambahCapaian']);
     Route::post('/kontributor/store', [KontributorController::class, 'store']);
-    Route::post('/kontributor/store_kegiatan', [KontributorController::class, 'storeKegiatan']);
     Route::post('/kontributor/store_capaian', [KontributorController::class, 'storeCapaian']);
+    Route::get('/kontributor/capaian/{id}', [KontributorController::class, 'revisiCapaian']);
+    Route::put('/kontributor/capaian/{id}', [KontributorController::class, 'updateRevisiCapaian']);
+
+    Route::get('/kontributor/realisasi', [KontributorController::class, 'daftarRealisasi']);
+    Route::get('/kontributor/realisasi/tambah', [KontributorController::class, 'tambahRealisasi']);
+    Route::post('/kontributor/store_realisasi', [KontributorController::class, 'storeRealisasi']);
+    Route::get('/kontributor/realisasi/{id}', [KontributorController::class, 'revisiRealisasi']);
+    Route::put('/kontributor/realisasi/{id}', [KontributorController::class, 'updateRevisiRealisasi']);
 
     Route::get('/admin', [AdminController::class, 'index'])->name('admin');
-    Route::put('/admin/verify/{id}', [AdminController::class, 'approveCapaian']);
-    Route::put('/admin/reject/{id}', [AdminController::class, 'rejectCapaian']);
     Route::get('/admin/indikator/{id}', [AdminController::class, 'editIndikator']);
     Route::put('/admin/indikator/{id}', [AdminController::class, 'updateIndikator']);
     Route::delete('/admin/indikator/{id}', [AdminController::class, 'deleteIndikator']);
+    Route::get('/admin/capaian', [AdminController::class, 'verifikasiCapaian']);
+    Route::put('/admin/capaian/verify/{id}', [AdminController::class, 'approveCapaian']);
+    Route::put('/admin/capaian/reject/{id}', [AdminController::class, 'rejectCapaian']);
 
+    Route::get('/admin/kegiatan', [AdminController::class, 'daftarKegiatan']);
     Route::get('/admin/kegiatan/{id}', [AdminController::class, 'editKegiatan']);
     Route::put('/admin/kegiatan/{id}', [AdminController::class, 'updateKegiatan']);
+    Route::get('/admin/realisasi', [AdminController::class, 'verifikasiRealisasi']);
+    Route::put('/admin/realisasi/verify/{id}', [AdminController::class, 'approveRealisasi']);
+    Route::put('/admin/realisasi/reject/{id}', [AdminController::class, 'rejectRealisasi']);
 
     Route::get('/admin/user', [UserController::class, 'index']);
 

@@ -15,6 +15,22 @@ class KontributorController extends Controller
     {
         $id_stakeholder = Auth::user()->getStakeholderId();
 
+        $indikator =  DB::table('stakeholders')
+                        ->join('indikator_stakeholder', 'indikator_stakeholder.id_stakeholder', '=', 'stakeholders.id')
+                        ->join('monev_indikators', 'monev_indikators.id', '=', 'indikator_stakeholder.id_indikator')
+                        ->join('monev_capaians', 'monev_indikators.id', '=', 'monev_capaians.id_indikator')
+                        ->where('indikator_stakeholder.id_stakeholder', $id_stakeholder)
+                        ->orderByDesc('monev_indikators.id')
+                        ->select('monev_capaians.id', 'monev_indikators.indikator', 'target', 'satuan', 'tahun', 'capaian', 'monev_capaians.dokumen', 'status')
+                        ->paginate(10);
+
+        return view('kontributor.index', ['tables' => $indikator]);
+    }
+
+    public function tambahCapaian()
+    {
+        $id_stakeholder = Auth::user()->getStakeholderId();
+
         $strategi =  DB::table('stakeholders')
                         ->leftJoin('indikator_stakeholder', 'indikator_stakeholder.id_stakeholder', '=', 'stakeholders.id')
                         ->leftJoin('monev_indikators', 'monev_indikators.id', '=', 'indikator_stakeholder.id_indikator')
@@ -25,26 +41,40 @@ class KontributorController extends Controller
                         ->select('strategi','monev_strategies.id as id')
                         ->get()->unique('strategi');
 
-        $indikator =  DB::table('stakeholders')
-                        ->leftJoin('indikator_stakeholder', 'indikator_stakeholder.id_stakeholder', '=', 'stakeholders.id')
-                        ->leftJoin('monev_indikators', 'monev_indikators.id', '=', 'indikator_stakeholder.id_indikator') # have to check this line
-                        ->leftJoin('monev_capaians', 'monev_indikators.id', '=', 'monev_capaians.id_indikator')
-                        ->where('indikator_stakeholder.id_stakeholder', $id_stakeholder)
-                        ->orderByDesc('monev_indikators.id')
-                        ->select('monev_indikators.id', 'monev_indikators.indikator', 'target', 'satuan', 'tahun', 'capaian', 'monev_capaians.dokumen', 'status')
-                        ->paginate(10);
+        return view('kontributor.tambah_capaian', ['strategi' => $strategi]);
+    }
 
+    public function daftarRealisasi()
+    {
+        $id_stakeholder = Auth::user()->getStakeholderId();
 
         $realisasi =  DB::table('monev_realisasis')
-                        ->leftJoin('monev_kegiatans', 'monev_realisasis.id_kegiatan', '=', 'monev_kegiatans.id')
+                        ->join('monev_kegiatans', 'monev_realisasis.id_kegiatan', '=', 'monev_kegiatans.id')
                         // ->where('indikator_stakeholder.id_stakeholder', $id_stakeholder)
                         ->orderByDesc('monev_realisasis.id')
                         ->select('monev_realisasis.id', 'monev_kegiatans.kegiatan', 'nomenklatur', 'indikator_kegiatan', 'monev_kegiatans.periode', 'target_volume', 'target_anggaran', 'realisasi_volume', 'realisasi_anggaran', 'status')
                         ->paginate(10);
 
+        return view('kontributor.daftar_kegiatan', ['realisasi' => $realisasi]);
+    }
+
+    public function tambahRealisasi()
+    {
+        $id_stakeholder = Auth::user()->getStakeholderId();
+
+        $strategi =  DB::table('stakeholders')
+                        ->leftJoin('indikator_stakeholder', 'indikator_stakeholder.id_stakeholder', '=', 'stakeholders.id')
+                        ->leftJoin('monev_indikators', 'monev_indikators.id', '=', 'indikator_stakeholder.id_indikator')
+                        ->leftJoin('monev_intervensis', 'monev_indikators.id_intervensi', '=', 'monev_intervensis.id')
+                        ->leftJoin('monev_strategies', 'monev_strategies.id', '=', 'monev_intervensis.id_strategi')
+                        ->where('indikator_stakeholder.id_stakeholder', $id_stakeholder)
+                        ->whereNotNull('strategi')
+                        ->select('strategi','monev_strategies.id as id')
+                        ->get()->unique('strategi');
+
         $lembaga = DB::table('lembaga')->get();
 
-        return view('kontributor.index', ['strategi' => $strategi, 'realisasi' => $realisasi, 'tables' => $indikator, 'lembaga' => $lembaga]);
+        return view('kontributor.tambah_realisasi', ['strategi' => $strategi, 'lembaga' => $lembaga]);
     }
 
     public function intervensi($id)
@@ -173,12 +203,12 @@ class KontributorController extends Controller
             'dokumen' => $nama_file
         ]);
 
-        return redirect()->route('kontributor')->withFragment('#b')->with('status' ,'Data berhasil ditambah.');
+        return redirect()->route('kontributor')->withFragment('#b')->with('status' ,'Capaian indikator baru berhasil ditambah.');
     }
 
-    public function storeKegiatan(Request $request)
+    public function storeRealisasi(Request $request)
     {
-        $request->validate([
+        $request -> validate([
             'periode1' => 'required',
             'periode2' => 'required',
             'kegiatan' => 'required',
@@ -190,9 +220,77 @@ class KontributorController extends Controller
             'periode' => $request->periode1 . '-' . $request->periode2,
             'id_kegiatan' => $request->kegiatan,
             'realisasi_volume' => $request->realisasi_volume,
-            'realisasi_anggaran' => $request->realisasi_anggaran
+            'realisasi_anggaran' => $request->realisasi_anggaran,
+            'entered_by' => $request->entered_by
         ]);
 
-        return redirect()->route('kontributor')->withFragment('#d')->with('status' ,'Data berhasil ditambah.');
+        return redirect('/kontributor/kegiatan')->with('status' ,'Realisasi kegiatan baru berhasil ditambah.');
+    }
+
+    public function revisiCapaian($id)
+    {
+        $data = DB::table('monev_capaians')
+            ->join('monev_indikators', 'monev_capaians.id_indikator', '=', 'monev_indikators.id')
+            ->where('monev_capaians.id', $id)
+            ->select('monev_capaians.id as id', 'monev_indikators.indikator as indikator', 'target', 'satuan', 'capaian', 'tahun', 'monev_capaians.dokumen as dokumen')
+            ->first();
+
+        // return view('admin.edit', ['data' => MonevIndikator::find($id)]);
+        return view('kontributor.revisi_capaian', ['data' => $data]);
+    }
+
+    public function updateRevisiCapaian(Request $request, $id)
+    {
+        $rules = [
+            'tahun' => 'required',
+            'capaian' => 'required'
+        ];
+
+        $validatedData = $request->validate($rules);
+        $validatedData['target'] = $request->target;
+        $validatedData['satuan'] = $request->satuan;
+        $validatedData['status'] = 0;
+
+        MonevCapaian::find($id)->update($validatedData);
+        return redirect('/kontributor')->with('status', 'Capaian telah direvisi');
+    }
+
+    public function revisiRealisasi($id)
+    {
+        $data = DB::table('monev_realisasis')
+            ->join('monev_kegiatans', 'monev_kegiatans.id', '=', 'monev_realisasis.id_kegiatan')
+            ->where('monev_realisasis.id', $id)
+            ->select('monev_realisasis.id as id',
+                     'monev_kegiatans.kegiatan as kegiatan',
+                     'target_volume',
+                     'target_anggaran',
+                     'realisasi_volume',
+                     'realisasi_anggaran',
+                     DB::raw('SUBSTRING_INDEX( monev_realisasis.periode , "-", 1 ) AS periode1'),
+                     DB::raw('SUBSTRING_INDEX( monev_realisasis.periode , "-", -1 ) AS periode2'),
+                     )
+            ->first();
+
+        return view('kontributor.revisi_realisasi', ['data' => $data]);
+    }
+
+    public function updateRevisiRealisasi(Request $request, $id)
+    {
+        $rules = [
+            'periode1' => 'required',
+            'periode2' => 'required',
+            'realisasi_volume' => 'required',
+            'realisasi_anggaran' => 'required'
+        ];
+
+        $validatedData = $request->validate($rules);
+        $validatedData['periode'] = $request->periode1 . '-' . $request->periode2;
+        $validatedData['realisasi_volume'] = $request->realisasi_volume;
+        $validatedData['realisasi_anggaran'] = $request->realisasi_anggaran;
+        $validatedData['entered_by'] = $request->entered_by;
+        $validatedData['status'] = 0;
+
+        MonevRealisasi::find($id)->update($validatedData);
+        return redirect('/kontributor/realisasi')->with('status', 'Realisasi kegiatan telah direvisi');
     }
 }
