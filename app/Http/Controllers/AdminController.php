@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\MonevCapaian;
 use App\Models\MonevIndikator;
 use App\Models\MonevKegiatan;
+use App\Models\MonevPeriode;
 use App\Models\MonevRealisasi;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -14,8 +16,6 @@ class AdminController extends Controller
     public function index()
     {
         $strategi = DB::table('monev_strategies')->get();
-
-
 
         $target = DB::table('monev_indikators')
                         ->select('id', 'indikator', 'target', 'satuan', 'dokumen')
@@ -35,13 +35,48 @@ class AdminController extends Controller
         return view('admin.verifikasi_capaian', ['capaian' => $capaian]);
     }
 
-    public function daftarKegiatan()
+    public function daftarKegiatan(Request $request)
+    {
+        $selectedPeriode = isset($request->periode) ? $request->periode : 1;
+
+        $periode = DB::table('monev_periodes')->get();
+
+        $kegiatan = $this->kegiatanByPeriode($selectedPeriode);
+
+        return view('admin.daftar_kegiatan', ['kegiatan' => $kegiatan, 'periode' => $periode, 'selectedPeriode' => $selectedPeriode]);
+    }
+
+    public function kegiatanByPeriode($selectedPeriode)
     {
         $kegiatan = DB::table('monev_kegiatans')
-                        ->select('id', 'kegiatan', 'nomenklatur', 'indikator_kegiatan', 'periode', 'target_volume', 'target_anggaran')
+                        ->join('periode_kegiatan', 'monev_kegiatans.id', '=', 'periode_kegiatan.id_kegiatan')
+                        ->join('monev_periodes', 'periode_kegiatan.id_periode', '=', 'monev_periodes.id')
+                        ->select('monev_kegiatans.id as id', 'kegiatan', 'nomenklatur', 'indikator_kegiatan', 'monev_periodes.periode as periode', 'periode_kegiatan.target_volume as target_volume', 'periode_kegiatan.target_anggaran as target_anggaran')
+                        ->where('monev_periodes.id', $selectedPeriode)
                         ->paginate(10);
 
-        return view('admin.daftar_kegiatan', ['kegiatan' => $kegiatan]);
+        return $kegiatan;
+    }
+
+    public function tambahPeriode()
+    {
+        return view('admin.tambah_periode');
+    }
+
+    public function storePeriode(Request $request)
+    {
+        $p = $request->periode1 . '-' . $request->periode2;
+
+        MonevPeriode::create([ 'periode' => $p ]);
+        $last = MonevPeriode::where('periode', $p)->first();
+
+        for ($i=1; $i < 236; $i++) {
+            DB::table('periode_kegiatan')->insert(
+                ['id_periode' => $last->id, 'id_kegiatan' => $i, 'created_at' => Carbon::now()]
+            );
+        }
+
+        return redirect('/admin/kegiatan')->with('status' ,'Periode baru berhasil ditambah.');
     }
 
     public function verifikasiRealisasi()

@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+//use Carbon\Carbon;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
@@ -39,7 +40,7 @@ class MonevKegiatanSeeder extends Seeder
                 'kegiatan' => 'Memetakan tutupan lahan',
                 'id_lembaga' => 11,
                 'nomenklatur' => 'Memetakan tutupan lahan',
-                'indikator_kegiatan' => '',  
+                'indikator_kegiatan' => '',
                 'periode' => '2023-2024',
                 'target_volume' => '',
                 'target_anggaran' => ''
@@ -2887,6 +2888,7 @@ class MonevKegiatanSeeder extends Seeder
                 'id_lembaga' => 1,
                 'nomenklatur' => 'Penelitian dan Pengembangan Pertanian, Perkebunan dan Pangan',
                 'indikator_kegiatan' => 'Jumlah Dokumen Hasil Penelitian dan Pengembangan Pertanian, Perkebunan dan Pangan',
+                'periode' => '2023-2024',
                 'target_volume' => '',
                 'target_anggaran' => ''
             ),
@@ -2899,6 +2901,7 @@ class MonevKegiatanSeeder extends Seeder
                 'id_lembaga' => 4,
                 'nomenklatur' => 'Penelitian dan Pengembangan Pertanian, Perkebunan dan Pangan',
                 'indikator_kegiatan' => 'Jumlah Dokumen Hasil Penelitian dan Pengembangan Pertanian, Perkebunan dan Pangan',
+                'periode' => '2023-2024',
                 'target_volume' => '',
                 'target_anggaran' => ''
             ),
@@ -2911,6 +2914,7 @@ class MonevKegiatanSeeder extends Seeder
                 'id_lembaga' => 4,
                 'nomenklatur' => 'Pendampingan penggunaan sarana pendukung pertanian',
                 'indikator_kegiatan' => 'Jumlah pendampingan penggunaan sarana pendukung pertanian',
+                'periode' => '2023-2024',
                 'target_volume' => '',
                 'target_anggaran' => ''
             ),

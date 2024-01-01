@@ -29,7 +29,21 @@
                         <li><a href="{{url('')}}/admin/realisasi">Verifikasi Realisasi Kegiatan</a></li>
                     </ul>
                     <div class="tab-content" style="padding-top: 10px;">
-
+                        <div class="row">
+                            <div class="col-lg-9">
+                                <form method='get'>
+                                    <select class="form-control select" name="periode" id="periode" style="margin-bottom: 10px;" onchange="this.form.submit()">
+                                        @foreach ($periode as $p)
+                                            <option {{ ($selectedPeriode == $p->id) ? "selected":"" }} value="{{$p->id}}">{{$p->periode}}</option>
+                                            {{-- <option value="{{$p->id}}">{{$p->periode}}</option> --}}
+                                        @endforeach
+                                    </select>
+                                </form>
+                            </div>
+                            <div class="col-lg-3" style="padding: 10px 0px;">
+                                <a class="custom-badge status-green text-right" style="padding: 9px;" href="/admin/kegiatan/periode/tambah">Tambah Periode</a>
+                            </div>
+                        </div>
                         {{-- tab daftar kegiatan --}}
                         <div class="tab-pane active" id="daftar-kegiatan">
                             <div class="table-responsive">
