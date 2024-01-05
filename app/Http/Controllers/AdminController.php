@@ -162,17 +162,16 @@ class AdminController extends Controller
     public function editKegiatan($id)
     {
         $data = DB::table('monev_kegiatans')
-            // ->join('monev_intervensis', 'monev_indikators.id_intervensi', '=', 'monev_intervensis.id')
-            // ->join('monev_strategies', 'monev_intervensis.id_strategi', '=', 'monev_strategies.id')
+            ->join('periode_kegiatan', 'monev_kegiatans.id', '=', 'periode_kegiatan.id_kegiatan')
+            ->join('monev_periodes', 'periode_kegiatan.id_periode', '=', 'monev_periodes.id')
+            ->select('monev_kegiatans.id as id', 'monev_periodes.id as id_periode', 'kegiatan', 'nomenklatur', 'indikator_kegiatan', 'monev_periodes.periode as periode', 'periode_kegiatan.target_volume as target_volume', 'periode_kegiatan.target_anggaran as target_anggaran')
             ->where('monev_kegiatans.id', $id)
-            ->select('id', 'kegiatan', 'indikator_kegiatan', 'periode', 'nomenklatur' , 'target_volume', 'target_anggaran')
             ->first();
 
-        // return view('admin.edit', ['data' => MonevIndikator::find($id)]);
         return view('admin.edit_kegiatan', ['data' => $data]);
     }
 
-    public function updateKegiatan(Request $request, $id)
+    public function updateKegiatan(Request $request, $id, $p)
     {
         $rules = [
             'nomenklatur' => 'required',
@@ -186,8 +185,15 @@ class AdminController extends Controller
         $validatedData['indikator_kegiatan'] = $request->indikator_kegiatan;
         $validatedData['target_volume'] = $request->target_volume;
         $validatedData['target_anggaran'] = $request->target_anggaran;
+        $validatedData['updated_at'] = Carbon::now();
 
         MonevKegiatan::find($id)->update($validatedData);
+
+        DB::table('periode_kegiatan')
+            ->where('id_kegiatan', $id)
+            ->where('id_periode', $p)
+            ->update(['target_volume' => $request->target_volume, 'target_anggaran' => $request->target_anggaran, 'updated_at' => Carbon::now() ]);
+
         return redirect('/admin/kegiatan')->with('status', 'Berhasil mengubah kegiatan');
     }
 

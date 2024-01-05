@@ -28,7 +28,7 @@
                     </ul>
                     <div class="tab-content" style="padding-top: 10px;">
                         <div class="tab-pane active" id="edit-target">
-                            <form class="page-box" method="post" action="/admin/kegiatan/{{ $data->id }}">
+                            <form class="page-box" method="post" action="/admin/kegiatan/{{ $data->id }}/{{ $data->id_periode }}">
                                 @csrf
                                 @method('put')
                                 <div class="form-group row">

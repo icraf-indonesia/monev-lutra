@@ -60,7 +60,7 @@ Route::group(['middleware' => 'auth'], function(){
 
     Route::get('/admin/kegiatan', [AdminController::class, 'daftarKegiatan']);
     Route::get('/admin/kegiatan/{id}', [AdminController::class, 'editKegiatan']);
-    Route::put('/admin/kegiatan/{id}', [AdminController::class, 'updateKegiatan']);
+    Route::put('/admin/kegiatan/{id}/{p}', [AdminController::class, 'updateKegiatan']);
     Route::get('/admin/kegiatan/periode/tambah', [AdminController::class, 'tambahPeriode']);
     Route::post('/admin/kegiatan/store_periode', [AdminController::class, 'storePeriode']);
     Route::get('/admin/realisasi', [AdminController::class, 'verifikasiRealisasi']);
