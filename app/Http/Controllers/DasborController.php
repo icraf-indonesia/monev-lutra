@@ -131,8 +131,17 @@ class DasborController extends Controller
 
         $capaian_lahan = DB::select($q_lahan);
 
+        $luas_af_kakao = DB::table('luas_agroforestri_kakao')
+                            ->where('tahun', '=', $year)
+                            ->get();
+        $luas_aloc_kakao = DB::table('luas_alokasi_lahan_kakao')
+                            ->where('tahun', '=', $year)
+                            ->get();
+
         return view('pages.dasbor_lahan_tahunan', [
             'capaian_lahan' => $capaian_lahan,
+            'luas_aloc_kakao' => $luas_aloc_kakao,
+            'luas_af_kakao' => $luas_af_kakao,
             'tahun' => $tahun,
             'year' => $year
         ]);

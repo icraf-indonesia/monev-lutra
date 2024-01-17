@@ -224,7 +224,7 @@ class KontributorController extends Controller
             'entered_by' => $request->entered_by
         ]);
 
-        return redirect('/kontributor/kegiatan')->with('status' ,'Realisasi kegiatan baru berhasil ditambah.');
+        return redirect('/kontributor/realisasi')->with('status' ,'Realisasi kegiatan baru berhasil ditambah.');
     }
 
     public function revisiCapaian($id)
