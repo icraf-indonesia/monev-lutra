@@ -60,7 +60,8 @@ class AdminController extends Controller
 
     public function tambahPeriode()
     {
-        return view('admin.tambah_periode');
+        $periode = DB::table('monev_periodes')->paginate(10);
+        return view('admin.tambah_periode', ['periode' => $periode]);
     }
 
     public function storePeriode(Request $request)
@@ -76,7 +77,17 @@ class AdminController extends Controller
             );
         }
 
-        return redirect('/admin/kegiatan')->with('status' ,'Periode baru berhasil ditambah.');
+        return redirect('/admin/kegiatan/periode/tambah')->with('status' ,'Periode baru berhasil ditambah.');
+    }
+
+    public function deletePeriode($id)
+    {
+        MonevPeriode::destroy($id);
+        DB::table('periode_kegiatan')
+            ->where('id_periode', $id)
+            ->delete();
+
+        return redirect('/admin/kegiatan/periode/tambah')->with('status', 'Data berhasil dihapus.');
     }
 
     public function verifikasiRealisasi()

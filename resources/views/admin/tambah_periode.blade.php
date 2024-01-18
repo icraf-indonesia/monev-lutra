@@ -26,7 +26,7 @@
                     @endif
                     <ul class="nav nav-tabs paitent-app-tab">
                         <li><a href="/admin/kegiatan">Kembali</a></li>
-                        <li class="active"><a href="#tambah-periode" data-toggle="tab">Tambah Periode</a></li>
+                        <li class="active"><a href="#tambah-periode" data-toggle="tab">Kelola Periode</a></li>
                     </ul>
                     <div class="tab-content" style="padding-top: 10px;">
 
@@ -45,6 +45,34 @@
                                     <button class="btn btn-primary submit-btn" type="submit">Tambah</button>
                                 </div>
                             </form>
+
+                            <div class="table-responsive">
+                                <table id="tabel-data" class="table table-bordered table-striped"
+                                    style="width:100%; border:0; font-size:12;">
+                                    <thead>
+                                        <tr>
+                                            <th>No.</th>
+                                            <th>Periode</th>
+                                            <th>Aksi</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach ($periode as $k)
+                                            <tr>
+                                                <td width="1%">{{ (($periode->currentPage() * 10) - 10) + $loop->iteration }}</td>
+                                                <td width="5%">{{ $k->periode }}</td>
+                                                <td width="2%">
+                                                    <form action="/admin/kegiatan/periode/{{ $k->id }}" method="post" class="d-inline">
+                                                        @method('delete')
+                                                        @csrf
+                                                        <button type="submit" class="custom-badge status-red text-right" onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')">Hapus</button>
+                                                    </form>
+                                                </td>
+                                            </tr>
+                                        @endforeach
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                     </div>
                 </div>

@@ -41,7 +41,7 @@
                                 </form>
                             </div>
                             <div class="col-lg-3" style="padding: 10px 0px;">
-                                <a class="custom-badge status-green text-right" style="padding: 9px;" href="/admin/kegiatan/periode/tambah">Tambah Periode</a>
+                                <a class="custom-badge status-green text-right" style="padding: 9px;" href="/admin/kegiatan/periode/tambah">Kelola Periode</a>
                             </div>
                         </div>
                         {{-- tab daftar kegiatan --}}

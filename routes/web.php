@@ -63,6 +63,7 @@ Route::group(['middleware' => 'auth'], function(){
     Route::put('/admin/kegiatan/{id}/{p}', [AdminController::class, 'updateKegiatan']);
     Route::get('/admin/kegiatan/periode/tambah', [AdminController::class, 'tambahPeriode']);
     Route::post('/admin/kegiatan/store_periode', [AdminController::class, 'storePeriode']);
+    Route::delete('/admin/kegiatan/periode/{id}', [AdminController::class, 'deletePeriode']);
     Route::get('/admin/realisasi', [AdminController::class, 'verifikasiRealisasi']);
     Route::put('/admin/realisasi/verify/{id}', [AdminController::class, 'approveRealisasi']);
     Route::put('/admin/realisasi/reject/{id}', [AdminController::class, 'rejectRealisasi']);
