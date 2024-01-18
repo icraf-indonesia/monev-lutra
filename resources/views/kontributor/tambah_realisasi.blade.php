@@ -25,9 +25,17 @@
                     @endif
                     <ul class="nav nav-tabs paitent-app-tab">
                         <li><a href="{{url('')}}/kontributor">Daftar Input Capaian</a></li>
-                        <li><a href="{{url('')}}/kontributor/capaian/tambah">Tambah Capaian</a></li>
+                        @if (Auth::check())
+                            @if (Auth::user()->role === "kontributor")
+                            <li><a href="{{url('')}}/kontributor/capaian/tambah">Tambah Capaian</a></li>
+                            @endif
+                        @endif
                         <li><a href="{{url('')}}/kontributor/realisasi">Daftar Realisasi Kegiatan</a></li>
-                        <li class="active"><a href="{{url('')}}/kontributor/realisasi/tambah">Tambah Realisasi Kegiatan</a></li>
+                        @if (Auth::check())
+                            @if (Auth::user()->role !== "others")
+                            <li class="active"><a href="{{url('')}}/kontributor/realisasi/tambah">Tambah Realisasi Kegiatan</a></li>
+                            @endif
+                        @endif
                     </ul>
                     <div class="tab-content" style="padding-top: 10px;">
 

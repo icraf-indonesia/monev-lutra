@@ -70,10 +70,10 @@
                     <li><a class="home" href="{{url('')}}/capaian/tahunan">Profil Jurisdiksi</a></li>
                     {{-- <li><a class="home" href="{{url('')}}/kelembagaan">Kelembagaan</a></li> --}}
                     @if (Auth::check())
-						@if (Auth::user()->role === "kontributor")
-                    		<li><a href="{{url('')}}/kontributor">Kontributor</a></li>
-						@elseif (Auth::user()->role === "admin")
-                    		<li><a href="{{url('')}}/admin">Admin</a></li>
+						@if (Auth::user()->role === "admin")
+                    	    <li><a href="{{url('')}}/admin">Admin</a></li>
+						@else
+                            <li><a href="{{url('')}}/kontributor">Kontributor</a></li>
 						@endif
                     @endif
 				</ul>
@@ -108,10 +108,10 @@
                     <li><a class="home" href="{{url('')}}/gambaran_umum_tahunan">Profil Jurisdiksi</a></li>
                     {{-- <li><a href="{{url('')}}/kelembagaan">Kelembagaan</a></li> --}}
                     @if (Auth::check())
-						@if (Auth::user()->role === "kontributor")
-                    		<li><a href="{{url('')}}/kontributor">Kontributor</a></li>
-						@elseif (Auth::user()->role === "admin")
-                    		<li><a href="{{url('')}}/admin">Admin</a></li>
+						@if (Auth::user()->role === "admin")
+                    	    <li><a href="{{url('')}}/admin">Admin</a></li>
+						@else
+                            <li><a href="{{url('')}}/kontributor">Kontributor</a></li>
 						@endif
                     @endif
                 </ul>

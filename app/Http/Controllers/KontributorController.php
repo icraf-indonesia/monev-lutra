@@ -20,8 +20,8 @@ class KontributorController extends Controller
                         ->join('monev_indikators', 'monev_indikators.id', '=', 'indikator_stakeholder.id_indikator')
                         ->join('monev_capaians', 'monev_indikators.id', '=', 'monev_capaians.id_indikator')
                         ->where('indikator_stakeholder.id_stakeholder', $id_stakeholder)
-                        ->orderByDesc('monev_indikators.id')
-                        ->select('monev_capaians.id', 'monev_indikators.indikator', 'target', 'satuan', 'tahun', 'capaian', 'monev_capaians.dokumen', 'status')
+                        ->orderByDesc('update')
+                        ->select('monev_capaians.id', 'monev_indikators.indikator', 'target', 'satuan', 'tahun', 'capaian', 'monev_capaians.dokumen', 'status', 'monev_capaians.updated_at as update')
                         ->paginate(10);
 
         return view('kontributor.index', ['tables' => $indikator]);
@@ -51,8 +51,8 @@ class KontributorController extends Controller
         $realisasi =  DB::table('monev_realisasis')
                         ->join('monev_kegiatans', 'monev_realisasis.id_kegiatan', '=', 'monev_kegiatans.id')
                         // ->where('indikator_stakeholder.id_stakeholder', $id_stakeholder)
-                        ->orderByDesc('monev_realisasis.id')
-                        ->select('monev_realisasis.id', 'monev_kegiatans.kegiatan', 'nomenklatur', 'indikator_kegiatan', 'monev_kegiatans.periode', 'target_volume', 'target_anggaran', 'realisasi_volume', 'realisasi_anggaran', 'status')
+                        ->orderByDesc('update')
+                        ->select('monev_realisasis.id', 'monev_kegiatans.kegiatan', 'nomenklatur', 'indikator_kegiatan', 'monev_kegiatans.periode', 'target_volume', 'target_anggaran', 'realisasi_volume', 'realisasi_anggaran', 'status', 'monev_realisasis.updated_at as update')
                         ->paginate(10);
 
         return view('kontributor.daftar_kegiatan', ['realisasi' => $realisasi]);

@@ -221,7 +221,7 @@ class DasborController extends Controller
                         monev_indikators.id_landscale,
                         monev_indikators.id_sourceup,
                         monev_indikators.id_kdsd,
-                        monev_indikators.dokumen
+                        monev_capaians.dokumen
                     FROM monev_indikators, monev_intervensis, monev_strategies, monev_capaians
                     WHERE monev_intervensis.id = monev_indikators.id_intervensi
                     AND monev_strategies.id = monev_intervensis.id_strategi
@@ -294,7 +294,7 @@ class DasborController extends Controller
                         monev_indikators.id_landscale,
                         monev_indikators.id_sourceup,
                         monev_indikators.id_kdsd,
-                        monev_indikators.dokumen
+                        monev_capaians.dokumen
                     FROM monev_indikators, monev_intervensis, monev_strategies, monev_capaians
                     WHERE monev_intervensis.id = monev_indikators.id_intervensi
                     AND monev_strategies.id = monev_intervensis.id_strategi
@@ -360,7 +360,7 @@ class DasborController extends Controller
                         monev_indikators.id_landscale,
                         monev_indikators.id_sourceup,
                         monev_indikators.id_kdsd,
-                        monev_indikators.dokumen
+                        monev_capaians.dokumen
                     FROM monev_indikators, monev_intervensis, monev_strategies, monev_capaians
                     WHERE monev_intervensis.id = monev_indikators.id_intervensi
                     AND monev_strategies.id = monev_intervensis.id_strategi
@@ -425,7 +425,7 @@ class DasborController extends Controller
                         monev_indikators.id_landscale,
                         monev_indikators.id_sourceup,
                         monev_indikators.id_kdsd,
-                        monev_indikators.dokumen
+                        monev_capaians.dokumen
                     FROM monev_indikators, monev_intervensis, monev_strategies, monev_capaians
                     WHERE monev_intervensis.id = monev_indikators.id_intervensi
                     AND monev_strategies.id = monev_intervensis.id_strategi
