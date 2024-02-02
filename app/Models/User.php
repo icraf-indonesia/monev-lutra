@@ -47,4 +47,9 @@ class User extends Authenticatable
     {
         return $this->id_stakeholder;
     }
+
+    public function getRole()
+    {
+        return $this->role;
+    }
 }

@@ -132,8 +132,7 @@ class AdminController extends Controller
     public function updateIndikator(Request $request, $id)
     {
         $rules = [
-            'target' => 'required',
-            'satuan' => 'required'
+            'target' => 'required'
         ];
 
         $validatedData = $request->validate($rules);
@@ -141,7 +140,7 @@ class AdminController extends Controller
         $validatedData['satuan'] = $request->satuan;
 
         MonevIndikator::find($id)->update($validatedData);
-        return redirect('/admin')->with('status', 'Berhasil mengubah target');
+        return redirect()->back()->with('status', 'Berhasil mengubah target');
     }
 
     public function deleteIndikator($id)
@@ -157,7 +156,7 @@ class AdminController extends Controller
         $capaian->verified_by = $request->verified_by;
         $capaian->save();
 
-        return redirect('/admin/capaian')->with('status', 'Data capaian telah diapprove');
+        return redirect()->back()->with('status', 'Data capaian telah diapprove');
     }
 
     public function rejectCapaian(Request $request, $id)
@@ -167,7 +166,7 @@ class AdminController extends Controller
         $capaian->verified_by = $request->verified_by;
         $capaian->save();
 
-        return redirect('/admin/capaian')->with('status', 'Data capaian perlu direvisi');
+        return redirect()->back()->with('status', 'Data capaian perlu direvisi');
     }
 
     public function editKegiatan($id)
@@ -205,7 +204,7 @@ class AdminController extends Controller
             ->where('id_periode', $p)
             ->update(['target_volume' => $request->target_volume, 'target_anggaran' => $request->target_anggaran, 'updated_at' => Carbon::now() ]);
 
-        return redirect('/admin/kegiatan')->with('status', 'Berhasil mengubah kegiatan');
+        return redirect()->back()->with('status', 'Berhasil mengubah kegiatan');
     }
 
     public function approveRealisasi(Request $request, $id)
@@ -215,7 +214,7 @@ class AdminController extends Controller
         $realisasi->verified_by = $request->verified_by;
         $realisasi->save();
 
-        return redirect('/admin/realisasi')->with('status', 'Realisasi kegiatan telah diapprove');
+        return redirect()->back()->with('status', 'Realisasi kegiatan telah diapprove');
     }
 
     public function rejectRealisasi(Request $request, $id)
@@ -225,7 +224,7 @@ class AdminController extends Controller
         $realisasi->verified_by = $request->verified_by;
         $realisasi->save();
 
-        return redirect('/admin/realisasi')->with('status', 'Realisasi kegiatan perlu direvisi');
+        return redirect()->back()->with('status', 'Realisasi kegiatan perlu direvisi');
     }
 
 }

@@ -29,7 +29,7 @@
                     </ul>
                     <div class="tab-content" style="padding-top: 10px;">
                         <div class="tab-pane active" id="edit-capaian">
-                            <form class="page-box" method="post" action="/kontributor/capaian/{{ $data->id }}">
+                            <form class="page-box" method="post" action="/kontributor/capaian/{{ $data->id }}" enctype="multipart/form-data">
                                 @csrf
                                 @method('put')
                                 <div class="form-group row">
@@ -63,9 +63,16 @@
                                     </div>
                                 </div>
                                 <div class="form-group row">
-                                    <label class="col-lg-3 col-form-label">Dokumen</label>
+                                    <label class="col-lg-3 col-form-label">Dokumen Terunggah</label>
                                     <div class="col-lg-9">
                                         <input class="form-control" type="text" name="dokumen" value="{{ old('dokumen', $data->dokumen) }}" disabled>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-lg-3 col-form-label">Upload Revisi Dokumen Pendukung</label>
+                                    <div class="col-lg-9">
+                                        <input class="form-control" type="file" name="newdok" >
+                                        <span class="form-text text-muted">Catatan:</span><span class="form-text text-muted"> (Ukuran file max. 5 mb)</span>
                                     </div>
                                 </div>
                                 <div class="m-t-20 text-center">

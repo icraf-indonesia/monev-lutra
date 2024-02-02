@@ -14,8 +14,20 @@ class KontributorController extends Controller
     public function index()
     {
         $id_stakeholder = Auth::user()->getStakeholderId();
+        $role_stakeholder = Auth::user()->getRole();
 
-        $indikator =  DB::table('stakeholders')
+        if($role_stakeholder == "kegiatan"){
+            $indikator =  DB::table('stakeholders')
+                        ->join('indikator_stakeholder', 'indikator_stakeholder.id_stakeholder', '=', 'stakeholders.id')
+                        ->join('monev_indikators', 'monev_indikators.id', '=', 'indikator_stakeholder.id_indikator')
+                        ->join('monev_capaians', 'monev_indikators.id', '=', 'monev_capaians.id_indikator')
+                        ->where('indikator_stakeholder.id_stakeholder', $id_stakeholder)
+                        ->where('status', 1)
+                        ->orderByDesc('update')
+                        ->select('monev_capaians.id', 'monev_indikators.indikator', 'target', 'satuan', 'tahun', 'capaian', 'monev_capaians.dokumen', 'status', 'monev_capaians.updated_at as update')
+                        ->paginate(10);
+        } else {
+            $indikator =  DB::table('stakeholders')
                         ->join('indikator_stakeholder', 'indikator_stakeholder.id_stakeholder', '=', 'stakeholders.id')
                         ->join('monev_indikators', 'monev_indikators.id', '=', 'indikator_stakeholder.id_indikator')
                         ->join('monev_capaians', 'monev_indikators.id', '=', 'monev_capaians.id_indikator')
@@ -23,6 +35,7 @@ class KontributorController extends Controller
                         ->orderByDesc('update')
                         ->select('monev_capaians.id', 'monev_indikators.indikator', 'target', 'satuan', 'tahun', 'capaian', 'monev_capaians.dokumen', 'status', 'monev_capaians.updated_at as update')
                         ->paginate(10);
+        }
 
         return view('kontributor.index', ['tables' => $indikator]);
     }
@@ -180,7 +193,7 @@ class KontributorController extends Controller
             'tahun' => 'required',
             'capaian' => 'required',
             // 'satuan' => 'required',
-            'dokumen' => 'required|mimes:pdf,xlsx,xls,doc,docx|max:5120'
+            'dokumen' => 'required|mimes:pdf,xlsx,xls,doc,docx,zip|max:5120'
         ]);
 
         $file = $request->dokumen;
@@ -247,6 +260,17 @@ class KontributorController extends Controller
         ];
 
         $validatedData = $request->validate($rules);
+
+        $file = $request->newdok;
+        if(!empty($file)){
+            $nama_file = time()."_".$file->getClientOriginalName();
+
+            // isi dengan nama folder tempat kemana file diupload
+            $tujuan_upload = 'dokumen';
+            $file->move($tujuan_upload, $nama_file);
+            $validatedData['dokumen'] = $nama_file;
+        }
+
         $validatedData['target'] = $request->target;
         $validatedData['satuan'] = $request->satuan;
         $validatedData['status'] = 0;
