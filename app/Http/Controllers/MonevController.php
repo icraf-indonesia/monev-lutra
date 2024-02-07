@@ -54,11 +54,6 @@ class MonevController extends Controller
         return view('pages.indikator', ['strat'=>$strategies, 'tables'=>$indikator]);
     }
 
-    public function tentang(Request $request)
-    {
-        return view('pages.beranda');
-    }
-
     public function slider(Request $request)
     {
         return view('pages.slider');

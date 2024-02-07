@@ -90,15 +90,11 @@ Route::get('/modal/multi', [DasborController::class, 'modalMulti']);
 Route::get('/produktivitas/multi', [DasborController::class, 'produktivitasMulti']);
 Route::get('/rantainilai/multi', [DasborController::class, 'rantaiNilaiMulti']);
 Route::get('/jasaekosistem/multi', [DasborController::class, 'jasaEkosistemMulti']);
-Route::get('/kelembagaan', [MonevController::class, 'kelembagaan']);
 
-// Route::get('/navbar', [MonevController::class, 'navbar']);
-// Route::get('/login', [MonevController::class, 'login']);
+#Unduh
+Route::get('/unduh', [HomeController::class, 'unduh']);
 
+#Peta
 Route::get('/maps', [MonevController::class, 'maps']);
-// Route::get('/petajalan', [MonevController::class, 'getStrategi']);
-// Route::get('/petajalan', [MonevController::class, 'getDetail']);
-
-// Route::get('/slider', [SliderController::class, 'index']);
 
 
