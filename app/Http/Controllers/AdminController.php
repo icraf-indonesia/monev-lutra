@@ -227,4 +227,115 @@ class AdminController extends Controller
         return redirect()->back()->with('status', 'Realisasi kegiatan perlu direvisi');
     }
 
+    public function tahunTersedia()
+    {
+        $tahun = DB::table('luas_agroforestri_kakao')->distinct()->select('tahun')->get();
+        return $tahun;
+    }
+
+    public function daftarAlokasiLahan()
+    {
+        $tahun = DB::table('luas_agroforestri_kakao')->distinct()->select('tahun')->paginate(10);
+
+        return view('admin.lahan_kelola', ['tahun' => $tahun]);
+    }
+
+    public function storeTahun(Request $request)
+    {
+        $thn = $request->tahun;
+
+        $kecamatan = [
+            ['kecamatan' => 'Baebunta', 'tahun' => $thn, 'luas' => 0, 'created_at' => Carbon::now()],
+            ['kecamatan' => 'Baebunta Selatan', 'tahun' => $thn, 'luas' => 0, 'created_at' => Carbon::now()],
+            ['kecamatan' => 'Bone Bone', 'tahun' => $thn, 'luas' => 0, 'created_at' => Carbon::now()],
+            ['kecamatan' => 'Malangke', 'tahun' => $thn, 'luas' => 0, 'created_at' => Carbon::now()],
+            ['kecamatan' => 'Malangke Barat', 'tahun' => $thn, 'luas' => 0, 'created_at' => Carbon::now()],
+            ['kecamatan' => 'Mappedeceng', 'tahun' => $thn, 'luas' => 0, 'created_at' => Carbon::now()],
+            ['kecamatan' => 'Masamba', 'tahun' => $thn, 'luas' => 0, 'created_at' => Carbon::now()],
+            ['kecamatan' => 'Rampi', 'tahun' => $thn, 'luas' => 0, 'created_at' => Carbon::now()],
+            ['kecamatan' => 'Rongkong', 'tahun' => $thn, 'luas' => 0, 'created_at' => Carbon::now()],
+            ['kecamatan' => 'Sabbang', 'tahun' => $thn, 'luas' => 0, 'created_at' => Carbon::now()],
+            ['kecamatan' => 'Sabbang Selatan', 'tahun' => $thn, 'luas' => 0, 'created_at' => Carbon::now()],
+            ['kecamatan' => 'Seko', 'tahun' => $thn, 'luas' => 0, 'created_at' => Carbon::now()],
+            ['kecamatan' => 'Sukamaju', 'tahun' => $thn, 'luas' => 0, 'created_at' => Carbon::now()],
+            ['kecamatan' => 'Sukamaju Selatan', 'tahun' => $thn, 'luas' => 0, 'created_at' => Carbon::now()],
+            ['kecamatan' => 'Tana Lili', 'tahun' => $thn, 'luas' => 0, 'created_at' => Carbon::now()]
+        ];
+
+        DB::table('luas_agroforestri_kakao')->insert($kecamatan);
+        DB::table('luas_alokasi_lahan_kakao')->insert($kecamatan);
+        DB::table('luas_kawasan_hutan')->insert($kecamatan);
+
+        return redirect('/admin/lahan')->with('status' ,'Tahun yang baru berhasil ditambah.');
+    }
+
+    public function deleteTahun($year)
+    {
+        DB::table('luas_agroforestri_kakao')->where('tahun', $year)->delete();
+        DB::table('luas_alokasi_lahan_kakao')->where('tahun', $year)->delete();
+        DB::table('luas_kawasan_hutan')->where('tahun', $year)->delete();
+
+        return redirect('/admin/lahan')->with('status', 'Data berhasil dihapus.');
+    }
+
+    public function luasAgroforestriKakao(Request $request)
+    {
+        $selectedPeriode = isset($request->tahun) ? $request->tahun : 2021;
+
+        $tahun = $this->tahunTersedia();
+
+        $luas = DB::table('luas_agroforestri_kakao')->where('tahun', $selectedPeriode)->get();
+
+        return view('admin.luas_agroforestri_kakao', ['luas' => $luas, 'tahun' => $tahun, 'selectedPeriode' => $selectedPeriode]);
+
+    }
+
+    public function editLuasAgroforestriKakao($id)
+    {
+        $data = DB::table('luas_agroforestri_kakao')
+            ->select('id', 'kecamatan', 'tahun', 'luas')
+            ->where('id', $id)
+            ->first();
+
+        return view('admin.edit_luas_agroforestri_kakao', ['data' => $data]);
+    }
+
+    public function updateLuasAgroforestriKakao(Request $request, $id, $tahun)
+    {
+        $rules = [
+            'luas' => 'required'
+        ];
+
+        // $validatedData = $request->validate($rules);
+
+        DB::table('luas_agroforestri_kakao')
+            ->where('id', $id)
+            ->where('tahun', $tahun)
+            ->update(['luas' => $request->luas, 'updated_at' => Carbon::now() ]);
+
+        return redirect('/admin/agroforestri/kakao?tahun='. $tahun)->with('status', 'Berhasil mengubah luasan');
+    }
+
+    public function tambahKecamatanPemekaran($year)
+    {
+        return view('admin.tambah_kecamatan_agroforestri_kakao')->with('tahun', $year);
+    }
+
+    public function storeKecamatanPemekaran(Request $request)
+    {
+        $rules = [
+            'kecamatan' => 'required',
+            'luas' => 'required'
+        ];
+
+        $validatedData = $request->validate($rules);
+        $validatedData['kecamatan'] = $request->kecamatan;
+        $validatedData['luas'] = $request->luas;
+        DB::table('luas_agroforestri_kakao')->insert(
+            ['tahun' => $request->tahun, 'kecamatan' => $validatedData['kecamatan'], 'luas' => $validatedData['luas'], 'created_at' => Carbon::now()]
+        );
+
+        return redirect('/admin/agroforestri/kakao?tahun='. $request->tahun)->with('status' ,'Periode baru berhasil ditambah.');
+    }
+
 }

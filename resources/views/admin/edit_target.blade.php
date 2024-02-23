@@ -58,7 +58,7 @@
                                 <div class="form-group row">
                                     <label class="col-lg-3 col-form-label">Satuan</label>
                                     <div class="col-lg-9">
-                                        <input name="satuan" class="form-control @error('satuan') is-invalid @enderror" type="text" value="{{ old('satuan', $data->satuan) }}">
+                                        <input name="satuan" class="form-control" type="text" value="{{ old('satuan', $data->satuan) }}">
                                     </div>
                                 </div>
                                 <div class="m-t-20 text-center">

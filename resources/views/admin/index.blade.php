@@ -27,6 +27,7 @@
                         <li><a href="{{url('')}}/admin/capaian">Verifikasi Capaian Indikator</a></li>
                         <li><a href="{{url('')}}/admin/kegiatan">Manajemen Kegiatan</a></li>
                         <li><a href="{{url('')}}/admin/realisasi">Verifikasi Realisasi Kegiatan</a></li>
+                        <li><a href="{{url('')}}/admin/lahan">Luas Alokasi Lahan</a></li>
                     </ul>
                     <div class="tab-content" style="padding-top: 10px;">
                         {{-- tambah-target --}}
