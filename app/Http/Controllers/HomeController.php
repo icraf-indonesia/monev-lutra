@@ -21,4 +21,9 @@ class HomeController extends Controller
         return view('pages.petajalan_visi');
     }
 
+    public function unduh(Request $request)
+    {
+        return view('pages.unduh');
+    }
+
 }
