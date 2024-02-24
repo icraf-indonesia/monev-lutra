@@ -1,0 +1,67 @@
+@extends('header')
+
+@section('page_title', 'Capaian Tahunan Indikator Makro')
+
+@section('content')
+    <div class="row">
+        <div class="col-lg-2 col-md-2 col-sm-12 dct-dashbd-lft hidden-xs hidden-sm">
+            <div class="dct-dashbd-01 hidden-xs hidden-sm">
+                @include('dasbor_sidebar')
+            </div>
+        </div>
+        <div class="col-lg-10 col-md-10 col-sm-12 dct-appoinment m-t-10">
+            <!-- Table section  -->
+            <div class="row">
+                <div class="col-md-12 patient-app-01">
+                    <h3>Tabel Capaian</h3>
+                    <label for="year">Tahun:</label>
+                    <form method='get'>
+                        <select class="form-control select" name="tahun" id="tahun" style="margin-bottom: 10px;" onchange="this.form.submit()">
+                            @foreach ($tahun as $t)
+                                <option {{ ($selectedYear == $t->tahun) ? "selected":"" }} value="{{$t->tahun}}">{{$t->tahun}}</option>
+                            @endforeach
+                        </select>
+                    </form>
+                    <ul class="nav nav-tabs paitent-app-tab">
+                        {{-- <li class="active"><a href="#a" data-toggle="tab">Strategi</a></li>
+                        <li><a href="#b" data-toggle="tab">Intervensi</a></li> --}}
+                        <li class="active"><a href="{{url('')}}/capaian/tahunan">Indikator Makro</a></li>
+                        <li><a href="{{url('')}}/capaian/tahunan/strategi">Strategi</a></li>
+                    </ul>
+                    <div class="tab-content">
+                        <div class="tab-pane active" id="indikatormakro">
+                            {{-- tabel indikator kunci --}}
+                            <table class="table table-striped dt-responsive nowrap" cellspacing="0"
+                                width="100%">
+                                <thead>
+                                    <tr>
+                                        {{-- <th>No.</th> --}}
+                                        <th>Strategi</th>
+                                        <th>Indikator Makro</th>
+                                        <th>Target</th>
+                                        <th>Satuan</th>
+                                        <th>Capaian Saat Ini</th>
+                                        <th>Tingkat Capaian</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach ($indikator_makro as $makro)
+                                        <tr>
+                                            {{-- <td width="1%">{{ $loop->iteration }}</td> --}}
+                                            <td width="5%">{{ $makro->strategi }}</td>
+                                            <td width="5%">{{ $makro->indikator }}</td>
+                                            <td width="2%">{{ $makro->target }}</td>
+                                            <td width="1%">{{ $makro->satuan }}</td>
+                                            <td width="1%">{{ $makro->capaian }}</td>
+                                            <td width="1%">{{ $makro->tingkat_capaian }}</td>
+                                        </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Table section  -->
+        </div>
+    @stop

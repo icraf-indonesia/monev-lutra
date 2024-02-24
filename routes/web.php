@@ -70,6 +70,18 @@ Route::group(['middleware' => 'auth'], function(){
 
     Route::get('/admin/user', [UserController::class, 'index']);
 
+    Route::get('/admin/lahan', [AdminController::class, 'daftarAlokasiLahan']);
+    Route::post('/admin/lahan/store_tahun', [AdminController::class, 'storeTahun']);
+    Route::delete('/admin/lahan/{year}', [AdminController::class, 'deleteTahun']);
+    Route::get('/admin/agroforestri/kakao', [AdminController::class, 'luasAgroforestriKakao']);
+    Route::get('/admin/agroforestri/kakao/{id}', [AdminController::class, 'editLuasAgroforestriKakao']);
+    Route::put('/admin/agroforestri/kakao/{id}/{year}', [AdminController::class, 'updateLuasAgroforestriKakao']);
+    Route::get('/admin/agroforestri/kakao/tambah/{year}', [AdminController::class, 'tambahKecamatanPemekaran']);
+    Route::post('/admin/agroforestri/kakao/store_kecamatan', [AdminController::class, 'storeKecamatanPemekaran']);
+
+    Route::get('/admin/alokasi/kakao', [AdminController::class, 'luasAlokasiLahanKakao']);
+    Route::get('/admin/kawasan/hutan', [AdminController::class, 'luasKawasanHutan']);
+
     Route::get('/lahan/tahunan', [DasborController::class, 'lahanTahunan']);
     Route::get('/modal/tahunan', [DasborController::class, 'modalTahunan']);
     Route::get('/produktivitas/tahunan', [DasborController::class, 'produktivitasTahunan']);
@@ -84,6 +96,8 @@ Route::get('/indikator', [MonevController::class, 'indikator']);
 
 # Profil Jurisdiksi
 Route::get('/capaian/tahunan', [DasborController::class, 'index']);
+Route::get('/capaian/tahunan/strategi', [DasborController::class, 'capaianStrategi']);
+Route::get('/capaian/tahunan/strategi/{tahun}/{id}/intervensi', [DasborController::class, 'capaianIntervensi']);
 Route::get('/capaian/multi', [DasborController::class, 'capaianMulti']);
 Route::get('/lahan/multi', [DasborController::class, 'lahanMulti']);
 Route::get('/modal/multi', [DasborController::class, 'modalMulti']);
@@ -94,7 +108,5 @@ Route::get('/jasaekosistem/multi', [DasborController::class, 'jasaEkosistemMulti
 #Unduh
 Route::get('/unduh', [HomeController::class, 'unduh']);
 
-#Peta
 Route::get('/maps', [MonevController::class, 'maps']);
-
 

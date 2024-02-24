@@ -9,13 +9,46 @@ class DasborController extends Controller
 {
     public function index(Request $request)
     {
-        $year = isset($request->year) ? $request->year : 2021;
+        $selectedYear = isset($request->tahun) ? $request->tahun : 2021;
 
-        $tahun = DB::table('monev_capaians')
+        $tahun = DB::table('monev_capaians')->orderBy('monev_capaians.tahun')
+                ->get()->unique('tahun');
+
+        $q_makro = "SELECT CONCAT(monev_strategies.id, '. ', monev_strategies.strategi) as strategi,
+                            monev_indikators.id as id_indikator,
+                            monev_indikators.indikator,
+                            tahun,
+                            target,
+                            satuan,
+                            capaian,
+                            capaian/target as tingkat_capaian,
+                            monev_capaians.dokumen
+                        FROM monev_indikator_makros, monev_strategies, monev_indikators, monev_capaians
+                        WHERE monev_indikator_makros.id_strategi = monev_strategies.id
+                        AND monev_indikator_makros.id_indikator = monev_capaians.id_indikator
+                        AND monev_capaians.id_indikator = monev_indikators.id
+                        AND tahun = ". $selectedYear ."
+                        AND status = 1
+                        GROUP BY id_indikator";
+        $indikator_makro = DB::select($q_makro);
+
+        return view('pages.dasbor_capaian_tahunan_makro', [
+            'indikator_makro' => $indikator_makro,
+            'tahun' => $tahun,
+            'selectedYear' => $selectedYear
+        ]);
+    }
+
+    public function capaianStrategi(Request $request)
+    {
+        $selectedYear = isset($request->tahun) ? $request->tahun : 2021;
+
+        $tahun = DB::table('monev_capaians')->orderBy('monev_capaians.tahun')
                 ->get()->unique('tahun');
 
         $q_strategi = 'WITH tbl_summary AS (
-                    SELECT  monev_strategies.strategi,
+                    SELECT  monev_strategies.id,
+                            monev_strategies.strategi,
                             monev_indikators.indikator,
                             monev_indikators.target,
                             monev_indikators.satuan,
@@ -26,17 +59,18 @@ class DasborController extends Controller
                     WHERE monev_intervensis.id = monev_indikators.id_intervensi
                     AND monev_strategies.id = monev_intervensis.id_strategi
                     AND monev_indikators.id = monev_capaians.id_indikator
-                    AND tahun = '. $year .'
-                    ) SELECT strategi, round(avg(persen), 2) as persen FROM tbl_summary GROUP BY strategi
+                    AND tahun = '. $selectedYear .'
+                    AND status = 1
+                    ) SELECT id, strategi, round(avg(persen), 2) as persen FROM tbl_summary GROUP BY strategi
                 UNION
-                    SELECT strategi,
+                    SELECT id, strategi,
                            NULL AS persen
                     FROM monev_strategies
                     WHERE strategi NOT IN (
                         SELECT strategi
                             FROM tbl_summary
                             WHERE tbl_summary.strategi = monev_strategies.strategi
-                    )';
+                    ) ORDER BY id';
         $capaian_by_strategi = DB::select($q_strategi);
 
         $q_intervensi = 'WITH tbl_summary AS (
@@ -50,7 +84,8 @@ class DasborController extends Controller
             FROM monev_indikators, monev_intervensis, monev_capaians
             WHERE monev_intervensis.id = monev_indikators.id_intervensi
             AND monev_indikators.id = monev_capaians.id_indikator
-            AND tahun = '. $year .'
+            AND tahun = '. $selectedYear .'
+            AND status = 1
             ) SELECT intervensi, round(avg(persen), 2) as persen FROM tbl_summary GROUP BY intervensi
         UNION
             SELECT intervensi,
@@ -63,11 +98,51 @@ class DasborController extends Controller
             )';
         $capaian_by_intervensi = DB::select($q_intervensi);
 
-        return view('pages.dasbor_capaian_tahunan', [
+        return view('pages.dasbor_capaian_tahunan_strategi', [
             'capaian_by_intervensi' => $capaian_by_intervensi,
             'capaian_by_strategi' => $capaian_by_strategi,
             'tahun' => $tahun,
-            'year' => $year
+            'selectedYear' => $selectedYear
+        ]);
+    }
+
+    public function capaianIntervensi($tahun, $id)
+    {
+        $strategi = DB::table('monev_strategies')->where('id', $id)->first();
+
+        $q_intervensi = 'WITH tbl_summary AS (
+                            SELECT  monev_intervensis.id,
+                                    monev_intervensis.intervensi,
+                                    monev_intervensis.id_strategi,
+                                    monev_indikators.indikator,
+                                    monev_indikators.target,
+                                    monev_indikators.satuan,
+                                    monev_capaians.tahun,
+                                    monev_capaians.capaian,
+                                    monev_capaians.capaian/monev_indikators.target*100 as persen
+                            FROM monev_indikators, monev_intervensis, monev_capaians
+                            WHERE monev_intervensis.id = monev_indikators.id_intervensi
+                            AND monev_indikators.id = monev_capaians.id_indikator
+                            AND tahun = '. $tahun .'
+                            AND status = 1
+                            AND id_strategi = '. $id .'
+                            ) SELECT id, intervensi, round(avg(persen), 2) as persen FROM tbl_summary GROUP BY intervensi
+                        UNION
+                            SELECT id, intervensi,
+                                NULL AS persen
+                            FROM monev_intervensis
+                            WHERE id_strategi = '. $id .'
+                            AND intervensi NOT IN (
+                                SELECT intervensi
+                                    FROM tbl_summary
+                                    WHERE tbl_summary.intervensi = monev_intervensis.intervensi
+                            ) ORDER BY id';
+        $capaian_by_intervensi = DB::select($q_intervensi);
+
+        return view('pages.dasbor_capaian_tahunan_intervensi', [
+            'intervensi' => $capaian_by_intervensi,
+            'strategi' => $strategi,
+            'tahun' => $tahun
         ]);
     }
 
