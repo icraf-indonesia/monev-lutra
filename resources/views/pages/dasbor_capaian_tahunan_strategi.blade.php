@@ -10,11 +10,13 @@
             </div>
         </div>
         <div class="col-lg-10 col-md-10 col-sm-12 dct-appoinment m-t-10">
-            <!-- Table section  -->
             <div class="row">
-                <div class="col-md-12 patient-app-01">
-                    <h3>Tabel Capaian</h3>
-                    <label for="year">Tahun:</label>
+                <div class="col-md-12">
+                    <ul class="nav nav-tabs paitent-app-tab" style="margin-bottom: 10px; margin-top: -10px">
+                        <li><a href="{{url('')}}/capaian/tahunan">Indikator Makro</a></li>
+                        <li class="active"><a href="{{url('')}}/capaian/tahunan/strategi">Strategi</a></li>
+                    </ul>
+                    {{-- <label for="year">Tahun:</label> --}}
                     <form method='get'>
                         <select class="form-control select" name="tahun" style="margin-bottom: 10px;" onchange="this.form.submit()">
                             @foreach ($tahun as $p)
@@ -22,10 +24,34 @@
                             @endforeach
                         </select>
                     </form>
-                    <ul class="nav nav-tabs paitent-app-tab">
-                        <li><a href="{{url('')}}/capaian/tahunan">Indikator Makro</a></li>
-                        <li class="active"><a href="{{url('')}}/capaian/tahunan/strategi">Strategi</a></li>
-                    </ul>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-8 col-md-8 col-sm-8">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="chart" style="min-height: 400px;">
+                                <canvas id="lineChart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-4">
+                    <div class="infobox">
+                        <div class="icon bg-teal">
+                            <i class="material-icons">equalizer</i>
+                        </div>
+                        <div class="content">
+                            <div class="text">Rataan capaian seluruh strategi tahun {{$selectedYear}}</div>
+                            <div class="number">{{ $rataan }}%</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Table section  -->
+            <div class="row">
+                <div class="col-md-12">
+                    <h3>Tabel capaian tahun {{ $selectedYear }}</h3>
                     <div class="tab-content">
                         <div class="tab-pane active" id="a">
                             {{-- tabel strategi --}}
@@ -63,4 +89,38 @@
             </div>
             <!-- Table section  -->
         </div>
-    @stop
+@stop
+
+@section('customJS')
+var ctx = document.getElementById('lineChart');
+var data = {
+    labels: @json($data['labels']),
+    datasets: [{
+        label: 'persen',
+        data: @json($data['data']),
+        borderColor: 'rgba(75, 192, 192, 1)',
+        borderWidth: 1,
+        fill: false,
+        tension: 0.01
+    }]
+};
+var config = {
+    type: 'line',
+    data: data,
+    options: {
+        title: {
+            text: 'Rata-rata capaian per tahun',
+            display: true
+        },
+        legend: { position: 'bottom' },
+        scales: {
+            y: {
+                beginAtZero: true
+            }
+        }
+    }
+};
+
+var myChart = new Chart(ctx, config);
+
+@stop

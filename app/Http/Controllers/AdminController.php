@@ -46,6 +46,31 @@ class AdminController extends Controller
         return view('admin.daftar_kegiatan', ['kegiatan' => $kegiatan, 'periode' => $periode, 'selectedPeriode' => $selectedPeriode]);
     }
 
+    public function cariKegiatan(Request $request)
+    {
+        $selectedPeriode = isset($request->periode) ? $request->periode : 1;
+        $cari = $request->kata;
+
+        $periode = DB::table('monev_periodes')->get();
+
+        $kegiatan = $this->cariKegiatanByPeriode($selectedPeriode, $cari);
+
+        return view('admin.daftar_kegiatan', ['kegiatan' => $kegiatan, 'periode' => $periode, 'selectedPeriode' => $selectedPeriode]);
+    }
+
+    public function cariKegiatanByPeriode($selectedPeriode, $cari)
+    {
+        $kegiatan = DB::table('monev_kegiatans')
+                        ->join('periode_kegiatan', 'monev_kegiatans.id', '=', 'periode_kegiatan.id_kegiatan')
+                        ->join('monev_periodes', 'periode_kegiatan.id_periode', '=', 'monev_periodes.id')
+                        ->select('monev_kegiatans.id as id', 'kegiatan', 'nomenklatur', 'indikator_kegiatan', 'monev_periodes.periode as periode', 'periode_kegiatan.target_volume as target_volume', 'periode_kegiatan.target_anggaran as target_anggaran')
+                        ->where('monev_periodes.id', $selectedPeriode)
+                        ->where('kegiatan', 'like', "%".$cari."%")
+                        ->paginate(10);
+
+        return $kegiatan;
+    }
+
     public function kegiatanByPeriode($selectedPeriode)
     {
         $kegiatan = DB::table('monev_kegiatans')

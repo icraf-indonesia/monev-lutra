@@ -44,6 +44,16 @@
                                 <a class="custom-badge status-green text-right" style="padding: 9px;" href="/admin/kegiatan/periode/tambah">Kelola Periode</a>
                             </div>
                         </div>
+                        <div class="row">
+                            <form method='get' action="{{url('')}}/admin/kegiatan/cari">
+                                <div class="col-md-9">
+                                    <input class="form-control" type="text" name="kata" placeholder="Cari Kegiatan .." value="{{ old('kata') }}">
+                                </div>
+                                <div class="col-md-1" style="padding-left: 0px;margin-bottom: 10px;">
+                                    <input class="form-control" type="submit" value="Cari">
+                                </div>
+                            </form>
+                        </div>
                         {{-- tab daftar kegiatan --}}
                         <div class="tab-pane active" id="daftar-kegiatan">
                             <div class="table-responsive">
@@ -92,6 +102,7 @@
                                     <li class="page-item"><a class="page-link" href="#">{{ $kegiatan->currentPage() }}</a></li>
                                     <li class="page-item"><a class="page-link" href="{{ $kegiatan->nextPageUrl() }}">Next</a></li>
                                     <li class="page-item"><a class="page-link" href="{{ $kegiatan->url($kegiatan->lastPage()) }}">Last</a></li>
+                                    {{-- {{ $kegiatan->links() }} --}}
                                 </ul>
                             </nav>
                         </div>

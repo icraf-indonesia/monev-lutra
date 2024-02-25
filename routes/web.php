@@ -59,6 +59,7 @@ Route::group(['middleware' => 'auth'], function(){
     Route::put('/admin/capaian/reject/{id}', [AdminController::class, 'rejectCapaian']);
 
     Route::get('/admin/kegiatan', [AdminController::class, 'daftarKegiatan']);
+    Route::get('/admin/kegiatan/cari', [AdminController::class, 'cariKegiatan']);
     Route::get('/admin/kegiatan/{id}', [AdminController::class, 'editKegiatan']);
     Route::put('/admin/kegiatan/{id}/{p}', [AdminController::class, 'updateKegiatan']);
     Route::get('/admin/kegiatan/periode/tambah', [AdminController::class, 'tambahPeriode']);

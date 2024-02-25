@@ -35,8 +35,62 @@ class DasborController extends Controller
         return view('pages.dasbor_capaian_tahunan_makro', [
             'indikator_makro' => $indikator_makro,
             'tahun' => $tahun,
-            'selectedYear' => $selectedYear
+            'selectedYear' => $selectedYear,
         ]);
+    }
+
+    public function capaianStrategiPertahun($tahun){
+        $q_strategi = 'WITH tbl_summary AS (
+            SELECT  monev_strategies.id,
+                    monev_strategies.strategi,
+                    monev_indikators.indikator,
+                    monev_indikators.target,
+                    monev_indikators.satuan,
+                    monev_capaians.tahun,
+                    monev_capaians.capaian,
+                    monev_capaians.capaian/monev_indikators.target*100 as persen
+            FROM monev_indikators, monev_intervensis, monev_strategies, monev_capaians
+            WHERE monev_intervensis.id = monev_indikators.id_intervensi
+            AND monev_strategies.id = monev_intervensis.id_strategi
+            AND monev_indikators.id = monev_capaians.id_indikator
+            AND tahun = '. $tahun .'
+            AND status = 1
+            ) SELECT id, strategi, round(avg(persen), 2) as persen FROM tbl_summary GROUP BY strategi
+        UNION
+            SELECT id, strategi,
+                   NULL AS persen
+            FROM monev_strategies
+            WHERE strategi NOT IN (
+                SELECT strategi
+                    FROM tbl_summary
+                    WHERE tbl_summary.strategi = monev_strategies.strategi
+            ) ORDER BY id';
+
+        $capaian_by_strategi = DB::select($q_strategi);
+
+        return $capaian_by_strategi;
+    }
+
+    public function capaianStrategiMultitahun()
+    {
+        $tahun = DB::table('monev_capaians')->orderBy('monev_capaians.tahun')->get()->unique('tahun');
+        $data_persen = array();
+        $data_label = array();
+
+        foreach($tahun as $t){
+            $data_label[] = $t->tahun;
+            $capaian_by_strategi = $this->capaianStrategiPertahun($t->tahun);
+            $persen = array();
+            foreach($capaian_by_strategi as $capaian){
+                $persen[] = $capaian->persen;
+            }
+            $data_persen[] = array_sum($persen)/count($persen);
+        }
+
+        return [
+            'data_persen' => $data_persen,
+            'data_label' => $data_label,
+        ];
     }
 
     public function capaianStrategi(Request $request)
@@ -46,33 +100,21 @@ class DasborController extends Controller
         $tahun = DB::table('monev_capaians')->orderBy('monev_capaians.tahun')
                 ->get()->unique('tahun');
 
-        $q_strategi = 'WITH tbl_summary AS (
-                    SELECT  monev_strategies.id,
-                            monev_strategies.strategi,
-                            monev_indikators.indikator,
-                            monev_indikators.target,
-                            monev_indikators.satuan,
-                            monev_capaians.tahun,
-                            monev_capaians.capaian,
-                            monev_capaians.capaian/monev_indikators.target*100 as persen
-                    FROM monev_indikators, monev_intervensis, monev_strategies, monev_capaians
-                    WHERE monev_intervensis.id = monev_indikators.id_intervensi
-                    AND monev_strategies.id = monev_intervensis.id_strategi
-                    AND monev_indikators.id = monev_capaians.id_indikator
-                    AND tahun = '. $selectedYear .'
-                    AND status = 1
-                    ) SELECT id, strategi, round(avg(persen), 2) as persen FROM tbl_summary GROUP BY strategi
-                UNION
-                    SELECT id, strategi,
-                           NULL AS persen
-                    FROM monev_strategies
-                    WHERE strategi NOT IN (
-                        SELECT strategi
-                            FROM tbl_summary
-                            WHERE tbl_summary.strategi = monev_strategies.strategi
-                    ) ORDER BY id';
-        $capaian_by_strategi = DB::select($q_strategi);
+        $capaian_by_strategi = $this->capaianStrategiPertahun($selectedYear);
 
+        $persentase = array();
+        foreach($capaian_by_strategi as $capaian){
+            $persentase[] = $capaian->persen;
+        }
+        $rataan = array_sum($persentase)/count($persentase);
+
+        $capaian_strategi_multi_tahun = $this->capaianStrategiMultitahun();
+        $data = [
+            'labels' => $capaian_strategi_multi_tahun['data_label'],
+            'data' => $capaian_strategi_multi_tahun['data_persen'],
+        ];
+
+        # unused
         $q_intervensi = 'WITH tbl_summary AS (
             SELECT  monev_intervensis.intervensi,
                     monev_indikators.indikator,
@@ -102,7 +144,9 @@ class DasborController extends Controller
             'capaian_by_intervensi' => $capaian_by_intervensi,
             'capaian_by_strategi' => $capaian_by_strategi,
             'tahun' => $tahun,
-            'selectedYear' => $selectedYear
+            'selectedYear' => $selectedYear,
+            'rataan' => $rataan,
+            'data' => $data
         ]);
     }
 

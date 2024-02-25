@@ -10,15 +10,20 @@
             </div>
         </div>
         <div class="col-lg-10 col-md-10 col-sm-12 dct-appoinment m-t-10">
-            <!-- Table section  -->
             <div class="row">
-                <div class="col-md-12 patient-app-01">
-                    <h3>Tabel Capaian Intervensi</h3>
-                    <h4>Strategi {{ $strategi->strategi }} tahun {{ $tahun }}</h4>
-                    <ul class="nav nav-tabs paitent-app-tab">
+                <div class="col-md-12">
+                    <ul class="nav nav-tabs paitent-app-tab" style="margin-bottom: 10px; margin-top: -10px">
                         <li><a href="{{url('')}}/capaian/tahunan/strategi">Kembali</a></li>
                         <li class="active"><a href="">Intervensi</a></li>
                     </ul>
+                </div>
+            </div>
+            <!-- Table section  -->
+            <div class="row">
+                <div class="col-md-12">
+                    <h3>Tabel Capaian Intervensi</h3>
+                    <h4>Strategi {{ $strategi->strategi }} tahun {{ $tahun }}</h4>
+
                     <div class="tab-content">
                         <div class="tab-pane active" id="a">
                             {{-- tabel strategi --}}

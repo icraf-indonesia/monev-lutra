@@ -10,24 +10,28 @@
             </div>
         </div>
         <div class="col-lg-10 col-md-10 col-sm-12 dct-appoinment m-t-10">
-            <!-- Table section  -->
             <div class="row">
-                <div class="col-md-12 patient-app-01">
-                    <h3>Tabel Capaian</h3>
-                    <label for="year">Tahun:</label>
-                    <form method='get'>
-                        <select class="form-control select" name="tahun" id="tahun" style="margin-bottom: 10px;" onchange="this.form.submit()">
-                            @foreach ($tahun as $t)
-                                <option {{ ($selectedYear == $t->tahun) ? "selected":"" }} value="{{$t->tahun}}">{{$t->tahun}}</option>
-                            @endforeach
-                        </select>
-                    </form>
-                    <ul class="nav nav-tabs paitent-app-tab">
+                <div class="col-md-12">
+                    <ul class="nav nav-tabs paitent-app-tab" style="margin-bottom: 10px; margin-top: -10px">
                         {{-- <li class="active"><a href="#a" data-toggle="tab">Strategi</a></li>
                         <li><a href="#b" data-toggle="tab">Intervensi</a></li> --}}
                         <li class="active"><a href="{{url('')}}/capaian/tahunan">Indikator Makro</a></li>
                         <li><a href="{{url('')}}/capaian/tahunan/strategi">Strategi</a></li>
                     </ul>
+                    {{-- <label for="year">Tahun:</label> --}}
+                    <form method='get'>
+                        <select class="form-control select" name="tahun" style="margin-bottom: 10px;" onchange="this.form.submit()">
+                            @foreach ($tahun as $p)
+                                <option {{ ($selectedYear == $p->tahun) ? "selected":"" }} value="{{$p->tahun}}">{{$p->tahun}}</option>
+                            @endforeach
+                        </select>
+                    </form>
+                </div>
+            </div>
+            <!-- Table section  -->
+            <div class="row">
+                <div class="col-md-12">
+                    <h3>Tabel indikator makro tahun {{$selectedYear}}</h3>
                     <div class="tab-content">
                         <div class="tab-pane active" id="indikatormakro">
                             {{-- tabel indikator kunci --}}
@@ -64,4 +68,4 @@
             </div>
             <!-- Table section  -->
         </div>
-    @stop
+@stop
