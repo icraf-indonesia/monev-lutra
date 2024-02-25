@@ -14,22 +14,41 @@ class DasborController extends Controller
         $tahun = DB::table('monev_capaians')->orderBy('monev_capaians.tahun')
                 ->get()->unique('tahun');
 
-        $q_makro = "SELECT CONCAT(monev_strategies.id, '. ', monev_strategies.strategi) as strategi,
-                            monev_indikators.id as id_indikator,
-                            monev_indikators.indikator,
-                            tahun,
-                            target,
-                            satuan,
-                            capaian,
-                            capaian/target as tingkat_capaian,
-                            monev_capaians.dokumen
-                        FROM monev_indikator_makros, monev_strategies, monev_indikators, monev_capaians
-                        WHERE monev_indikator_makros.id_strategi = monev_strategies.id
-                        AND monev_indikator_makros.id_indikator = monev_capaians.id_indikator
-                        AND monev_capaians.id_indikator = monev_indikators.id
-                        AND tahun = ". $selectedYear ."
-                        AND status = 1
-                        GROUP BY id_indikator";
+        $q_makro = 'SELECT CONCAT(ms.id, ". ", ms.strategi) as strategi,
+                            mi.id as id_indikator,
+                            mi.indikator as indikator,
+                            mc.tahun as tahun,
+                            cast(mi.target as decimal(10,2)) target,
+                            mi.satuan as satuan,
+                            cast(mc.capaian as decimal(10,2)) capaian,
+                            IFNULL(capaian/target, 0) as tingkat_capaian,
+                            mc.dokumen as dokumen,
+                            mc.status as status
+                        FROM monev_indikator_makros mim
+                        LEFT JOIN monev_strategies ms ON mim.id_strategi = ms.id
+                        LEFT JOIN monev_indikators mi ON mim.id_indikator = mi.id
+                        LEFT JOIN monev_capaians mc ON mc.id_indikator = mi.id
+                        AND tahun='. $selectedYear .'
+                        AND status=1
+                        GROUP BY id_indikator';
+        // $q_makro2 = DB::table('monev_indikator_makros')
+        //                 ->leftJoin('monev_strategies', 'monev_strategies.id', '=', 'monev_indikator_makros.id_strategi')
+        //                 ->leftJoin('monev_indikators', 'monev_indikators.id', '=', 'monev_indikator_makros.id_indikator')
+        //                 ->leftJoin('monev_capaians', 'monev_capaians.id_indikator', '=', 'monev_indikators.id')
+        //                 ->select(DB::raw("CONCAT(monev_strategies.id, '. ', monev_strategies.strategi) AS strategi"),
+        //                     'monev_indikator_makros.id_indikator',
+        //                     'monev_indikators.indikator',
+        //                     'monev_capaians.tahun',
+        //                     'monev_indikators.target AS target',
+        //                     'monev_indikators.satuan',
+        //                     'monev_capaians.capaian AS capaian',
+        //                     DB::raw("IFNULL(capaian/target, 0) AS tingkat_capaian"),
+        //                     'monev_capaians.dokumen',
+        //                     'monev_capaians.status as status')
+        //                 ->where('tahun', $selectedYear)
+        //                 ->where('status', 1)
+        //                 ->get();
+
         $indikator_makro = DB::select($q_makro);
 
         return view('pages.dasbor_capaian_tahunan_makro', [
