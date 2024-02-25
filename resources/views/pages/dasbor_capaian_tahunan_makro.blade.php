@@ -45,7 +45,7 @@
                                         <th>Target</th>
                                         <th>Satuan</th>
                                         <th>Capaian Saat Ini</th>
-                                        <th>Tingkat Capaian</th>
+                                        <th>Tingkat Capaian (%)</th>
                                     </tr>
                                 </thead>
                                 <tbody>

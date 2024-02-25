@@ -21,7 +21,7 @@ class DasborController extends Controller
                             cast(mi.target as decimal(10,2)) target,
                             mi.satuan as satuan,
                             cast(mc.capaian as decimal(10,2)) capaian,
-                            IFNULL(capaian/target, 0) as tingkat_capaian,
+                            IFNULL(ROUND(capaian/target*100, 2), 0) as tingkat_capaian,
                             mc.dokumen as dokumen,
                             mc.status as status
                         FROM monev_indikator_makros mim
