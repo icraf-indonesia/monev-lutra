@@ -38,6 +38,24 @@
                         @endif
                     </ul>
                     <div class="tab-content" style="padding-top: 10px;">
+                        <div class="row">
+                            <form method='get' action="{{url('')}}/kontributor">
+                                <div class="col-md-11">
+                                    <input class="form-control" type="text" name="kata" placeholder="Cari Input Capaian .." value="{{ old('kata') }}">
+                                </div>
+                                <div class="col-md-1" style="padding-left: 0px;margin-bottom: 10px;">
+                                    <input class="form-control" type="submit" value="Cari">
+                                </div>
+                            </form>
+                        </div>
+                        <div class="row" style="margin-right: -1px; margin-bottom:10px;">
+                            <div class="col-md-11"></div>
+                            <div class="col-md-1">
+                                <a href="{{url('')}}/kontributor/export" class="btn btn-primary" target="_blank">
+                                    Unduh Data
+                                </a>
+                            </div>
+                        </div>
                         <div class="tab-pane active" id="daftar-capaian">
                                 <div class="table-responsive">
                                     <table id="tabel-data" class="table table-bordered table-striped"
@@ -102,6 +120,7 @@
                                         <li class="page-item"><a class="page-link" href="{{ $tables->url($tables->lastPage()) }}">Last</a></li>
                                     </ul>
                                 </nav>
+
                         </div>
 
                     </div>

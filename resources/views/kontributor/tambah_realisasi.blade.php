@@ -93,6 +93,12 @@
                                     </div>
                                 </div>
                                 <div class="form-group row">
+                                    <label class="col-lg-3 col-form-label">Nomenklatur Kegiatan</label>
+                                    <div class="col-lg-9">
+                                        <input name="nomenklatur" class="form-control" placeholder="" type="text" disabled id="nomenklatur">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
                                     <label class="col-lg-3 col-form-label">Target Volume</label>
                                     <div class="col-lg-9">
                                         <input name="target_volume" class="form-control" placeholder="" type="text" disabled id="target_volume">
@@ -189,13 +195,12 @@ $(document).ready(function() {
                 dataType: "json",
                 success: function(data5) {
                     $.each(data5, function(key, value) {
-                        document.getElementById('target_volume').value = value;
-                        document.getElementById('target_anggaran').value = key;
+                        document.getElementById('target_volume').value = data5["target_volume"];
+                        document.getElementById('target_anggaran').value = data5["target_anggaran"];
+                        document.getElementById('nomenklatur').value = data5["nomenklatur"];
                     });
                 }
             });
-        } else {
-            $('input[name="satuan"]').empty();
         }
     });
 });

@@ -43,12 +43,14 @@ Route::group(['middleware' => 'auth'], function(){
     Route::post('/kontributor/store_capaian', [KontributorController::class, 'storeCapaian']);
     Route::get('/kontributor/capaian/{id}', [KontributorController::class, 'revisiCapaian']);
     Route::put('/kontributor/capaian/{id}', [KontributorController::class, 'updateRevisiCapaian']);
+    Route::get('/kontributor/export', [KontributorController::class, 'daftarInputCapaianExport']);
 
     Route::get('/kontributor/realisasi', [KontributorController::class, 'daftarRealisasi']);
     Route::get('/kontributor/realisasi/tambah', [KontributorController::class, 'tambahRealisasi']);
     Route::post('/kontributor/store_realisasi', [KontributorController::class, 'storeRealisasi']);
     Route::get('/kontributor/realisasi/{id}', [KontributorController::class, 'revisiRealisasi']);
     Route::put('/kontributor/realisasi/{id}', [KontributorController::class, 'updateRevisiRealisasi']);
+    Route::get('/kontributor/export', [KontributorController::class, 'daftarRealisasiKegiatanExport']);
 
     Route::get('/admin', [AdminController::class, 'index'])->name('admin');
     Route::get('/admin/indikator/{id}', [AdminController::class, 'editIndikator']);

@@ -2,19 +2,23 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\DaftarCapaianExport;
+use App\Exports\DaftarKegiatanExport;
 use App\Models\MonevCapaian;
 use App\Models\MonevIndikator;
 use App\Models\MonevRealisasi;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Maatwebsite\Excel\Facades\Excel;
 
 class KontributorController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
         $id_stakeholder = Auth::user()->getStakeholderId();
         $role_stakeholder = Auth::user()->getRole();
+        $cari = $request->kata;
 
         if($role_stakeholder == "kegiatan"){
             $indikator =  DB::table('stakeholders')
@@ -24,6 +28,42 @@ class KontributorController extends Controller
                         ->where('indikator_stakeholder.id_stakeholder', $id_stakeholder)
                         ->where('status', 1)
                         ->orderByDesc('update')
+                        ->select('monev_capaians.id', 'monev_indikators.indikator', 'target', 'satuan', 'tahun', 'capaian', 'monev_capaians.dokumen', 'status', 'monev_capaians.updated_at as update');
+            if($cari) {
+                $indikator = $indikator->where('monev_indikators.indikator', 'like', "%".$cari."%");
+            }
+            $indikator = $indikator->paginate(10);
+        } else {
+            $indikator =  DB::table('stakeholders')
+                        ->join('indikator_stakeholder', 'indikator_stakeholder.id_stakeholder', '=', 'stakeholders.id')
+                        ->join('monev_indikators', 'monev_indikators.id', '=', 'indikator_stakeholder.id_indikator')
+                        ->join('monev_capaians', 'monev_indikators.id', '=', 'monev_capaians.id_indikator')
+                        ->where('indikator_stakeholder.id_stakeholder', $id_stakeholder)
+                        ->orderByDesc('update')
+                        ->select('monev_capaians.id', 'monev_indikators.indikator', 'target', 'satuan', 'tahun', 'capaian', 'monev_capaians.dokumen', 'status', 'monev_capaians.updated_at as update');
+            if($cari) {
+                $indikator = $indikator->where('monev_indikators.indikator', 'like', "%".$cari."%");
+            }
+            $indikator = $indikator->paginate(10);
+        }
+
+        return view('kontributor.index', ['tables' => $indikator]);
+    }
+
+    public function cariInputCapaian(Request $request)
+    {
+        $id_stakeholder = Auth::user()->getStakeholderId();
+        $role_stakeholder = Auth::user()->getRole();
+        $cari = $request->kata;
+
+        if($role_stakeholder == "kegiatan"){
+            $indikator =  DB::table('stakeholders')
+                        ->join('indikator_stakeholder', 'indikator_stakeholder.id_stakeholder', '=', 'stakeholders.id')
+                        ->join('monev_indikators', 'monev_indikators.id', '=', 'indikator_stakeholder.id_indikator')
+                        ->join('monev_capaians', 'monev_indikators.id', '=', 'monev_capaians.id_indikator')
+                        ->where('indikator_stakeholder.id_stakeholder', $id_stakeholder)
+                        ->where('status', 1)
+                        ->where('monev_indikators.indikator', 'like', "%".$cari."%")
                         ->select('monev_capaians.id', 'monev_indikators.indikator', 'target', 'satuan', 'tahun', 'capaian', 'monev_capaians.dokumen', 'status', 'monev_capaians.updated_at as update')
                         ->paginate(10);
         } else {
@@ -32,12 +72,18 @@ class KontributorController extends Controller
                         ->join('monev_indikators', 'monev_indikators.id', '=', 'indikator_stakeholder.id_indikator')
                         ->join('monev_capaians', 'monev_indikators.id', '=', 'monev_capaians.id_indikator')
                         ->where('indikator_stakeholder.id_stakeholder', $id_stakeholder)
-                        ->orderByDesc('update')
+                        ->where('monev_indikators.indikator', 'like', "%".$cari."%")
                         ->select('monev_capaians.id', 'monev_indikators.indikator', 'target', 'satuan', 'tahun', 'capaian', 'monev_capaians.dokumen', 'status', 'monev_capaians.updated_at as update')
                         ->paginate(10);
         }
 
         return view('kontributor.index', ['tables' => $indikator]);
+    }
+
+    public function daftarInputCapaianExport()
+    {
+        // $uid = Auth::user()->getStakeholderId();
+        return Excel::download(new DaftarCapaianExport, 'daftar_input_capaian.xlsx');
     }
 
     public function tambahCapaian()
@@ -57,18 +103,26 @@ class KontributorController extends Controller
         return view('kontributor.tambah_capaian', ['strategi' => $strategi]);
     }
 
-    public function daftarRealisasi()
+    public function daftarRealisasi(Request $request)
     {
-        $id_stakeholder = Auth::user()->getStakeholderId();
-
+        // $id_stakeholder = Auth::user()->getStakeholderId();
+        $cari = $request->kata;
         $realisasi =  DB::table('monev_realisasis')
                         ->join('monev_kegiatans', 'monev_realisasis.id_kegiatan', '=', 'monev_kegiatans.id')
                         // ->where('indikator_stakeholder.id_stakeholder', $id_stakeholder)
                         ->orderByDesc('update')
-                        ->select('monev_realisasis.id', 'monev_kegiatans.kegiatan', 'nomenklatur', 'indikator_kegiatan', 'monev_kegiatans.periode', 'target_volume', 'target_anggaran', 'realisasi_volume', 'realisasi_anggaran', 'status', 'monev_realisasis.updated_at as update')
-                        ->paginate(10);
+                        ->select('monev_realisasis.id', 'monev_kegiatans.kegiatan', 'nomenklatur', 'indikator_kegiatan', 'monev_kegiatans.periode', 'target_volume', 'target_anggaran', 'realisasi_volume', 'realisasi_anggaran', 'status', 'monev_realisasis.updated_at as update');
+        if($cari) {
+            $realisasi = $realisasi->where('monev_kegiatans.kegiatan', 'like', "%".$cari."%");
+        }
+        $realisasi = $realisasi->paginate(10);
 
         return view('kontributor.daftar_kegiatan', ['realisasi' => $realisasi]);
+    }
+
+    public function daftarRealisasiKegiatanExport()
+    {
+        return Excel::download(new DaftarKegiatanExport, 'daftar_realisasi_kegiatan.xlsx');
     }
 
     public function tambahRealisasi()
@@ -128,7 +182,8 @@ class KontributorController extends Controller
     {
         $target = DB::table('monev_kegiatans')
                             ->where('id', $id)
-                            ->pluck('target_volume', 'target_anggaran');
+                            ->select('nomenklatur', 'target_volume', 'target_anggaran')
+                            ->first();
 
         return json_encode($target);
     }
