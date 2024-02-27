@@ -16,6 +16,7 @@ class MonevIntervensiSeeder extends Seeder
      */
     public function run()
     {
+        // DB::table('monev_intervensis')->delete();
         // [1.1] Intervensi
         MonevIntervensi::create([
             'intervensi' => '1.1 Alokasi kebun kakao dengan mempertimbangkan kesesuaian lahan dan tata ruang kabupaten',
@@ -50,11 +51,11 @@ class MonevIntervensiSeeder extends Seeder
             'id_strategi' => 2
         ]);
         MonevIntervensi::create([
-            'intervensi'  => '2.5 Korporasi petani kakao',
+            'intervensi'  => '2.5 Bantuan peralatan pertanian',
             'id_strategi' => 2
         ]);
         MonevIntervensi::create([
-            'intervensi'  => '2.6 Bantuan peralatan pertanian',
+            'intervensi'  => '2.6 Korporasi petani kakao',
             'id_strategi' => 2
         ]);
         MonevIntervensi::create([

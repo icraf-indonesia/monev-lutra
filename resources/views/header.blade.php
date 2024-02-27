@@ -34,7 +34,7 @@
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     {{-- <style>@yield('customCSS')</style> --}}
 
-        
+
 </head>
 
 <body class="innerpage-body">
@@ -94,8 +94,7 @@
                         <ul class="text-right m-t-13">
                             @if (Auth::check())
                                 <li>
-                                    <a class="header-login"
-                                        style="border: 0px; text-align:right; pointer-events: none;">{{ Auth::user()->name }}</a>
+                                    <a style="font-size: 13px; pointer-events: none; position: relative; top: -5px">{{ Auth::user()->name }}</a>
                                 </li>
 
                                 <li>

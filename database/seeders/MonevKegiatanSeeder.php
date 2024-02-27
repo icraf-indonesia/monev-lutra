@@ -2895,7 +2895,7 @@ class MonevKegiatanSeeder extends Seeder
             221 =>
             array (
                 'id' => 222,
-                'id_strategi' => 4,
+                'id_strategi' => 5,
                 'id_intervensi' => 23,
                 'kegiatan' => 'Membangun skema penjaminan perminjaman modal bagi petani dengan pola budidaya ramah lingkungan',
                 'id_lembaga' => 4,
@@ -2908,8 +2908,8 @@ class MonevKegiatanSeeder extends Seeder
             222 =>
             array (
                 'id' => 223,
-                'id_strategi' => 4,
-                'id_intervensi' => 23,
+                'id_strategi' => 5,
+                'id_intervensi' => 24,
                 'kegiatan' => 'Pendampingan kepada kelompok kebun organik',
                 'id_lembaga' => 4,
                 'nomenklatur' => 'Pendampingan penggunaan sarana pendukung pertanian',
@@ -2922,8 +2922,8 @@ class MonevKegiatanSeeder extends Seeder
             array (
                 'id' => 224,
                 'id_strategi' => 5,
-                'id_intervensi' => 23,
-                'kegiatan' => 'Memberikan insentif kepada petnai dengan pola budidaya ramah lingkungan',
+                'id_intervensi' => 24,
+                'kegiatan' => 'Memberikan insentif kepada petani dengan pola budidaya ramah lingkungan',
                 'id_lembaga' => 5,
                 'nomenklatur' => 'Penyediaan dan Pemanfaatan Sarana dan Prasarana Penyuluhan Pertanian',
                 'indikator_kegiatan' => 'Jumlah Sarana dan Prasarana Penyuluhan Pertanian',
@@ -2935,7 +2935,7 @@ class MonevKegiatanSeeder extends Seeder
             array (
                 'id' => 225,
                 'id_strategi' => 5,
-                'id_intervensi' => 23,
+                'id_intervensi' => 24,
                 'kegiatan' => 'Memberikan insentif bantuan alat pertanian kakao',
                 'id_lembaga' => 4,
                 'nomenklatur' => 'Penyediaan dan Pemanfaatan Sarana dan Prasarana Penyuluhan Pertanian',
@@ -2948,7 +2948,7 @@ class MonevKegiatanSeeder extends Seeder
             array (
                 'id' => 226,
                 'id_strategi' => 5,
-                'id_intervensi' => 23,
+                'id_intervensi' => 24,
                 'kegiatan' => 'Memfasilitasi kapasitas kebun organik',
                 'id_lembaga' => 4,
                 'nomenklatur' => 'Pendampingan penggunaan sarana pendukung pertanian',
@@ -2961,7 +2961,7 @@ class MonevKegiatanSeeder extends Seeder
             array (
                 'id' => 227,
                 'id_strategi' => 5,
-                'id_intervensi' => 23,
+                'id_intervensi' => 24,
                 'kegiatan' => 'Membangun skema penjaminan modal bagi petani dengan pola budidaya ramah lingkugan',
                 'id_lembaga' => 4,
                 'nomenklatur' => 'Penelitian dan Pengembangan Pertanian, Perkebunan dan Pangan',
@@ -2974,7 +2974,7 @@ class MonevKegiatanSeeder extends Seeder
             array (
                 'id' => 228,
                 'id_strategi' => 5,
-                'id_intervensi' => 23,
+                'id_intervensi' => 24,
                 'kegiatan' => 'Sosialisasi jenis instrumen ekonomi jasa lingkungan hidup',
                 'id_lembaga' => 5,
                 'nomenklatur' => 'Diseminasi Informasi Teknis, Sosial, Ekonomi dan Inovasi Pertanian',
@@ -2987,7 +2987,7 @@ class MonevKegiatanSeeder extends Seeder
             array (
                 'id' => 229,
                 'id_strategi' => 5,
-                'id_intervensi' => 23,
+                'id_intervensi' => 24,
                 'kegiatan' => 'Memfasilitasi sertifikasi dan aspek prioritas untuk insentif',
                 'id_lembaga' => 5,
                 'nomenklatur' => 'Diseminasi Informasi Teknis, Sosial, Ekonomi dan Inovasi Pertanian',

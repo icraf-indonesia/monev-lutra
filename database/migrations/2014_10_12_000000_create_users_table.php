@@ -23,6 +23,7 @@ return new class extends Migration
             $table->string('password');
             $table->rememberToken();
             $table->foreignId('id_stakeholder');
+            $table->foreignId('id_lembaga');
             $table->timestamps();
         });
     }

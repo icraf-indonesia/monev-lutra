@@ -20,7 +20,7 @@ class KontributorController extends Controller
         $role_stakeholder = Auth::user()->getRole();
         $cari = $request->kata;
 
-        if($role_stakeholder == "kegiatan"){
+        if($role_stakeholder === "kegiatan" or $role_stakeholder === "others"){
             $indikator =  DB::table('stakeholders')
                         ->join('indikator_stakeholder', 'indikator_stakeholder.id_stakeholder', '=', 'stakeholders.id')
                         ->join('monev_indikators', 'monev_indikators.id', '=', 'indikator_stakeholder.id_indikator')
@@ -45,36 +45,6 @@ class KontributorController extends Controller
                 $indikator = $indikator->where('monev_indikators.indikator', 'like', "%".$cari."%");
             }
             $indikator = $indikator->paginate(10);
-        }
-
-        return view('kontributor.index', ['tables' => $indikator]);
-    }
-
-    public function cariInputCapaian(Request $request)
-    {
-        $id_stakeholder = Auth::user()->getStakeholderId();
-        $role_stakeholder = Auth::user()->getRole();
-        $cari = $request->kata;
-
-        if($role_stakeholder == "kegiatan"){
-            $indikator =  DB::table('stakeholders')
-                        ->join('indikator_stakeholder', 'indikator_stakeholder.id_stakeholder', '=', 'stakeholders.id')
-                        ->join('monev_indikators', 'monev_indikators.id', '=', 'indikator_stakeholder.id_indikator')
-                        ->join('monev_capaians', 'monev_indikators.id', '=', 'monev_capaians.id_indikator')
-                        ->where('indikator_stakeholder.id_stakeholder', $id_stakeholder)
-                        ->where('status', 1)
-                        ->where('monev_indikators.indikator', 'like', "%".$cari."%")
-                        ->select('monev_capaians.id', 'monev_indikators.indikator', 'target', 'satuan', 'tahun', 'capaian', 'monev_capaians.dokumen', 'status', 'monev_capaians.updated_at as update')
-                        ->paginate(10);
-        } else {
-            $indikator =  DB::table('stakeholders')
-                        ->join('indikator_stakeholder', 'indikator_stakeholder.id_stakeholder', '=', 'stakeholders.id')
-                        ->join('monev_indikators', 'monev_indikators.id', '=', 'indikator_stakeholder.id_indikator')
-                        ->join('monev_capaians', 'monev_indikators.id', '=', 'monev_capaians.id_indikator')
-                        ->where('indikator_stakeholder.id_stakeholder', $id_stakeholder)
-                        ->where('monev_indikators.indikator', 'like', "%".$cari."%")
-                        ->select('monev_capaians.id', 'monev_indikators.indikator', 'target', 'satuan', 'tahun', 'capaian', 'monev_capaians.dokumen', 'status', 'monev_capaians.updated_at as update')
-                        ->paginate(10);
         }
 
         return view('kontributor.index', ['tables' => $indikator]);
@@ -127,15 +97,13 @@ class KontributorController extends Controller
 
     public function tambahRealisasi()
     {
-        $id_stakeholder = Auth::user()->getStakeholderId();
+        $id_lembaga = Auth::user()->id_lembaga;
 
-        $strategi =  DB::table('stakeholders')
-                        ->leftJoin('indikator_stakeholder', 'indikator_stakeholder.id_stakeholder', '=', 'stakeholders.id')
-                        ->leftJoin('monev_indikators', 'monev_indikators.id', '=', 'indikator_stakeholder.id_indikator')
-                        ->leftJoin('monev_intervensis', 'monev_indikators.id_intervensi', '=', 'monev_intervensis.id')
-                        ->leftJoin('monev_strategies', 'monev_strategies.id', '=', 'monev_intervensis.id_strategi')
-                        ->where('indikator_stakeholder.id_stakeholder', $id_stakeholder)
-                        ->whereNotNull('strategi')
+        $strategi =  DB::table('monev_kegiatans')
+                        ->leftJoin('monev_strategies', 'monev_strategies.id', '=', 'monev_kegiatans.id_strategi')
+                        ->leftJoin('users', 'monev_kegiatans.id_lembaga', '=', 'users.id_lembaga')
+                        ->where('monev_kegiatans.id_lembaga', $id_lembaga)
+                        // ->whereNotNull('strategi')
                         ->select('strategi','monev_strategies.id as id')
                         ->get()->unique('strategi');
 
@@ -146,9 +114,12 @@ class KontributorController extends Controller
 
     public function intervensi($id)
     {
-        $intervensi = DB::table('monev_intervensis')
-                            ->where('id_strategi', $id)
-                            ->pluck('intervensi','id');
+        $id_lembaga = Auth::user()->id_lembaga;
+        $intervensi = DB::table('monev_kegiatans')
+                            ->join('monev_intervensis', 'monev_intervensis.id', '=', 'monev_kegiatans.id_intervensi')
+                            ->where('monev_kegiatans.id_strategi', $id)
+                            ->where('monev_kegiatans.id_lembaga', $id_lembaga)
+                            ->pluck('monev_intervensis.intervensi','monev_intervensis.id');
         return json_encode($intervensi);
     }
 
