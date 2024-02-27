@@ -33,6 +33,7 @@ Route::post('/session/login', [SessionController::class, 'login']);
 Route::group(['middleware' => 'auth'], function(){
     Route::get('/kontributor', [KontributorController::class, 'index'])->name('kontributor');
     Route::get('intervensi/{id}', [KontributorController::class, 'intervensi']);
+    Route::get('intervensi/capaian/{id}', [KontributorController::class, 'intervensiCapaian']);
     Route::get('indikator/{id}', [KontributorController::class, 'indikator']);
     Route::get('satuan/{id}', [KontributorController::class, 'satuan']);
     Route::get('kegiatan/{id_i}/{id_l}', [KontributorController::class, 'kegiatan']);
@@ -99,6 +100,7 @@ Route::get('/indikator', [MonevController::class, 'indikator']);
 
 # Profil Jurisdiksi
 Route::get('/capaian/tahunan', [DasborController::class, 'index']);
+Route::get('/capaian/tahunan/{id}/indikator', [DasborController::class, 'capaianIndikatorMakroMultitahun']);
 Route::get('/capaian/tahunan/strategi', [DasborController::class, 'capaianStrategi']);
 Route::get('/capaian/tahunan/strategi/{tahun}/{id}/intervensi', [DasborController::class, 'capaianIntervensi']);
 Route::get('/capaian/multi', [DasborController::class, 'capaianMulti']);

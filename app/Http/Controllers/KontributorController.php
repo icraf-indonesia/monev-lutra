@@ -112,6 +112,20 @@ class KontributorController extends Controller
         return view('kontributor.tambah_realisasi', ['strategi' => $strategi, 'lembaga' => $lembaga]);
     }
 
+    public function intervensiCapaian($id)
+    {
+        $id_stakeholder = Auth::user()->id_stakeholder;
+        $intervensi = DB::table('stakeholders')
+                            ->join('indikator_stakeholder', 'indikator_stakeholder.id_stakeholder', '=', 'stakeholders.id')
+                            ->join('monev_indikators', 'monev_indikators.id', '=', 'indikator_stakeholder.id_indikator')
+                            ->join('monev_intervensis', 'monev_indikators.id_intervensi', '=', 'monev_intervensis.id')
+                            ->join('monev_strategies', 'monev_strategies.id', '=', 'monev_intervensis.id_strategi')
+                            ->where('indikator_stakeholder.id_stakeholder', $id_stakeholder)
+                            ->where('monev_strategies.id', $id)
+                            ->pluck('monev_intervensis.intervensi','monev_intervensis.id');
+        return json_encode($intervensi);
+    }
+
     public function intervensi($id)
     {
         $id_lembaga = Auth::user()->id_lembaga;
@@ -125,9 +139,13 @@ class KontributorController extends Controller
 
     public function indikator($id)
     {
+        $id_stakeholder = Auth::user()->id_stakeholder;
         $indikator = DB::table('monev_indikators')
+                            ->join('indikator_stakeholder', 'monev_indikators.id', '=', 'indikator_stakeholder.id_indikator')
+                            ->join('stakeholders', 'indikator_stakeholder.id_stakeholder', '=', 'stakeholders.id')
                             ->where('id_intervensi', $id)
-                            ->pluck('indikator','id');
+                            ->where('indikator_stakeholder.id_stakeholder', $id_stakeholder)
+                            ->pluck('indikator','monev_indikators.id');
         return json_encode($indikator);
     }
 

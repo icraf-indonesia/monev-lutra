@@ -58,6 +58,61 @@ class DasborController extends Controller
         ]);
     }
 
+    public function capaianIndikatorMakroPertahun($tahun, $id){
+        $q_makro = DB::table('monev_indikator_makros')
+                        ->join('monev_strategies', 'monev_strategies.id', '=', 'monev_indikator_makros.id_strategi')
+                        ->join('monev_indikators', 'monev_indikators.id', '=', 'monev_indikator_makros.id_indikator')
+                        ->join('monev_capaians', 'monev_capaians.id_indikator', '=', 'monev_indikators.id')
+                        ->select('monev_indikators.id',
+                                 'indikator',
+                                 'monev_capaians.tahun as tahun',
+                                 DB::raw('CAST(monev_indikators.target as decimal(10,2)) target'),
+                                 'monev_indikators.satuan',
+                                 DB::raw('CAST(monev_capaians.capaian as decimal(10,2)) capaian'),
+                                 DB::raw('IFNULL(ROUND(capaian/target*100, 2), 0) as tingkat_capaian'),
+                                 'monev_capaians.status as status')
+                        ->where('monev_capaians.status', 1)
+                        ->where('monev_capaians.tahun', $tahun)
+                        ->where('monev_indikator_makros.id_indikator', $id)
+                        ->first();
+
+        return $q_makro;
+    }
+
+    public function capaianIndikatorMakroMultitahun($id)
+    {
+        $tahun = DB::table('monev_capaians')->orderBy('monev_capaians.tahun')->get()->unique('tahun');
+        $indikator = DB::table('monev_indikators')->select('id', 'indikator', 'satuan')->where('id', $id)->first();
+        $data_persen = array();
+        $data_target = array();
+        $data_capaian = array();
+        $data_label = array();
+
+        foreach($tahun as $t){
+            $data_label[] = $t->tahun;
+            $capaian_makro = $this->capaianIndikatorMakroPertahun($t->tahun, $id);
+
+            if($capaian_makro){
+                $data_persen[] = $capaian_makro->tingkat_capaian;
+                $data_target[] = (float) $capaian_makro->capaian;
+                $data_capaian[] = (float) $capaian_makro->target;
+            } else {
+                $data_persen[] = 0;
+                $data_target[] = 0;
+                $data_capaian[] = 0;
+            }
+
+        }
+
+        return view('pages.dasbor_capaian_tahunan_makro_multi', [
+            'indikator' => $indikator,
+            'data_persen' => $data_persen,
+            'data_target' => $data_target,
+            'data_capaian' => $data_capaian,
+            'data_label' => $data_label,
+        ]);
+    }
+
     public function capaianStrategiPertahun($tahun){
         $q_strategi = 'WITH tbl_summary AS (
             SELECT  monev_strategies.id,

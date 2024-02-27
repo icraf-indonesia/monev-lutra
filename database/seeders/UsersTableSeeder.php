@@ -46,8 +46,8 @@ class UsersTableSeeder extends Seeder
             'id_lembaga'=>0
         ]);
         DB::table('users')->insert([
-            'name' => 'Bappelitbangda',
-            'username' => 'bappelitbangda_lutra',
+            'name' => 'Bapperida',
+            'username' => 'bapperida_lutra',
             'email'=>'bappelitbangda_lutra@gmail.com',
             'role'=>'kontributor',
             'password'=>Hash::make('lutra2023'),

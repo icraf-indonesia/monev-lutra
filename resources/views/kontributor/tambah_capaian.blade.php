@@ -123,7 +123,7 @@ $(document).ready(function() {
         var strategiID = $(this).val();
         if(strategiID) {
             $.ajax({
-                url: '/intervensi/' + strategiID,
+                url: '/intervensi/capaian/' + strategiID,
                 type: "GET",
                 dataType: "json",
                 success: function(data) {

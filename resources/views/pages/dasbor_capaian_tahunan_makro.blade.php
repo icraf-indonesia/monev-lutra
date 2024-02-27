@@ -45,7 +45,7 @@
                                         <th>Target</th>
                                         <th>Satuan</th>
                                         <th>Capaian Saat Ini</th>
-                                        <th>Tingkat Capaian (%)</th>
+                                        <th>Tingkat Capaian</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -53,11 +53,22 @@
                                         <tr>
                                             {{-- <td width="1%">{{ $loop->iteration }}</td> --}}
                                             <td width="5%">{{ $makro->strategi }}</td>
-                                            <td width="5%">{{ $makro->indikator }}</td>
-                                            <td width="2%">{{ $makro->target }}</td>
+                                            <td width="5%">
+                                                <a href="{{url('')}}/capaian/tahunan/{{$makro->id_indikator}}/indikator">{{ $makro->indikator }}</a>
+                                            </td>
+                                            <td width="1%">{{ $makro->target }}</td>
                                             <td width="1%">{{ $makro->satuan }}</td>
                                             <td width="1%">{{ $makro->capaian }}</td>
-                                            <td width="1%">{{ $makro->tingkat_capaian }}</td>
+                                            <td width="4%">
+                                                @if ($makro->tingkat_capaian < 2)
+                                                    <span class="badge shade-yellow min-90" style="color: #fff;width: 10%;font-weight: 500; line-height: 1.4;">0%</span>
+                                                @else
+                                                    <span class="badge shade-yellow min-90" style="color: #fff;text-align: right; line-height: 1.7; width: {{ $makro->tingkat_capaian }}%;">
+                                                        {{ $makro->tingkat_capaian }}%
+                                                    </span>
+                                                @endif
+                                                {{-- <td width="4%">{{ $makro->tingkat_capaian }}</td> --}}
+                                            </td>
                                         </tr>
                                     @endforeach
                                 </tbody>
