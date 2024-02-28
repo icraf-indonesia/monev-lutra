@@ -4,7 +4,7 @@
 @section('page_title', 'Kelola Alokasi Lahan')
 
 @section('content')
-    <div class="row" style="max-width: 1600px; margin: auto;">
+    <div class="row" style="max-width: 1000px; margin: auto;">
         <div class="col-lg-12 col-md-12 col-sm-12 dct-appoinment">
             <div class="row">
                 <div class="col-md-12">
@@ -67,7 +67,7 @@
                                                     <form action="/admin/lahan/{{ $t->tahun }}" method="post" class="d-inline">
                                                         @method('delete')
                                                         @csrf
-                                                        <button type="submit" class="custom-badge status-red text-right" onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')">Hapus</button>
+                                                        <button type="submit" class="custom-badge status-red text-right bg-danger" onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')">Hapus</button>
                                                     </form>
                                                 </td>
                                             </tr>

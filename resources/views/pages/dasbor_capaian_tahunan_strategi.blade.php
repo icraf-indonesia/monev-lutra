@@ -114,9 +114,11 @@ var config = {
         },
         legend: { position: 'bottom' },
         scales: {
-            y: {
-                beginAtZero: true
-            }
+            yAxes: [{
+                beginAtZero: true,
+                suggestedMax: 0.1,
+                min: 0
+            }]
         }
     }
 };
