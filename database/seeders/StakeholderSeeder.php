@@ -18,7 +18,7 @@ class StakeholderSeeder extends Seeder
         DB::table('stakeholders')->delete();
 
         DB::table('stakeholders')->insert(array (
-            0 => array ('id' => 1, 'stakeholder' => 'Bappelitbangda'),
+            0 => array ('id' => 1, 'stakeholder' => 'Bapperida'),
             1 => array ('id' => 2, 'stakeholder' => 'BPBD'),
             2 => array ('id' => 3, 'stakeholder' => 'DPMD'),
             3 => array ('id' => 4, 'stakeholder' => 'Dinas Pertanian'),

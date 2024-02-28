@@ -27,6 +27,7 @@
                         <li class="active"><a href="{{url('')}}/admin/capaian">Verifikasi Capaian Indikator</a></li>
                         <li><a href="{{url('')}}/admin/kegiatan">Manajemen Kegiatan</a></li>
                         <li><a href="{{url('')}}/admin/realisasi">Verifikasi Realisasi Kegiatan</a></li>
+                        <li><a href="{{url('')}}/admin/lahan">Luas Alokasi Lahan</a></li>
                     </ul>
                     <div class="tab-content" style="padding-top: 10px;">
                         {{-- tab verifikasi indikator --}}
@@ -53,9 +54,9 @@
                                                 <td width="10%">{{ $c->indikator }}</td>
                                                 <td width="1%">{{ $c->tahun }}</td>
                                                 <td width="1%">{{ $c->target }}</td>
-                                                <td width="2%">{{ $c->capaian }}</td>
-                                                <td width="2%">{{ $c->satuan }}</td>
-                                                <td width="1%">
+                                                <td width="1%">{{ $c->capaian }}</td>
+                                                <td width="1%">{{ $c->satuan }}</td>
+                                                <td width="2%">
                                                     @if($c->status === 0)
                                                         <span class="badge rounded-pill" style="background-color: #0d6efd !important; color: #fff;">Menunggu</span>
                                                     @elseif($c->status === 1)
@@ -64,22 +65,22 @@
                                                         <span class="badge rounded-pill" style="background-color: #dc3545 !important; color: #fff;">Dalam revisi</span>
                                                     @endif
                                                 </td>
-                                                <td width="2%">{{ $c->verified_by }}</td>
-                                                <td width="5%">
+                                                <td width="1%">{{ $c->verified_by }}</td>
+                                                <td width="6%">
                                                     @if($c->status == 0)
                                                         <form action="/admin/capaian/verify/{{ $c->id }}" method="post" class="d-inline" style="float: left; margin-right: 5px;">
                                                             @method('put')
                                                             @csrf
                                                             <input type="hidden" value="1" name="status">
                                                             <input type="hidden" value="{{Auth::user()->name}}" name="verified_by">
-                                                            <button type="submit" class="custom-badge status-blue" onclick="return confirm('Approve data ini?')">Approve</button>
+                                                            <button type="submit" class="custom-badge status-blue bg-primary" onclick="return confirm('Approve data ini?')">Approve</button>
                                                         </form>
                                                         <form action="/admin/capaian/reject/{{ $c->id }}" method="post" class="d-inline">
                                                             @method('put')
                                                             @csrf
                                                             <input type="hidden" value="2" name="status">
                                                             <input type="hidden" value="{{Auth::user()->name}}" name="verified_by">
-                                                            <button type="submit" class="custom-badge status-red" onclick="return confirm('Revisi data ini?')">Revisi</button>
+                                                            <button type="submit" class="custom-badge status-red bg-danger" onclick="return confirm('Revisi data ini?')">Revisi</button>
                                                         </form>
                                                     @elseif($c->status == 2)
                                                         <form action="/admin/capaian/verify/{{ $c->id }}" method="post" class="d-inline" style="float: left; margin-right: 5px;">
@@ -87,7 +88,7 @@
                                                             @csrf
                                                             <input type="hidden" value="1" name="status">
                                                             <input type="hidden" value="{{Auth::user()->name}}" name="verified_by">
-                                                            <button type="submit" class="custom-badge status-blue" onclick="return confirm('Approve data ini?')">Approve</button>
+                                                            <button type="submit" class="custom-badge status-blue bg-info" onclick="return confirm('Approve data ini?')">Approve</button>
                                                         </form>
                                                     @endif
                                                 </td>

@@ -27,6 +27,7 @@
                         <li><a href="{{url('')}}/admin/capaian">Verifikasi Capaian Indikator</a></li>
                         <li class="active"><a href="{{url('')}}/admin/kegiatan">Manajemen Kegiatan</a></li>
                         <li><a href="{{url('')}}/admin/realisasi">Verifikasi Realisasi Kegiatan</a></li>
+                        <li><a href="{{url('')}}/admin/lahan">Luas Alokasi Lahan</a></li>
                     </ul>
                     <div class="tab-content" style="padding-top: 10px;">
                         <div class="row">
@@ -82,7 +83,7 @@
                                                 <td width="1%">{{ $k->target_volume }}</td>
                                                 <td width="1%">{{ $k->target_anggaran }}</td>
                                                 <td width="2%">
-                                                    <a class="custom-badge status-green text-right" href="/admin/kegiatan/{{ $k->id }}">Ubah</a>
+                                                    <a class="custom-badge status-green text-right bg-success" href="/admin/kegiatan/{{ $k->id }}">Ubah</a>
                                                     {{-- <form action="/admin/indikator/{{ $t->id }}" method="post" class="d-inline">
                                                         @method('delete')
                                                         @csrf

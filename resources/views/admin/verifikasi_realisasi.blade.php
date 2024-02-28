@@ -27,6 +27,7 @@
                         <li><a href="{{url('')}}/admin/capaian">Verifikasi Capaian Indikator</a></li>
                         <li><a href="{{url('')}}/admin/kegiatan">Manajemen Kegiatan</a></li>
                         <li class="active"><a href="{{url('')}}/admin/realisasi">Verifikasi Realisasi Kegiatan</a></li>
+                        <li><a href="{{url('')}}/admin/lahan">Luas Alokasi Lahan</a></li>
                     </ul>
                     <div class="tab-content" style="padding-top: 10px;">
                         {{-- tab verifikasi realisasi --}}
@@ -43,9 +44,9 @@
                                             <th>Target Anggaran</th>
                                             <th>Diisi oleh</th>
                                             <th>Realisasi Volume</th>
-                                            <th>Realisasi Volume</th>
+                                            <th>Realisasi Anggaran</th>
                                             <th>Status</th>
-                                            <th>Diverifikasi oleh</th>
+                                            <th>Verifikator</th>
                                             <th>Aksi</th>
                                         </tr>
                                     </thead>
@@ -58,7 +59,7 @@
                                                 <td width="1%">{{ $r->periode }}</td>
                                                 <td width="2%">{{ $r->target_volume }}</td>
                                                 <td width="2%">{{ $r->target_anggaran }}</td>
-                                                <td width="2%">{{ $r->entered_by }}</td>
+                                                <td width="1%">{{ $r->entered_by }}</td>
                                                 <td width="2%">{{ $r->realisasi_volume }}</td>
                                                 <td width="2%">{{ $r->realisasi_anggaran }}</td>
                                                 <td width="1%">
@@ -78,14 +79,14 @@
                                                             @csrf
                                                             <input type="hidden" value="1" name="status">
                                                             <input type="hidden" value="{{Auth::user()->name}}" name="verified_by">
-                                                            <button type="submit" class="custom-badge status-blue" onclick="return confirm('Approve data ini?')">Approve</button>
+                                                            <button type="submit" class="custom-badge status-blue bg-primary" onclick="return confirm('Approve data ini?')">Approve</button>
                                                         </form>
                                                         <form action="/admin/realisasi/reject/{{ $r->id }}" method="post" class="d-inline">
                                                             @method('put')
                                                             @csrf
                                                             <input type="hidden" value="2" name="status">
                                                             <input type="hidden" value="{{Auth::user()->name}}" name="verified_by">
-                                                            <button type="submit" class="custom-badge status-red" onclick="return confirm('Revisi data ini?')">Revisi</button>
+                                                            <button type="submit" class="custom-badge status-red bg-danger" onclick="return confirm('Revisi data ini?')">Revisi</button>
                                                         </form>
                                                     @elseif($r->status == 2)
                                                         <form action="/admin/realisasi/verify/{{ $r->id }}" method="post" class="d-inline" style="float: left; margin-right: 5px;">
@@ -93,7 +94,7 @@
                                                             @csrf
                                                             <input type="hidden" value="1" name="status">
                                                             <input type="hidden" value="{{Auth::user()->name}}" name="verified_by">
-                                                            <button type="submit" class="custom-badge status-blue" onclick="return confirm('Approve data ini?')">Approve</button>
+                                                            <button type="submit" class="custom-badge status-blue bg-info" onclick="return confirm('Approve data ini?')">Approve</button>
                                                         </form>
                                                     @endif
                                                 </td>

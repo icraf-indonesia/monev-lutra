@@ -115,7 +115,7 @@
                                                     <td width="2%">{{$t->dokumen}}</td>
                                                 @endif
                                                 <td width="2%">
-                                                    <a class="custom-badge status-green text-right" href="/admin/indikator/{{ $t->id }}">Ubah</a>
+                                                    <a class="custom-badge status-green bg-success text-right" href="/admin/indikator/{{ $t->id }}">Ubah</a>
                                                     {{-- <form action="/admin/indikator/{{ $t->id }}" method="post" class="d-inline">
                                                         @method('delete')
                                                         @csrf

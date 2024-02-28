@@ -363,4 +363,122 @@ class AdminController extends Controller
         return redirect('/admin/agroforestri/kakao?tahun='. $request->tahun)->with('status' ,'Periode baru berhasil ditambah.');
     }
 
+    public function luasAlokasiLahanKakao(Request $request)
+    {
+        $selectedPeriode = isset($request->tahun) ? $request->tahun : 2021;
+
+        $tahun = $this->tahunTersedia();
+
+        $luas = DB::table('luas_alokasi_lahan_kakao')->where('tahun', $selectedPeriode)->get();
+
+        return view('admin.luas_alokasi_lahan_kakao', ['luas' => $luas, 'tahun' => $tahun, 'selectedPeriode' => $selectedPeriode]);
+    }
+
+    public function editAlokasiLahanKakao($id)
+    {
+        $data = DB::table('luas_alokasi_lahan_kakao')
+            ->select('id', 'kecamatan', 'tahun', 'luas')
+            ->where('id', $id)
+            ->first();
+
+        return view('admin.edit_luas_alokasi_lahan_kakao', ['data' => $data]);
+    }
+
+    public function updateLuasAlokasiLahanKakao(Request $request, $id, $tahun)
+    {
+        $rules = [
+            'luas' => 'required'
+        ];
+
+        // $validatedData = $request->validate($rules);
+
+        DB::table('luas_alokasi_lahan_kakao')
+            ->where('id', $id)
+            ->where('tahun', $tahun)
+            ->update(['luas' => $request->luas, 'updated_at' => Carbon::now() ]);
+
+        return redirect('/admin/alokasi/kakao?tahun='. $tahun)->with('status', 'Berhasil mengubah luasan');
+    }
+
+    public function tambahKecamatanPemekaranKakao($year)
+    {
+        return view('admin.tambah_kecamatan_alokasi_kakao')->with('tahun', $year);
+    }
+
+    public function storeKecamatanPemekaranKakao(Request $request)
+    {
+        $rules = [
+            'kecamatan' => 'required',
+            'luas' => 'required'
+        ];
+
+        $validatedData = $request->validate($rules);
+        $validatedData['kecamatan'] = $request->kecamatan;
+        $validatedData['luas'] = $request->luas;
+        DB::table('luas_alokasi_lahan_kakao')->insert(
+            ['tahun' => $request->tahun, 'kecamatan' => $validatedData['kecamatan'], 'luas' => $validatedData['luas'], 'created_at' => Carbon::now()]
+        );
+
+        return redirect('/admin/alokasi/kakao?tahun='. $request->tahun)->with('status' ,'Periode baru berhasil ditambah.');
+    }
+
+    public function luasKawasanHutan(Request $request)
+    {
+        $selectedPeriode = isset($request->tahun) ? $request->tahun : 2021;
+
+        $tahun = $this->tahunTersedia();
+
+        $luas = DB::table('luas_kawasan_hutan')->where('tahun', $selectedPeriode)->get();
+
+        return view('admin.luas_kawasan_hutan', ['luas' => $luas, 'tahun' => $tahun, 'selectedPeriode' => $selectedPeriode]);
+    }
+
+    public function editKawasanHutan($id)
+    {
+        $data = DB::table('luas_kawasan_hutan')
+            ->select('id', 'kecamatan', 'tahun', 'luas')
+            ->where('id', $id)
+            ->first();
+
+        return view('admin.edit_luas_kawasan_hutan', ['data' => $data]);
+    }
+
+    public function updateLuasKawasanHutan(Request $request, $id, $tahun)
+    {
+        $rules = [
+            'luas' => 'required'
+        ];
+
+        // $validatedData = $request->validate($rules);
+
+        DB::table('luas_kawasan_hutan')
+            ->where('id', $id)
+            ->where('tahun', $tahun)
+            ->update(['luas' => $request->luas, 'updated_at' => Carbon::now() ]);
+
+        return redirect('/admin/kawasan/hutan?tahun='. $tahun)->with('status', 'Berhasil mengubah luasan');
+    }
+
+    public function tambahKecamatanPemekaranHutan($year)
+    {
+        return view('admin.tambah_kecamatan_kawasan_hutan')->with('tahun', $year);
+    }
+
+    public function storeKecamatanPemekaranHutan(Request $request)
+    {
+        $rules = [
+            'kecamatan' => 'required',
+            'luas' => 'required'
+        ];
+
+        $validatedData = $request->validate($rules);
+        $validatedData['kecamatan'] = $request->kecamatan;
+        $validatedData['luas'] = $request->luas;
+        DB::table('luas_kawasan_hutan')->insert(
+            ['tahun' => $request->tahun, 'kecamatan' => $validatedData['kecamatan'], 'luas' => $validatedData['luas'], 'created_at' => Carbon::now()]
+        );
+
+        return redirect('/admin/kawasan/hutan?tahun='. $request->tahun)->with('status' ,'Periode baru berhasil ditambah.');
+    }
+
 }

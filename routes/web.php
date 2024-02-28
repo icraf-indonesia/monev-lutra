@@ -84,7 +84,16 @@ Route::group(['middleware' => 'auth'], function(){
     Route::post('/admin/agroforestri/kakao/store_kecamatan', [AdminController::class, 'storeKecamatanPemekaran']);
 
     Route::get('/admin/alokasi/kakao', [AdminController::class, 'luasAlokasiLahanKakao']);
+    Route::get('/admin/alokasi/kakao/{id}', [AdminController::class, 'editAlokasiLahanKakao']);
+    Route::put('/admin/alokasi/kakao/{id}/{year}', [AdminController::class, 'updateLuasAlokasiLahanKakao']);
+    Route::get('/admin/alokasi/kakao/tambah/{year}', [AdminController::class, 'tambahKecamatanPemekaranKakao']);
+    Route::post('/admin/alokasi/kakao/store_kecamatan', [AdminController::class, 'storeKecamatanPemekaranKakao']);
+
     Route::get('/admin/kawasan/hutan', [AdminController::class, 'luasKawasanHutan']);
+    Route::get('/admin/kawasan/hutan/{id}', [AdminController::class, 'editKawasanHutan']);
+    Route::put('/admin/kawasan/hutan/{id}/{year}', [AdminController::class, 'updateLuasKawasanHutan']);
+    Route::get('/admin/kawasan/hutan/tambah/{year}', [AdminController::class, 'tambahKecamatanPemekaranHutan']);
+    Route::post('/admin/kawasan/hutan/store_kecamatan', [AdminController::class, 'storeKecamatanPemekaranHutan']);
 
     Route::get('/lahan/tahunan', [DasborController::class, 'lahanTahunan']);
     Route::get('/modal/tahunan', [DasborController::class, 'modalTahunan']);
