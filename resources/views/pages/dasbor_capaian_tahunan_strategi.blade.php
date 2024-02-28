@@ -115,9 +115,11 @@ var config = {
         legend: { position: 'bottom' },
         scales: {
             yAxes: [{
-                beginAtZero: true,
-                suggestedMax: 0.1,
-                min: 0
+                ticks: {
+                    beginAtZero: true,
+                    suggestedMax: 0.1,
+                    min: 0
+                }
             }]
         }
     }
