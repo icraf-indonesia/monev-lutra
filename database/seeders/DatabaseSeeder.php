@@ -14,11 +14,23 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // \App\Models\User::factory(10)->create();
-
-        // \App\Models\User::factory()->create([
-        //     'name' => 'Test User',
-        //     'email' => 'test@example.com',
-        // ]);
+        /***** UPDATE *****/
+        $this->call(IndikatorStakeholderSeeder::class);
+        // $this->call(KegiatanSeeder::class);
+        $this->call(LembagaSeeder::class);
+        $this->call(LuasAgroforestriKakaoSeeder::class);
+        $this->call(LuasAlokasiLahanKakaoSeeder::class);
+        $this->call(LuasKawasanHutanSeeder::class);
+        $this->call(MonevCapaianSeeder::class);
+        $this->call(MonevIndikatorMakroSeeder::class);
+        $this->call(MonevIndikatorSeeder::class);
+        $this->call(MonevIntervensiSeeder::class);
+        $this->call(MonevKegiatanSeeder::class);
+        $this->call(MonevPeriodeKegiatanSeeder::class);
+        $this->call(MonevPeriodeSeeder::class);
+        $this->call(MonevStrategySeeder::class);
+        $this->call(StakeholderSeeder::class);
+        $this->call(UsersTableSeeder::class);
+        /***** END UPDATE *****/
     }
 }

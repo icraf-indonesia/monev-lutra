@@ -72,8 +72,8 @@
                             <tr>
                                 {{-- <td width="10%">{{ $table->strategi}}</td> --}}
                                 <td width="10%">{{ $table->intervensi }}</td>
-                                <td width="10%">{{ $table->indikator_intervensi }}</td>
-                                <td width="10%">{{ $table->pemangku_kepentingan1 }}</td>
+                                <td width="10%">{{ $table->indikator }}</td>
+                                <td width="10%">{{ $table->stakeholder1 }}</td>
                                 <td width="10%" data-bs-toggle="modal" data-bs-target="#addnew">{{ $table->iku }}</td>
                                 <td width="10%" data-bs-toggle="modal" data-bs-target="#addnew2">{{ $table->ikk }}</td>
                                 <td width="10%" data-bs-toggle="modal" data-bs-target="#addnew3">{{ $table->terpercaya }}
