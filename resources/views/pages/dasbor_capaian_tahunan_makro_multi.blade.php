@@ -14,14 +14,14 @@
                 <div class="col-md-12">
                     <ul class="nav nav-tabs paitent-app-tab" style="margin-bottom: 10px; margin-top: -10px">
                         <li><a href="{{url('')}}/capaian/tahunan">Kembali</a></li>
-                        <li class="active"><a href="{{url('')}}/capaian/tahunan/{{$indikator->id}}/strategi">Strategi</a></li>
+                        <li class="active"><a href="{{url('')}}/capaian/tahunan/{{$indikator->id}}/indikator">Grafik</a></li>
                     </ul>
                 </div>
             </div>
             <div class="row">
                 <div class="col-lg-8 col-md-8 col-sm-8">
-                    <h3>Grafik Tingkat Capaian Indikator Makro</h3>
-                    <h4>{{$indikator->indikator}} dengan satuan {{$indikator->satuan}}</h4>
+                    <h3>Grafik Capaian Indikator Makro</h3>
+                    <h4><strong>{{$indikator->indikator}}</strong> @if($indikator->satuan) dengan satuan <strong>{{$indikator->satuan}}</strong> @endif <h4>
                     <div class="card">
                         <div class="card-body">
                             <div class="chart" style="min-height: 400px;">
@@ -78,9 +78,13 @@ var config = {
         },
         legend: { position: 'bottom' },
         scales: {
-            y: {
-                beginAtZero: true
-            }
+            yAxes: [{
+                ticks: {
+                    beginAtZero: true,
+                    suggestedMax: 0.1,
+                    min: 0
+                }
+            }]
         }
     }
 };

@@ -54,7 +54,9 @@
                                             {{-- <td width="1%">{{ $loop->iteration }}</td> --}}
                                             <td width="5%">{{ $makro->strategi }}</td>
                                             <td width="5%">
-                                                <a href="{{url('')}}/capaian/tahunan/{{$makro->id_indikator}}/indikator">{{ $makro->indikator }}</a>
+                                                <a href="{{url('')}}/capaian/tahunan/{{$makro->id_indikator}}/indikator">
+                                                    {{ $makro->indikator }} <i class="material-icons" style="font-size: 14px">link</i>
+                                                </a>
                                             </td>
                                             <td width="1%">{{ $makro->target }}</td>
                                             <td width="1%">{{ $makro->satuan }}</td>

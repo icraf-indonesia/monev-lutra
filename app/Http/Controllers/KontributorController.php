@@ -102,10 +102,14 @@ class KontributorController extends Controller
         $strategi =  DB::table('monev_kegiatans')
                         ->leftJoin('monev_strategies', 'monev_strategies.id', '=', 'monev_kegiatans.id_strategi')
                         ->leftJoin('users', 'monev_kegiatans.id_lembaga', '=', 'users.id_lembaga')
-                        ->where('monev_kegiatans.id_lembaga', $id_lembaga)
                         // ->whereNotNull('strategi')
-                        ->select('strategi','monev_strategies.id as id')
-                        ->get()->unique('strategi');
+                        ->select('strategi','monev_strategies.id as id');
+
+        if($id_lembaga != 0){
+            $strategi = $strategi->where('monev_kegiatans.id_lembaga', $id_lembaga);
+        }
+
+        $strategi = $strategi->get()->unique('strategi');
 
         $lembaga = DB::table('lembaga')->get();
 
@@ -131,9 +135,14 @@ class KontributorController extends Controller
         $id_lembaga = Auth::user()->id_lembaga;
         $intervensi = DB::table('monev_kegiatans')
                             ->join('monev_intervensis', 'monev_intervensis.id', '=', 'monev_kegiatans.id_intervensi')
-                            ->where('monev_kegiatans.id_strategi', $id)
-                            ->where('monev_kegiatans.id_lembaga', $id_lembaga)
-                            ->pluck('monev_intervensis.intervensi','monev_intervensis.id');
+                            ->where('monev_kegiatans.id_strategi', $id);
+
+        if($id_lembaga != 0){
+            $intervensi = $intervensi->where('monev_kegiatans.id_lembaga', $id_lembaga);
+        }
+
+        $intervensi = $intervensi->pluck('monev_intervensis.intervensi','monev_intervensis.id');
+
         return json_encode($intervensi);
     }
 
@@ -159,12 +168,15 @@ class KontributorController extends Controller
 
     public function kegiatan($intervensi, $lembaga)
     {
-        $lembaga = DB::table('monev_kegiatans')
-                            ->where('id_intervensi', $intervensi)
-                            ->where('id_lembaga', $lembaga)
-                            ->pluck('kegiatan', 'id');
+        $kegiatan = DB::table('monev_kegiatans')->where('id_intervensi', $intervensi);
 
-        return json_encode($lembaga);
+        if($lembaga != 0){
+            $kegiatan = $kegiatan->where('id_lembaga', $lembaga);
+        }
+
+        $kegiatan = $kegiatan->pluck('kegiatan', 'id');
+
+        return json_encode($kegiatan);
     }
 
     public function target($id)

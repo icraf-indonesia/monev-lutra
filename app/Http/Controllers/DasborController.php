@@ -18,9 +18,9 @@ class DasborController extends Controller
                             mi.id as id_indikator,
                             mi.indikator as indikator,
                             mc.tahun as tahun,
-                            cast(mi.target as decimal(10,2)) target,
+                            cast(mi.target as decimal(10,3)) target,
                             mi.satuan as satuan,
-                            cast(mc.capaian as decimal(10,2)) capaian,
+                            cast(mc.capaian as decimal(10,3)) capaian,
                             IFNULL(ROUND(capaian/target*100, 2), 0) as tingkat_capaian,
                             mc.dokumen as dokumen,
                             mc.status as status
@@ -66,9 +66,9 @@ class DasborController extends Controller
                         ->select('monev_indikators.id',
                                  'indikator',
                                  'monev_capaians.tahun as tahun',
-                                 DB::raw('CAST(monev_indikators.target as decimal(10,2)) target'),
+                                 DB::raw('CAST(monev_indikators.target as decimal(10,5)) target'),
                                  'monev_indikators.satuan',
-                                 DB::raw('CAST(monev_capaians.capaian as decimal(10,2)) capaian'),
+                                 DB::raw('CAST(monev_capaians.capaian as decimal(10,5)) capaian'),
                                  DB::raw('IFNULL(ROUND(capaian/target*100, 2), 0) as tingkat_capaian'),
                                  'monev_capaians.status as status')
                         ->where('monev_capaians.status', 1)
@@ -94,8 +94,8 @@ class DasborController extends Controller
 
             if($capaian_makro){
                 $data_persen[] = $capaian_makro->tingkat_capaian;
-                $data_target[] = (float) $capaian_makro->capaian;
-                $data_capaian[] = (float) $capaian_makro->target;
+                $data_target[] = (float) $capaian_makro->target;
+                $data_capaian[] = (float) $capaian_makro->capaian;
             } else {
                 $data_persen[] = 0;
                 $data_target[] = 0;

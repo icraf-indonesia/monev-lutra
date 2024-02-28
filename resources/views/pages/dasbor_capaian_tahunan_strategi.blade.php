@@ -67,7 +67,7 @@
                                     <tr>
                                         <td width="50%">
                                             <a href="{{url('')}}/capaian/tahunan/strategi/{{ $selectedYear}}/{{ $item->id }}/intervensi">
-                                                {{ $item->strategi }}
+                                                {{ $item->strategi }} <i class="material-icons" style="font-size: 14px">link</i>
                                             </a>
                                         </td>
                                         <td>
