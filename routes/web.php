@@ -7,6 +7,7 @@ use App\Http\Controllers\SessionController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\KontributorController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\ArticleController;
 use Illuminate\Support\Facades\Route;
 // use Illuminate\Support\Facades\DB;
 
@@ -25,6 +26,8 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/isu_strategis', [HomeController::class, 'isustrategi']);
 Route::get('/strategi_intervensi', [HomeController::class, 'visi']);
+Route::get('/artikel', [ArticleController::class, 'show']);
+Route::get('/artikel/{id}', [ArticleController::class, 'detailArticle']);
 
 Route::get('/session', [SessionController::class, 'index'])->name('login');
 Route::post('/session/login', [SessionController::class, 'login']);
@@ -73,6 +76,16 @@ Route::group(['middleware' => 'auth'], function(){
     Route::put('/admin/realisasi/reject/{id}', [AdminController::class, 'rejectRealisasi']);
 
     Route::get('/admin/user', [UserController::class, 'index']);
+    Route::get('/admin/user/tambah', [UserController::class, 'tambahUser']);
+    Route::post('/admin/user/store', [UserController::class, 'storeUser']);
+    Route::delete('/admin/user/{id}', [UserController::class, 'deleteUser']);
+
+    Route::get('/admin/artikel', [ArticleController::class, 'index']);
+    Route::get('/admin/artikel/tambah', [ArticleController::class, 'tambahArtikel']);
+    Route::post('/admin/artikel/store', [ArticleController::class, 'storeArtikel']);
+    Route::delete('/admin/artikel/{id}', [ArticleController::class, 'deleteArticle']);
+    Route::get('/admin/artikel/{id}', [ArticleController::class, 'editArticle']);
+    Route::put('/admin/artikel/{id}', [ArticleController::class, 'updateArticle']);
 
     Route::get('/admin/lahan', [AdminController::class, 'daftarAlokasiLahan']);
     Route::post('/admin/lahan/store_tahun', [AdminController::class, 'storeTahun']);

@@ -74,6 +74,7 @@
                             </li>
                             <li><a class="home" href="{{ url('') }}/indikator">Indikator</a></li>
                             <li><a class="home" href="{{ url('') }}/capaian/tahunan">Profil Jurisdiksi</a></li>
+                            <li><a class="home" href="{{ url('') }}/artikel">Artikel</a></li>
                             <li><a class="prett">Unduh</a>
                                 <ul class="menus">
                                     <li><a href="https://drive.google.com/file/d/1FmdQD072vq2LB8c7RVLyqdwtCinx9wo2/view?usp=sharing" target="_blank">Dokumen Metadata</a></li>
@@ -83,7 +84,13 @@
                             </li>
                             @if (Auth::check())
                                 @if (Auth::user()->role === 'admin')
-                                    <li><a href="{{ url('') }}/admin">Admin</a></li>
+                                    <li><a class="prett">Admin</a>
+                                        <ul class="menus">
+                                            <li><a href="{{ url('') }}/admin">Kelola Target dan Kegiatan</a></li>
+                                            <li><a href="{{ url('') }}/admin/user">Kelola User</a></li>
+                                            <li><a href="{{ url('') }}/admin/artikel">Kelola Artikel</a></li>
+                                        </ul>
+                                    </li>
                                 @else
                                     <li><a href="{{ url('') }}/kontributor">Kontributor</a></li>
                                 @endif

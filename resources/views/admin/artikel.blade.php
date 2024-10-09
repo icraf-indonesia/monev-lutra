@@ -1,6 +1,6 @@
 @extends('header')
 
-@section('page_title', 'User')
+@section('page_title', 'Artikel')
 
 @section('content')
     <div class="row" style="max-width: 1600px; margin: auto;">
@@ -24,8 +24,8 @@
                         </div>
                     @endif
                     <ul class="nav nav-tabs paitent-app-tab">
-                        <li class="active"><a href="{{url('')}}/admin/user">Daftar User</a></li>
-                        <li><a href="{{url('')}}/admin/user/tambah">Tambah User</a></li>
+                        <li class="active"><a href="{{url('')}}/admin/artikel">Daftar Artikel</a></li>
+                        <li><a href="{{url('')}}/admin/artikel/tambah">Tambah Artikel</a></li>
                     </ul>
                     <div class="tab-content" style="padding-top: 10px;">
                         <div class="table-responsive">
@@ -34,26 +34,21 @@
                                 <thead>
                                     <tr>
                                         <th>No.</th>
-                                        <th>Nama</th>
-                                        <th>Username</th>
-                                        <th>Email</th>
-                                        <th>Role</th>
-                                        <th>OPD</th>
+                                        <th>Judul</th>
+                                        <th>Isi</th>
                                         <th>Aksi</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @if (count($user))
-                                        @foreach ($user as $table)
+                                    @if (count($artikel))
+                                        @foreach ($artikel as $table)
                                             <tr>
-                                                <td width="1%">{{ (($user->currentPage() * 10) - 10) + $loop->iteration }}</td>
-                                                <td width="10%">{{ $table->name }}</td>
-                                                <td width="1%">{{ $table->username }}</td>
-                                                <td width="1%">{{ $table->email }}</td>
-                                                <td width="2%">{{ $table->role }}</td>
-                                                <td width="2%">{{ $table->stakeholder }}</td>
+                                                <td width="1%">{{ (($artikel->currentPage() * 10) - 10) + $loop->iteration }}</td>
+                                                <td width="1%">{{ $table->judul }}</td>
+                                                <td width="10%">{{ $table->deskripsi }}</td>
                                                 <td width="1%">
-                                                    <form action="/admin/user/{{ $table->id }}" method="post" class="d-inline">
+                                                    <a class="custom-badge status-green text-right bg-success" href="/admin/artikel/{{ $table->id }}">Ubah</a>
+                                                    <form action="/admin/artikel/{{ $table->id }}" method="post" class="d-inline">
                                                         @method('delete')
                                                         @csrf
                                                         <button type="submit" class="custom-badge status-red text-right" onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')">Hapus</button>
@@ -74,11 +69,11 @@
                         <br />
                         <nav aria-label="Page navigation">
                             <ul class="pagination">
-                                <li class="page-item"><a class="page-link" href="{{ $user->url($user->onFirstPage()) }}">First</a></li>
-                                <li class="page-item"><a class="page-link" href="{{ $user->previousPageUrl() }}">Previous</a></li>
-                                <li class="page-item"><a class="page-link" href="#">{{ $user->currentPage() }}</a></li>
-                                <li class="page-item"><a class="page-link" href="{{ $user->nextPageUrl() }}">Next</a></li>
-                                <li class="page-item"><a class="page-link" href="{{ $user->url($user->lastPage()) }}">Last</a></li>
+                                <li class="page-item"><a class="page-link" href="{{ $artikel->url($artikel->onFirstPage()) }}">First</a></li>
+                                <li class="page-item"><a class="page-link" href="{{ $artikel->previousPageUrl() }}">Previous</a></li>
+                                <li class="page-item"><a class="page-link" href="#">{{ $artikel->currentPage() }}</a></li>
+                                <li class="page-item"><a class="page-link" href="{{ $artikel->nextPageUrl() }}">Next</a></li>
+                                <li class="page-item"><a class="page-link" href="{{ $artikel->url($artikel->lastPage()) }}">Last</a></li>
                             </ul>
                         </nav>
                     </div>
