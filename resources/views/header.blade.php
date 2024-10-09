@@ -41,7 +41,7 @@
 
     <header>
         <nav class="navbar navbar-default navbar-trans navbar-expand-lg ct-navbar-01">
-            <div class="container-fluid" style="width: 1170px">
+            <div class="container-fluid" style="width: 1230px">
                 <div class="row">
                     <div class="col-md-8 col-sm-12 header-navbar-lft text-center" style="padding-left: 0px;">
                         <a class="web-logo1 visible-xs visible-sm" href="{{ url('') }}/"><img

@@ -2,6 +2,7 @@
 
 @section('content')
 <div class="container-fluid" style="max-width: 1170px; margin: auto;">
+    <div class="row">
     <a href="/artikel">
         <button class="btn btn-info text-white w-100">Kembali</button>
     </a>
@@ -11,5 +12,6 @@
     <p>
         {{$artikel->deskripsi}}
     </p>
+    </div>
 </div>
 @stop
