@@ -80,7 +80,7 @@
                                     <li><a href="https://drive.google.com/file/d/1FmdQD072vq2LB8c7RVLyqdwtCinx9wo2/view?usp=sharing" target="_blank">Dokumen Metadata</a></li>
                                     <li><a href="https://drive.google.com/file/d/1ZRDY70s5Ei9sJq6qcfsBf28zA6k-5h4q/view?usp=sharing" target="_blank">Dokumen Peta Jalan</a></li>
                                     <li><a href="https://drive.google.com/file/d/1ZRDY70s5Ei9sJq6qcfsBf28zA6k-5h4q/view?usp=sharing" target="_blank">Panduan Penggunaan</a></li>
-                                    <li><a href="https://drive.google.com/file/d/1VdoaBeDFMaQfy2Hg9lOIQgaTrXb0wHOt/view" target="_blank">Perbub No 19 Tahun 2024</a></li>
+                                    <li><a href="https://drive.google.com/file/d/1ZyBIgzzY_Xpt54w3j0at4Go58SUXhevm/view" target="_blank">Perbub No 19 Tahun 2024</a></li>
                                 </ul>
                             </li>
                             @if (Auth::check())
