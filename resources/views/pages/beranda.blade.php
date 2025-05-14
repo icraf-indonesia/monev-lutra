@@ -166,101 +166,51 @@
 @stop
 
 @section('customJS')
-let map, markers = [];
+// Initialize the map
+const map = L.map('map', {
+    center: [-2.412288, 120.089315],
+    zoom: 9
+});
 
-function initMap() {
-    map = L.map('map', {
-        center: {
-            lat: -2.412288070373402,
-            lng: 120.08931533060061,
-        },
-        zoom: 9
-    });
+// Add base map tiles
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '© OpenStreetMap'
+}).addTo(map);
 
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        attribution: '© OpenStreetMap'
-    }).addTo(map);
+// Create info control to display intervention name
+const info = L.control();
 
-    const info = L.control();
+info.onAdd = function() {
+    this._div = L.DomUtil.create('div', 'info');
+    this.update();
+    return this._div;
+};
 
-    info.onAdd = function(map) {
-        this._div = L.DomUtil.create('div', 'info');
-        this.update();
-        return this._div;
-    }
+info.update = function(props) {
+    this._div.innerHTML = '<h4>Peta Intervensi</h4>' + 
+        (props ? '<b>' + props.Intrv + '</b>' : 'Arahkan pointer pada sebuah area');
+};
 
-    info.update = function (props) {
-        this._div.innerHTML = '<h4>Peta Intervensi</h4>' +  (props ?
-            '<b>' + props.Intrv + '</b>'
-            : 'Arahkan pointer ke peta');
-    };
+info.addTo(map);
 
-    info.addTo(map);
-
-    var geo = L.geoJson({features:[]}, {
-        style,
-        onEachFeature: function popUp(f, l) {
-            //var out = [];
-            //if (f.properties){
-            //    for(var key in f.properties){
-            //        out.push(key + ": " + f.properties[key]);
-            //    }
-            //    l.bindPopup(out.join("<br />"));
-            //}
-            l.on({
-                mouseover: highlightFeature,
-                mouseout: resetHighlight,
-                click: zoomToFeature
-            });
-        }
-    }).addTo(map);
-
-    var base = '{{url('')}}/shp/Invervention_map_v1_J_F.zip';
-    shp(base).then(function(data){
-        geo.addData(data);
-    });
-
-    map.on('click', mapClicked);
+// Color mapping for interventions
+function getColor(value) {
+    const colors = [
+        '#2E8B57',  // Intv 1
+        '#3CB371',  // Intv 2
+        '#BA55D3',  // Intv 3
+        '#FFA07A',  // Intv 4
+        '#FFD700',  // Intv 5
+        '#20B2AA',  // Intv 6
+        '#FFB6C1',  // Intv 7
+        '#9ACD32',  // Intv 8
+        '#D3D3D3'   // No intervention
+    ];
+    return colors[value] || colors[8];
 }
 
-initMap();
-
-function highlightFeature(e) {
-    const layer = e.target;
-    layer.setStyle({
-        weight: 5,
-        color: '#666',
-        dashArray: '',
-        fillOpacity: 0.7
-    });
-
-    layer.bringToFront();
-
-    info.update(layer.feature.properties);
-}
-
-function resetHighlight(e) {
-    geo.resetStyle(e.target);
-    info.update();
-}
-
-function zoomToFeature(e){
-    map.fitBounds(e.target.getBounds());
-}
-
-function getColor(i) {
-    return i === 0 ? '#b2182b' :
-           i === 1 ? '#d6604d' :
-           i === 2 ? '#f4a582' :
-           i === 3 ? '#fddbc7' :
-           i === 4 ? '#f7f7f7' :
-           i === 5 ? '#d1e5f0' :
-           i === 6 ? '#92c5de' :
-           i === 7 ? '#4393c3' :
-                    '#2166ac';
-}
-
-function style(feature) {
+// Style for geoJSON features
+function styleFeature(feature) {
     return {
         weight: 2,
         opacity: 1,
@@ -271,29 +221,38 @@ function style(feature) {
     };
 }
 
-function generateMarker(data, index) {
-    return L.marker(data.position, {
-            draggable: data.draggable
-        })
-        .on('click', (event) => markerClicked(event, index))
-        .on('dragend', (event) => markerDragEnd(event, index));
+// Highlight feature on hover
+function highlightFeature(e) {
+    const layer = e.target;
+    layer.setStyle({
+        weight: 1,
+        color: '#333',
+        dashArray: '',
+        fillOpacity: 0.9
+    });
+    layer.bringToFront();
+    info.update(layer.feature.properties);
 }
 
-/* ------------------------- Handle Map Click Event ------------------------- */
-function mapClicked($event) {
-    console.log(map);
-    console.log($event.latlng.lat, $event.latlng.lng);
+// Reset highlight when mouse leaves
+function resetHighlight(e) {
+    geoJsonLayer.resetStyle(e.target);
+    info.update();
 }
 
-/* ------------------------ Handle Marker Click Event ----------------------- */
-function markerClicked($event, index) {
-    console.log(map);
-    console.log($event.latlng.lat, $event.latlng.lng);
-}
+// Create empty geoJSON layer
+const geoJsonLayer = L.geoJson(null, {
+    style: styleFeature,
+    onEachFeature: function(feature, layer) {
+        layer.on({
+            mouseover: highlightFeature,
+            mouseout: resetHighlight
+        });
+    }
+}).addTo(map);
 
-/* ----------------------- Handle Marker DragEnd Event ---------------------- */
-function markerDragEnd($event, index) {
-    console.log(map);
-    console.log($event.target.getLatLng());
-}
+// Load shapefile data
+shp('{{url('')}}/shp/Invervention_map_v1_J_F2.zip').then(function(data) {
+    geoJsonLayer.addData(data);
+});
 @stop
